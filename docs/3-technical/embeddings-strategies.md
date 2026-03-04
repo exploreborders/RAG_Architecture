@@ -12,7 +12,7 @@ Embedding Process:
 
 Text Input                    Embedding Model                  Vector Output
 ┌─────────────┐             ┌─────────────────┐            ┌─────────────┐
-│ "What is    │────────────►│                 │────────────►│ [0.12,      │
+│ "What is    │────────────►│                 │───────────►│ [0.12,      │
 │  RAG?"      │             │   Embedding     │            │  -0.34,     │
 │             │             │   Model         │            │   0.78,     │
 │             │             │                 │            │  ...]       │
@@ -25,23 +25,53 @@ Similar texts → Similar vectors → Near each other in vector space
 
 | Model | Dimensions | Speed | Quality | Cost | Best For |
 |-------|------------|-------|---------|------|----------|
-| **text-embedding-3-small** | 1536 | Fast | Good | Low | General purpose |
+| **nomic-embed-text** | 768 | Fast | Good | Free | Default - Local |
+| **text-embedding-3-small** | 1536 | Fast | Good | Low | Cloud API |
 | **text-embedding-3-large** | 3072 | Medium | Excellent | Medium | High quality |
-| **text-embedding-ada-002** | 1536 | Fast | Good | Low | Legacy |
 | **BGE-large** | 1024 | Medium | Excellent | Free | Open source |
 | **BGE-base** | 768 | Fast | Good | Free | Balanced |
-| **Cohere-embed** | 1024 | Fast | Excellent | Medium | Production |
 
 ## Implementation
 
-### OpenAI Embeddings
+### Prerequisites
+
+```bash
+# Install Ollama: https://ollama.ai
+ollama pull nomic-embed-text
+```
+
+### Ollama Embeddings (Default - Free, Local)
 
 ```python
 """
-OpenAI Embeddings
+Ollama Embeddings (Default - Free, Local)
 """
 
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
+
+# Default model: nomic-embed-text (free!)
+embeddings = OllamaEmbeddings(
+    model="nomic-embed-text",
+    base_url="http://localhost:11434"
+)
+
+# Create embeddings
+text = "What is Retrieval Augmented Generation?"
+vector = embeddings.embed_query(text)
+
+# Batch embedding
+documents = ["Doc 1", "Doc 2", "Doc 3"]
+vectors = embeddings.embed_documents(documents)
+```
+
+### OpenAI Embeddings (Alternative - Cloud API)
+
+```python
+"""
+OpenAI Embeddings (Alternative - Cloud API)
+"""
+
+from langchain_openai import OpenAIEmbeddings
 
 # Latest model (text-embedding-3)
 embeddings = OpenAIEmbeddings(
@@ -52,13 +82,6 @@ embeddings = OpenAIEmbeddings(
 # Create embeddings
 text = "What is Retrieval-Augmented Generation?"
 vector = embeddings.embed_query(text)
-
-# Batch embedding
-documents = ["Doc 1", "Doc 2", "Doc 3"]
-vectors = embeddings.embed_documents(documents)
-```
-
-### Open-Source Embeddings (BGE)
 
 ```python
 """

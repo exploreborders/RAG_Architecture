@@ -82,7 +82,7 @@ Semantic Chunking - Split by meaning
 """
 
 from langchain_experimental.text_splitter import SemanticChunker
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 
 # Uses embeddings to find semantic breaks
 semantic_splitter = SemanticChunker(
@@ -200,13 +200,13 @@ python_chunks = code_splitters[Language.PYTHON].split_text(python_code)
 LLM-Guided Intelligent Chunking
 """
 
-from langchain_community.chat_models import ChatOpenAI
+from langchain_ollama import ChatOllama
 
 class IntelligentChunking:
     """Use LLM to determine optimal chunks."""
     
     def __init__(self, llm=None):
-        self.llm = llm or ChatOpenAI(model="gpt-4")
+        self.llm = llm or ChatOllama(model="llama3.2")-4")
     
     def split(self, text: str, max_chunk_size: int = 1000) -> list:
         """Intelligently split text."""

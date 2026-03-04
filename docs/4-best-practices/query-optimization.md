@@ -96,13 +96,13 @@ print(cleaned)  # "what is rag?"
 Query Rewriting with LLM
 """
 
-from langchain_community.chat_models import ChatOpenAI
+from langchain_ollama import ChatOllama
 
 class QueryRewriter:
     """Rewrite queries for better retrieval."""
     
     def __init__(self, llm=None):
-        self.llm = llm or ChatOpenAI(model="gpt-4")
+        self.llm = llm or ChatOllama(model="llama3.2")-4")
     
     def rewrite(self, query: str) -> str:
         """Rewrite query to improve retrieval."""

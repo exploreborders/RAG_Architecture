@@ -11,18 +11,18 @@ RAG Scaling Challenges:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                     Scaling Dimensions                                   │
+│                     Scaling Dimensions                                  │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐         │
-│  │   Data Scale   │  │   Query Load    │  │  Latency       │         │
-│  │                │  │                │  │  Requirements  │         │
-│  │ • Millions of  │  │ • Thousands of │  │                │         │
-│  │   documents    │  │   concurrent   │  │ • <100ms for   │         │
-│  │ • TB of data   │  │   users        │  │   real-time    │         │
-│  │ • Frequent     │  │ • Burst        │  │ • <1s for      │         │
-│  │   updates      │  │   traffic      │  │   batch        │         │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘         │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐          │
+│  │   Data Scale    │  │   Query Load    │  │  Latency        │          │
+│  │                 │  │                 │  │  Requirements   │          │
+│  │ • Millions of   │  │ • Thousands of  │  │                 │          │
+│  │   documents     │  │   concurrent    │  │ • <100ms for    │          │
+│  │ • TB of data    │  │   users         │  │   real-time     │          │
+│  │ • Frequent      │  │ • Burst         │  │ • <1s for       │          │
+│  │   updates       │  │   traffic       │  │   batch         │          │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘          │
 │                                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
 ```

@@ -106,10 +106,10 @@ from langchain_community.document_loaders import (
     UnstructuredImageLoader,
     DirectoryLoader
 )
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.chat_models import ChatOpenAI
+from langchain_ollama import ChatOllama
 from langchain.chains import RetrievalQA
 from PIL import Image
 import os
@@ -121,7 +121,7 @@ class MultimodalRAG:
         self.persist_directory = persist_directory
         self.embeddings = OpenAIEmbeddings()
         self.vectorstore = None
-        self.llm = ChatOpenAI(model="gpt-4")
+        self.llm = ChatOllama(model="llama3.2"))
     
     def load_documents(self, directory: str):
         """Load documents of various types."""
@@ -149,7 +149,7 @@ class MultimodalRAG:
     def process_images(self, image_paths: list) -> list:
         """Process images into descriptions."""
         
-        from langchain_community.chat_models import ChatOpenAI
+        from langchain_ollama import ChatOllama
         from langchain.schema import HumanMessage
         
         descriptions = []
@@ -434,7 +434,7 @@ class AudioRAG:
 Using GPT-4V or Claude for Multimodal Generation
 """
 
-from langchain_community.chat_models import ChatOpenAI
+from langchain_ollama import ChatOllama
 from langchain.schema import HumanMessage, SystemMessage
 
 class MultimodalGenerator:

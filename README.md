@@ -28,7 +28,7 @@ This repository is organized into multiple learning paths suitable for different
 |---------|-------------|
 | [Theory](docs/1-theory/) | Foundational concepts, evolution, and theory behind RAG |
 | [Architectures](docs/2-architectures/) | Deep dives into Classic RAG, KG-RAG, Agentic RAG, Multimodal RAG |
-| [Technical](docs/3-technical/) | Embeddings, vector databases, retrieval systems, evaluation |
+| [Technical](docs/3-technical/) | Embeddings, vector databases, retrieval systems, evaluation, **providers (OpenAI/Ollama)** |
 | [Best Practices](docs/4-best-practices/) | Production-ready patterns, optimization, scaling |
 | [Comparison](docs/5-pros-cons/) | Pros/cons matrix, use case recommendations |
 
@@ -43,33 +43,42 @@ This repository is organized into multiple learning paths suitable for different
 ## 🎯 Quick Start
 
 ```python
-# Simple RAG with LangChain
-from langchain_community.document_loaders import TextLoader
-from langchain.text_splitter import CharacterTextSplitter
-from langchain_community.embeddings import OpenAIEmbeddings
-from langchain_community.vectorstores import Chroma
-from langchain_community.chat_models import ChatOpenAI
-from langchain.chains import RetrievalQA
+# Using Ollama (local, free, privacy-friendly) - RECOMMENDED
+# First, install Ollama: https://ollama.ai
+# Then run: ollama pull llama3.2
+# And: ollama pull nomic-embed-text
 
-# 1. Load documents
-loader = TextLoader("document.txt")
-documents = loader.load()
+from docs._technical.providers import RAGProvider
 
-# 2. Split into chunks
-text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-texts = text_splitter.split_documents(documents)
+rag = RAGProvider(provider="ollama")  # Default!
+rag.add_documents(documents)
+result = rag.query("What is RAG?")
 
-# 3. Create vector store
-embeddings = OpenAIEmbeddings()
-vectorstore = Chroma.from_documents(texts, embeddings)
+# OR Using OpenAI (cloud API)
+rag = RAGProvider(provider="openai")
+rag.add_documents(documents)
+result = rag.query("What is RAG?")
 
-# 4. Create QA chain
-llm = ChatOpenAI(model="gpt-4")
-qa_chain = RetrievalQA.from_chain_type(llm, retriever=vectorstore.as_retriever())
+# Same interface regardless of provider!
+```
 
-# 5. Ask questions
-result = qa_chain.run("What is the main topic?")
-print(result)
+### Manual Setup (without wrapper)
+
+```python
+# Ollama Setup (local, free) - RECOMMENDED
+from langchain_ollama import ChatOllama, OllamaEmbeddings
+from langchain_chroma import Chroma
+
+llm = ChatOllama(model="llama3.2")
+embeddings = OllamaEmbeddings(model="nomic-embed-text")
+vectorstore = Chroma.from_documents(documents, embeddings)
+
+# OpenAI Setup (cloud API)
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+
+llm = ChatOpenAI(model="gpt-4o")
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+vectorstore = Chroma.from_documents(documents, embeddings)
 ```
 
 ## 🔄 Architecture Comparison

@@ -109,9 +109,8 @@ Agentic RAG with LangGraph
 
 from langgraph.graph import StateGraph, END
 from langchain_community.tools import Tool
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import OpenAIEmbeddings
-from langchain_community.chat_models import ChatOpenAI
+from langchain_chroma import Chroma
+from langchain_ollama import OllamaEmbeddings, ChatOllama
 from langchain.prompts import ChatPromptTemplate
 from pydantic import BaseModel
 from typing import List, TypedDict, Optional
@@ -126,9 +125,9 @@ class AgentState(TypedDict):
     final_answer: Optional[str]
     iterations: int
 
-# Initialize components
-llm = ChatOpenAI(model="gpt-4")
-embeddings = OpenAIEmbeddings()
+# Initialize components (using Ollama - free, local)
+llm = ChatOllama(model="llama3.2")
+embeddings = OllamaEmbeddings(model="nomic-embed-text")
 vectorstore = Chroma.from_documents(
     documents=documents, 
     embedding=embeddings

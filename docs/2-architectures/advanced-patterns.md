@@ -48,7 +48,7 @@ Generate a hypothetical answer document, then use it for retrieval instead of th
 HyDE Implementation
 """
 
-from langchain_community.chat_models import ChatOpenAI
+from langchain_ollama import ChatOllama
 from langchain_community.vectorstores import Chroma
 
 class HyDERetriever:

@@ -198,14 +198,14 @@ print(results)
 LLM-as-Judge for RAG Evaluation
 """
 
-from langchain_community.chat_models import ChatOpenAI
+from langchain_ollama import ChatOllama
 from langchain.prompts import ChatPromptTemplate
 
 class RAGEvaluator:
     """Evaluate RAG using LLM as judge."""
     
     def __init__(self, llm=None):
-        self.llm = llm or ChatOpenAI(model="gpt-4")
+        self.llm = llm or ChatOllama(model="llama3.2")-4")
     
     def evaluate_faithfulness(self, question: str, answer: str, context: str) -> float:
         """Evaluate if answer is grounded in context."""

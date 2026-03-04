@@ -130,16 +130,15 @@ RAG may not be needed when:
 
 ```python
 from langchain.chains import RetrievalQA
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import OpenAIEmbeddings
-from langchain_community.chat_models import ChatOpenAI
+from langchain_chroma import Chroma
+from langchain_ollama import OllamaEmbeddings, ChatOllama
 
-# Create vector store from documents
-vectorstore = Chroma.from_documents(documents, OpenAIEmbeddings())
+# Create vector store from documents (using Ollama - free, local)
+vectorstore = Chroma.from_documents(documents, OllamaEmbeddings(model="nomic-embed-text"))
 
-# Create QA chain
+# Create QA chain (using Ollama - free, local)
 qa = RetrievalQA.from_chain_type(
-    llm=ChatOpenAI(model="gpt-4"),
+    llm=ChatOllama(model="llama3.2"),
     retriever=vectorstore.as_retriever()
 )
 

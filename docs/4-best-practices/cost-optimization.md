@@ -11,22 +11,22 @@ RAG Cost Breakdown:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                         Cost Components                                  │
+│                         Cost Components                                 │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
-│  Retrieval                         Generation                          │
-│  ┌─────────────┐                   ┌─────────────┐                    │
-│  │ Vector DB   │                   │ LLM API    │                    │
-│  │ Hosting     │                   │ Costs      │                    │
-│  │ 20-30%     │                   │ 60-70%     │                    │
-│  └─────────────┘                   └─────────────┘                    │
+│  Retrieval                         Generation                           │
+│  ┌─────────────┐                   ┌─────────────┐                      │
+│  │ Vector DB   │                   │ LLM API     │                      │
+│  │ Hosting     │                   │ Costs       │                      │
+│  │ 20-30%      │                   │ 60-70%      │                      │
+│  └─────────────┘                   └─────────────┘                      │
 │                                                                         │
-│  Other                                                    │
-│  ┌─────────────┐                   ┌─────────────┐                    │
-│  │ Embedding   │                   │ Compute    │                    │
-│  │ Generation │                   │ (GPU/CPU)  │                    │
-│  │ 5-10%     │                   │ 5-10%     │                    │
-│  └─────────────┘                   └─────────────┘                    │
+│  Other                                                                  │
+│  ┌─────────────┐                   ┌─────────────┐                      │
+│  │ Embedding   │                   │ Compute     │                      │
+│  │ Generation  │                   │ (GPU/CPU)   │                      │
+│  │ 5-10%       │                   │ 5-10%       │                      │
+│  └─────────────┘                   └─────────────┘                      │
 │                                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -161,13 +161,13 @@ Generation Cost Optimization
 """
 
 # Strategy 1: Use smaller/faster models
-from langchain_community.chat_models import ChatOpenAI
+from langchain_ollama import ChatOllama
 
 # Instead of GPT-4
-# llm = ChatOpenAI(model="gpt-4")
+# llm = ChatOllama(model="llama3.2"))
 
 # Use GPT-4o-mini for simple queries
-llm = ChatOpenAI(model="gpt-4o-mini")
+llm = ChatOllama(model="llama3.2"))
 
 # Strategy 2: Reduce context
 def truncate_context(context: str, max_tokens: int = 4000):
@@ -257,7 +257,7 @@ class CostOptimizedRAG:
     
     def __init__(
         self,
-        embedding_model: str = "text-embedding-3-small",
+        embedding_model: str = "nomic-embed-text",
         llm_model: str = "gpt-4o-mini",
         use_cache: bool = True,
         use_tiered_retrieval: bool = True
@@ -321,13 +321,32 @@ class CostOptimizedRAG:
 ## Cost Comparison
 
 | Optimization | Quality Impact | Cost Savings |
-|--------------|-----------------|---------------|
+|--------------|----------------|---------------|
+| **Use Ollama** | Minimal (-10-20%) | 95-100% |
 | Smaller embedding model | Minimal (-5%) | 50-70% |
 | Smaller LLM model | Moderate (-10%) | 80-90% |
 | Smaller k | Minimal | 30-50% |
 | Caching | None | 40-60% |
 | Tiered retrieval | Minimal | 30-40% |
 | Truncate context | Minimal | 20-30% |
+
+## Free Option: Ollama
+
+The biggest cost savings is using **Ollama** (local models) instead of OpenAI:
+
+```python
+# Instead of OpenAI ($)
+llm = ChatOllama(model="llama3.2")  # ~$0.01-0.03/query
+
+# Use Ollama (free, local)
+llm = ChatOllama(model="llama3.2")  # Free!
+
+# Same for embeddings
+# OpenAI: ~$0.00002/1K tokens
+# Ollama: Free
+```
+
+See [Providers](../3-technical/providers.md) for setup instructions.
 
 ---
 

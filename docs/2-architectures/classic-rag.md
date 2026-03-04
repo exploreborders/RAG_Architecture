@@ -52,6 +52,15 @@ Classic RAG Pipeline:
 
 ## Components
 
+### Prerequisites
+
+```bash
+# Install Ollama: https://ollama.ai
+# Then pull required models:
+ollama pull llama3.2      # LLM
+ollama pull nomic-embed-text  # Embeddings
+```
+
 ### 1. Document Loader
 ```python
 from langchain_community.document_loaders import TextLoader
@@ -71,16 +80,16 @@ splitter = RecursiveCharacterTextSplitter(
 texts = splitter.split_documents(documents)
 ```
 
-### 3. Embedding Model
+### 3. Embedding Model (Ollama)
 ```python
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 
-embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
+embeddings = OllamaEmbeddings(model="nomic-embed-text")
 ```
 
 ### 4. Vector Store
 ```python
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 
 vectorstore = Chroma.from_documents(
     documents=texts,
@@ -96,31 +105,33 @@ retriever = vectorstore.as_retriever(
 )
 ```
 
-### 6. QA Chain
+### 6. QA Chain (Ollama)
 ```python
 from langchain.chains import RetrievalQA
-from langchain_community.chat_models import ChatOpenAI
+from langchain_ollama import ChatOllama
 
 qa_chain = RetrievalQA.from_chain_type(
-    llm=ChatOpenAI(model="gpt-4"),
+    llm=ChatOllama(model="llama3.2"),
     chain_type="stuff",
     retriever=retriever,
     return_source_documents=True
 )
 ```
 
-## Complete Example (LangChain)
+## Complete Example (LangChain) - Using Ollama
 
 ```python
 """
-Classic RAG Implementation with LangChain
+Classic RAG Implementation with LangChain + Ollama
+Prerequisites: Install Ollama and pull models:
+  ollama pull llama3.2
+  ollama pull nomic-embed-text
 """
 
 from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import OpenAIEmbeddings
-from langchain_community.vectorstores import Chroma
-from langchain_community.chat_models import ChatOpenAI
+from langchain_ollama import OllamaEmbeddings, ChatOllama
+from langchain_chroma import Chroma
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 
@@ -141,8 +152,8 @@ splitter = RecursiveCharacterTextSplitter(
 )
 texts = splitter.split_documents(documents)
 
-# 3. Create Embeddings
-embeddings = OpenAIEmbeddings()
+# 3. Create Embeddings (Ollama - local, free)
+embeddings = OllamaEmbeddings(model="nomic-embed-text")
 
 # 4. Build Vector Store
 vectorstore = Chroma.from_documents(
@@ -173,8 +184,8 @@ PROMPT = PromptTemplate(
     input_variables=["context", "question"]
 )
 
-# 7. Create QA Chain
-llm = ChatOpenAI(model="gpt-4", temperature=0)
+# 7. Create QA Chain (Ollama - local, free)
+llm = ChatOllama(model="llama3.2", temperature=0)
 qa_chain = RetrievalQA.from_chain_type(
     llm=llm,
     chain_type="stuff",
@@ -193,17 +204,17 @@ for doc in result["source_documents"]:
     print(f"- {doc.metadata.get('source', 'Unknown')}")
 ```
 
-## Complete Example (LlamaIndex)
+## Complete Example (LlamaIndex) - Using Ollama
 
 ```python
 """
-Classic RAG Implementation with LlamaIndex
+Classic RAG Implementation with LlamaIndex + Ollama
 """
 
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.core.retrievers import VectorRetriever
 from llama_index.core.query_engine import RetrieverQueryEngine
-from llama_index.llms.openai import OpenAI
+from llama_index.llms.ollama import Ollama
 
 # 1. Load Documents
 documents = SimpleDirectoryReader("data").load_data()
@@ -221,10 +232,10 @@ retriever = VectorRetriever(
     similarity_top_k=4
 )
 
-# 4. Create Query Engine
+# 4. Create Query Engine (using Ollama)
 query_engine = RetrieverQueryEngine.from_args(
     retriever=retriever,
-    llm=OpenAI(model="gpt-4")
+    llm=Ollama(model="llama3.2")
 )
 
 # 5. Query
@@ -236,39 +247,165 @@ for source in response.source_nodes:
     print(f"- {source.node.text[:100]}...")
 ```
 
-## With Ollama (Local Models)
+## Unified Provider Setup (OpenAI + Ollama)
+
+### Using the Provider Wrapper
 
 ```python
 """
-Classic RAG with Ollama (Local LLM + Embeddings)
+Classic RAG with Unified Provider - Default is Ollama!
+"""
+
+# Import the provider wrapper
+# See docs/3-technical/providers.md for full implementation
+
+from enum import Enum
+
+class Provider(Enum):
+    OPENAI = "openai"
+    OLLAMA = "ollama"
+
+def create_rag_pipeline(provider: str = "ollama"):  # Default to Ollama!
+    """Create RAG pipeline with any provider."""
+    
+    if provider == "ollama":
+        # Ollama (local, free) - DEFAULT
+        from langchain_ollama import ChatOllama, OllamaEmbeddings
+        from langchain_chroma import Chroma
+        
+        llm = ChatOllama(model="llama3.2")
+        embeddings = OllamaEmbeddings(model="nomic-embed-text")
+        
+    elif provider == "openai":
+        # OpenAI (cloud)
+        from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+        from langchain_chroma import Chroma
+        
+        llm = ChatOpenAI(model="gpt-4o")
+        embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+    
+    # Create vector store
+    vectorstore = Chroma.from_documents(texts, embeddings)
+    
+    # Create QA chain
+    qa_chain = RetrievalQA.from_chain_type(
+        llm=llm,
+        retriever=vectorstore.as_retriever()
+    )
+    
+    return qa_chain
+
+# Usage - default is Ollama (free, local)!
+rag_ollama = create_rag_pipeline()  # Uses Ollama by default
+rag_openai = create_rag_pipeline("openai")  # Uses OpenAI if needed
+
+# Same interface!
+result1 = rag_ollama.run("What is RAG?")
+result2 = rag_openai.run("What is RAG?")
+```
+
+## With Ollama (Local Models)
+
+### Setup Ollama
+
+```bash
+# Install Ollama: https://ollama.ai
+
+# Pull required models
+ollama pull llama3.2      # LLM
+ollama pull nomic-embed-text  # Embeddings
+
+# Start server
+ollama serve
+```
+
+### Complete Ollama Example
+
+```python
+"""
+Classic RAG with Ollama (Local, Free)
 """
 
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.chat_models import ChatOllama
 from langchain_community.vectorstores import Chroma
 from langchain.chains import RetrievalQA
+from langchain_community.document_loaders import TextLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-# Use Ollama embeddings (local)
-embeddings = OllamaEmbeddings(model="nomic-embed-text")
+# 1. Load documents
+loader = TextLoader("document.txt")
+documents = loader.load()
 
-# Create vector store
+# 2. Split into chunks
+splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+texts = splitter.split_documents(documents)
+
+# 3. Use Ollama embeddings (local, free)
+embeddings = OllamaEmbeddings(
+    model="nomic-embed-text",  # Free embedding model
+    base_url="http://localhost:11434"
+)
+
+# 4. Create vector store
 vectorstore = Chroma.from_documents(
     documents=texts,
     embedding=embeddings
 )
 
-# Use Ollama LLM (local)
-llm = ChatOllama(model="llama3.2")
+# 5. Use Ollama LLM (local, free)
+llm = ChatOllama(
+    model="llama3.2",  # or "mistral", "codellama"
+    base_url="http://localhost:11434",
+    temperature=0
+)
 
-# Create QA chain
+# 6. Create QA chain
 qa_chain = RetrievalQA.from_chain_type(
     llm=llm,
     retriever=vectorstore.as_retriever()
 )
 
+# 7. Query!
 result = qa_chain.run("Your question here")
 print(result)
 ```
+
+### Ollama Models Comparison
+
+| Model | Size | Best For | RAM |
+|-------|------|----------|-----|
+| llama3.2 | 3.8GB | General purpose | ~4GB |
+| mistral | 4.1GB | Fast, efficient | ~4GB |
+| codellama | 3.8GB | Code tasks | ~4GB |
+| llama3.2:70b | 40GB | Best quality | ~64GB |
+| nomic-embed-text | 274MB | Embeddings | ~1GB |
+
+## OpenAI vs Ollama Comparison
+
+| Aspect | OpenAI | Ollama |
+|--------|--------|--------|
+| **Cost** | Pay-per-use | Free (compute only) |
+| **Setup** | API key only | Install + download models |
+| **Privacy** | Data leaves local | 100% local |
+| **Quality** | Excellent (GPT-4) | Good (Llama 3.2) |
+| **Speed** | Fast (cloud) | Depends on hardware |
+| **Offline** | No | Yes |
+| **Customization** | Limited | Full control |
+
+## When to Use Each
+
+### Use OpenAI when:
+- Need highest quality responses
+- Have budget for API costs
+- Don't need offline operation
+- Want minimal setup
+
+### Use Ollama when:
+- Privacy is critical (data stays local)
+- Building internal/private tools
+- Learning RAG (free)
+- Need offline operation
 
 ## Pros and Cons
 

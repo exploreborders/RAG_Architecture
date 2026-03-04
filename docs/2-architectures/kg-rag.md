@@ -81,9 +81,9 @@ KG-RAG Implementation using LangChain + NetworkX + Neo4j
 """
 
 from langchain_community.graphs import Neo4jGraph
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import Neo4jVector
-from langchain_community.chat_models import ChatOpenAI
+from langchain_ollama import ChatOllama
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains import RetrievalQA
 from pydantic import BaseModel
@@ -108,7 +108,7 @@ from langchain_experimental.graph_transformers import LLMGraphTransformer
 from langchain_community.docstore.in_memory import InMemoryDocstore
 
 # Extract entities and relationships using LLM
-llm = ChatOpenAI(model="gpt-4")
+llm = ChatOllama(model="llama3.2"))
 
 graph_transformer = LLMGraphTransformer(llm=llm)
 
@@ -261,8 +261,8 @@ Complete KG-RAG Pipeline
 
 from langchain_community.graphs import Neo4jGraph
 from langchain_community.vectorstores import Neo4jVector
-from langchain_community.embeddings import OpenAIEmbeddings
-from langchain_community.chat_models import ChatOpenAI
+from langchain_ollama import OllamaEmbeddings
+from langchain_ollama import ChatOllama
 from langchain.chains import RetrievalQA
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_experimental.graph_transformers import LLMGraphTransformer

@@ -56,7 +56,7 @@ Chroma DB Setup and Usage
 """
 
 from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 from langchain.schema import Document
 
 # Create embeddings
@@ -113,7 +113,7 @@ Pinecone Setup and Usage
 
 from pinecone import Pinecone
 from langchain_community.vectorstores import Pinecone as LangChainPinecone
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 import os
 
 # Initialize Pinecone
@@ -139,7 +139,7 @@ index = pc.Index("my-rag-index")
 # Create vector store
 vectorstore = LangChainPinecone.from_documents(
     documents=documents,
-    embedding=OpenAIEmbeddings(),
+    embedding=OllamaEmbeddings(model="nomic-embed-text"),
     index_name="my-rag-index"
 )
 
@@ -207,7 +207,7 @@ Weaviate Setup and Usage
 
 import weaviate
 from langchain_community.vectorstores import Weaviate
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 
 # Connect to Weaviate
 client = weaviate.Client(
@@ -222,7 +222,7 @@ client = weaviate.Client(
 vectorstore = Weaviate.from_documents(
     client=client,
     documents=documents,
-    embedding=OpenAIEmbeddings(),
+    embedding=OllamaEmbeddings(model="nomic-embed-text"),
     index_name="MyRAG",
     text_key="text",
     by_json_path=["content"]  # Path to text in schema
@@ -275,7 +275,7 @@ Milvus Setup and Usage
 
 from pymilvus import connections, Collection, FieldSchema, CollectionSchema, DataType
 from langchain_community.vectorstores import Milvus
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 
 # Connect
 connections.connect("default", host="localhost", port="19530")
@@ -301,7 +301,7 @@ collection.create_index(field_name="embedding", index_params=index_params)
 # Load into LangChain
 vectorstore = Milvus.from_documents(
     documents=documents,
-    embedding=OpenAIEmbeddings(),
+    embedding=OllamaEmbeddings(model="nomic-embed-text"),
     collection_name="rag_docs",
     connection_args={"host": "localhost", "port": "19530"}
 )
@@ -321,7 +321,7 @@ pgvector Setup and Usage
 
 from pgvector.psycopg2 import register_vector
 from langchain_community.vectorstores import PGVector
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 import psycopg2
 
 # Create extension (run once)
@@ -335,7 +335,7 @@ CONNECTION_STRING = "postgresql+psycopg2://user:pass@localhost:5432/vector_db"
 # Create vector store
 vectorstore = PGVector.from_documents(
     documents=documents,
-    embedding=OpenAIEmbeddings(),
+    embedding=OllamaEmbeddings(model="nomic-embed-text"),
     collection_name=COLLECTION_NAME,
     connection_string=CONNECTION_STRING,
     pre_delete_collection=True
@@ -389,7 +389,7 @@ Qdrant Setup and Usage
 
 from qdrant_client import QdrantClient
 from langchain_community.vectorstores import Qdrant
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 
 # Connect
 client = QdrantClient(host="localhost", port=6333)
@@ -398,7 +398,7 @@ client = QdrantClient(host="localhost", port=6333)
 vectorstore = Qdrant.from_documents(
     client=client,
     documents=documents,
-    embedding=OpenAIEmbeddings(),
+    embedding=OllamaEmbeddings(model="nomic-embed-text"),
     collection_name="rag_docs"
 )
 
