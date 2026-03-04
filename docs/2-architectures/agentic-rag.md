@@ -23,27 +23,27 @@ Agentic RAG Design Patterns:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ┌─────────────────────────────────────────────────────────────────────┐
-│                        Agentic Patterns                              │
+│                        Agentic Patterns                             │
 ├─────────────────────────────────────────────────────────────────────┤
-│                                                                      │
+│                                                                     │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐            │
-│  │  Planning  │    │   Tool Use  │    │ Reflection │            │
-│  │             │    │             │    │            │            │
-│  │ • Decompose │    │ • Search    │    │ • Evaluate │            │
-│  │   queries   │    │ • Retrieve  │    │ • Critique │            │
-│  │ • Create    │    │ • Generate  │    │ • Refine   │            │
-│  │   execution │    │ • Compute   │    │            │            │
-│  │   plan      │    │             │    │            │            │
+│  │  Planning   │    │   Tool Use  │    │ Reflection  │            │
+│  │             │    │             │    │             │            │
+│  │ • Decompose │    │ • Search    │    │ • Evaluate  │            │
+│  │   queries   │    │ • Retrieve  │    │ • Critique  │            │
+│  │ • Create    │    │ • Generate  │    │ • Refine    │            │
+│  │   execution │    │ • Compute   │    │             │            │
+│  │   plan      │    │             │    │             │            │
 │  └─────────────┘    └─────────────┘    └─────────────┘            │
 │                                                                      │
-│  ┌─────────────┐    ┌─────────────┐                               │
+│  ┌─────────────┐      ┌─────────────┐                               │
 │  │   Memory    │-Agent│                                  │  Multi │
-│  │             │    │ Collaboration│                              │
-│  │ • Short-term│    │             │                               │
-│  │ • Long-term │    │ • Specialist│                               │
-│  │ • Context   │    │   agents    │                               │
-│  │   window    │    │ • Debate    │                               │
-│  └─────────────┘    └─────────────┘                               │
+│  │             │      │ Collaboration│                              │
+│  │ • Short-term│      │             │                               │
+│  │ • Long-term │      │ • Specialist│                               │
+│  │ • Context   │      │   agents    │                               │
+│  │   window    │      │ • Debate    │                               │
+│  └─────────────┘      └─────────────┘                               │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -62,8 +62,8 @@ AG Architecture:
                     │         Agent Brain          │
                     │  ┌────────────────────────┐  │
                     │  │    Planner Agent       │  │
-                    │  │  - Decompose query    │  │
-                    │  │  - Plan retrieval     │  │
+                    │  │  - Decompose query     │  │
+                    │  │  - Plan retrieval      │  │
                     │  └────────────────────────┘  │
                     └──────────────┬───────────────┘
                                    │
@@ -71,8 +71,8 @@ AG Architecture:
               │                    │                    │
               ▼                    ▼                    ▼
     ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
-    │  Tool: Vector  │  │  Tool: Web      │  │  Tool: KG      │
-    │  Search        │  │  Search         │  │  Traversal     │
+    │  Tool: Vector   │  │  Tool: Web      │  │  Tool: KG       │
+    │  Search         │  │  Search         │  │  Traversal      │
     └────────┬────────┘  └────────┬────────┘  └────────┬────────┘
              │                     │                     │
              └─────────────────────┼─────────────────────┘
@@ -94,7 +94,7 @@ AG Architecture:
                     ▼                              ▼
             ┌──────────────┐            ┌─────────────────────┐
             │ Re-plan/     │            │   Generator Agent   │
-            │ Re-retrieve │            │   (Final Answer)    │
+            │ Re-retrieve  │            │   (Final Answer)    │
             └──────────────┘            └─────────────────────┘
 ```
 

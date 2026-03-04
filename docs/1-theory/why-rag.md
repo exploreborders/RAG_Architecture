@@ -26,12 +26,12 @@ cannot verify current information.
 
 ### Why Do Hallucinations Happen?
 
-| Factor | Explanation |
-|--------|-------------|
-| **Training Data** | Model learns patterns, not facts |
-| **Probabilistic Nature** | Generates most likely next token |
-| **No Verification** | Cannot check against external sources |
-| **Knowledge Cutoff** | Training stops at a fixed date |
+| Factor                   | Explanation                           |
+|--------------------------|---------------------------------------|
+| **Training Data**        | Model learns patterns, not facts      |
+| **Probabilistic Nature** | Generates most likely next token      |
+| **No Verification**      | Cannot check against external sources |
+| **Knowledge Cutoff**     | Training stops at a fixed date        |
 
 ### Hallucination Rates (Research Findings)
 
@@ -63,13 +63,13 @@ LLM Training Timeline:
 
 ### Impact by Use Case
 
-| Domain | Impact of Cutoff |
-|--------|------------------|
-| **News & Media** | Critical - information outdated |
-| **Legal** | Major - regulations change |
-| **Medical** | Critical - guidelines evolve |
-| **Technical** | High - software versions change |
-| **General Knowledge** | Moderate for historical facts |
+| Domain                | Impact of Cutoff                |
+|-----------------------|---------------------------------|
+| **News & Media**      | Critical - information outdated |
+| **Legal**             | Major - regulations change      |
+| **Medical**           | Critical - guidelines evolve    |
+| **Technical**         | High - software versions change |
+| **General Knowledge** | Moderate for historical facts   |
 
 ## The Source Attribution Problem
 
@@ -188,17 +188,17 @@ RAG becomes critical when:
 │                                                            │
 │   Pure LLM                                                 │
 │   ┌─────────────┐                                          │
-│   │ Low Cost    │ Fast, but potentially inaccurate       │
+│   │ Low Cost    │ Fast, but potentially inaccurate         │
 │   │ High Risk   │                                          │
 │   └─────────────┘                                          │
 │                                                            │
-│   RAG                                                       │
+│   RAG                                                      │
 │   ┌─────────────┐                                          │
-│   │ Higher Cost │ Retrieval + Generation                  │
-│   │ High Trust  │ Verified, grounded responses           │
+│   │ Higher Cost │ Retrieval + Generation                   │
+│   │ High Trust  │ Verified, grounded responses             │
 │   └─────────────┘                                          │
 │                                                            │
-│   ROI = Cost of errors × Error rate reduction             │
+│   ROI = Cost of errors × Error rate reduction              │
 │                                                            │
 └────────────────────────────────────────────────────────────┘
 ```

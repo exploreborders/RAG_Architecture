@@ -166,13 +166,13 @@ Query ──► [Is retrieval needed?] ──►
 
 ### Research Trends
 
-| Trend | Description |
-|-------|-------------|
+| Trend                  | Description                            |
+|------------------------|----------------------------------------|
 | **Adaptive Retrieval** | When to retrieve, how much to retrieve |
-| **Cost-Aware** | Balance quality vs. computational cost |
-| **Privacy-Preserving** | Secure retrieval in sensitive domains |
-| **Multi-modal** | Unified understanding across formats |
-| **Agentic Control** | Autonomous pipeline management |
+| **Cost-Aware**         | Balance quality vs. computational cost |
+| **Privacy-Preserving** | Secure retrieval in sensitive domains  |
+| **Multi-modal**        | Unified understanding across formats   |
+| **Agentic Control**    | Autonomous pipeline management         |
 
 ## Future Directions
 

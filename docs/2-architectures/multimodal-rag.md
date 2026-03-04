@@ -13,17 +13,17 @@ Information Modalities in Organizations:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ┌──────────────────────────────────────────────────────────────────────┐
-│                     What We Have                                      │
+│                     What We Have                                     │
 ├──────────────────────────────────────────────────────────────────────┤
 │                                                                      │
 │  Text:      20%  - Documents, emails, reports                        │
-│  Images:    30%  - Screenshots, diagrams, photos                    │
-│  Video:     25%  - Meetings, tutorials, presentations               │
-│  Audio:     15%  - Calls, podcasts, voice notes                     │
-│  Tables:    10%  - Spreadsheets, databases                          │
+│  Images:    30%  - Screenshots, diagrams, photos                     │
+│  Video:     25%  - Meetings, tutorials, presentations                │
+│  Audio:     15%  - Calls, podcasts, voice notes                      │
+│  Tables:    10%  - Spreadsheets, databases                           │
 │                                                                      │
-│  Traditional RAG only handles: [=====>  Text <======]               │
-│  Multimodal RAG handles:            [=====================> All     │
+│  Traditional RAG only handles: [=====>  Text <======]                │
+│  Multimodal RAG handles:            [=====================> All      │
 │                                                                      │
 └──────────────────────────────────────────────────────────────────────┘
 ```
@@ -52,37 +52,37 @@ Multimodal RAG Architecture:
                                    ▼
               ┌────────────────────────────────────────┐
               │         Query Processing               │
-              │  ┌──────────┐ ┌──────────┐ ┌───────┐ │
-              │  │Text Embed│ │Image Emb│ │Audio  │ │
-              │  └──────────┘ └──────────┘ │Embed  │ │
-              │                              └───────┘ │
+              │  ┌──────────┐ ┌──────────┐ ┌───────┐   │
+              │  │Text Embed│ │Image Emb │ │Audio  │   │
+              │  └──────────┘ └──────────┘ │Embed  │   │
+              │                            └───────┘   │
               └──────────────────┬─────────────────────┘
                                  │
                                  ▼
     ┌─────────────────────────────────────────────────────────────┐
     │                   Multimodal Index                          │
-    │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐   │
-    │  │Text Vector  │  │Image Vector │  │Audio/Video      │   │
-    │  │   Store     │  │   Store     │  │    Store        │   │
-    │  └─────────────┘  └─────────────┘  └─────────────────┘   │
-    │                                                              │
-    │  ┌─────────────────────────────────────────────────────┐   │
-    │  │      Knowledge Graph (Multimodal Entities)          │   │
-    │  └─────────────────────────────────────────────────────┘   │
+    │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐      │
+    │  │Text Vector  │  │Image Vector │  │Audio/Video      │      │
+    │  │   Store     │  │   Store     │  │    Store        │      │
+    │  └─────────────┘  └─────────────┘  └─────────────────┘      │
+    │                                                             │
+    │  ┌─────────────────────────────────────────────────────┐    │
+    │  │      Knowledge Graph (Multimodal Entities)          │    │
+    │  └─────────────────────────────────────────────────────┘    │
     └─────────────────────────────────────────────────────────────┘
                                  │
                                  ▼
               ┌────────────────────────────────────────┐
-              │       Cross-Modal Retrieval             │
-              │  - Text ↔ Image matching                │
-              │  - Image ↔ Video matching               │
+              │       Cross-Modal Retrieval            │
+              │  - Text ↔ Image matching               │
+              │  - Image ↔ Video matching              │
               │  - Audio ↔ Text alignment              │
               └──────────────────┬─────────────────────┘
                                  │
                                  ▼
               ┌────────────────────────────────────────┐
-              │       Multi-Modal LLM Generation        │
-              │  (e.g., GPT-4V, Claude 3, LLaVA)      │
+              │       Multi-Modal LLM Generation       │
+              │  (e.g., GPT-4V, Claude 3, LLaVA)       │
               └──────────────────┬─────────────────────┘
                                  │
                                  ▼

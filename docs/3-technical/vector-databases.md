@@ -14,23 +14,23 @@ Vector Search Process:
 │                        Vector Search                                    │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
-│  1. EMBED QUERY                                                        │
-│  ┌──────────────┐     ┌──────────────────┐                            │
-│  │ "What is RAG?"│────►│  Embedding Model │────► [0.2, -0.1, 0.8...]  │
-│  └──────────────┘     └──────────────────┘                            │
+│  1. EMBED QUERY                                                         │
+│  ┌───────────────┐     ┌──────────────────┐                             │
+│  │ "What is RAG?"│────►│  Embedding Model │────► [0.2, -0.1, 0.8...]    │
+│  └───────────────┘     └──────────────────┘                             │
 │                                                                         │
 │  2. SEARCH                                                              │
-│  ┌──────────────────┐     ┌──────────────────┐                         │
-│  │ Query Vector    │────►│  Find Nearest   │                         │
-│  │ [0.2, -0.1..]  │     │     Neighbors   │                         │
-│  └──────────────────┘     └────────┬─────────┘                         │
-│                                      │                                   │
-│  3. RETURN RESULTS                  │                                   │
-│  ┌──────────────────┐                │                                   │
-│  │ Doc 1 (0.95)    │◄───────────────┘                                   │
-│  │ Doc 2 (0.87)    │                                                  │
-│  │ Doc 3 (0.82)    │                                                  │
-│  └──────────────────┘                                                  │
+│  ┌──────────────────┐     ┌──────────────────┐                          │
+│  │ Query Vector     │────►│  Find Nearest    │                          │
+│  │ [0.2, -0.1..]    │     │     Neighbors    │                          │
+│  └──────────────────┘     └────────┬─────────┘                          │
+│                                    │                                    │
+│  3. RETURN RESULTS                 │                                    │
+│  ┌──────────────────┐              │                                    │
+│  │ Doc 1 (0.95)     │◄─────────────┘                                    │
+│  │ Doc 2 (0.87)     │                                                   │
+│  │ Doc 3 (0.82)     │                                                   │
+│  └──────────────────┘                                                   │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -420,11 +420,11 @@ results = vectorstore.similarity_search(
 
 ### HNSW vs IVF
 
-| Index Type | Build Time | Query Speed | Memory | Best For |
-|------------|------------|-------------|--------|----------|
-| **HNSW** | Medium | Very Fast | High | Latency-critical |
-| **IVF** | Fast | Fast | Medium | Balanced |
-| **Flat** | Very Fast | Slow | High | Small datasets |
+| Index Type | Build Time | Query Speed | Memory | Best For         |
+|------------|------------|-------------|--------|------------------|
+| **HNSW**   | Medium     | Very Fast   | High   | Latency-critical |
+| **IVF**    | Fast       | Fast        | Medium | Balanced         |
+| **Flat**   | Very Fast  | Slow        | High   | Small datasets   |
 
 ```python
 """

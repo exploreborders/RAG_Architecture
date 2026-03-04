@@ -14,21 +14,21 @@ RAG Evaluation Dimensions:
 │                        RAG Evaluation                                   │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
-│  ┌─────────────────────┐              ┌─────────────────────┐         │
-│  │    RETRIEVAL       │              │    GENERATION       │         │
-│  │    Evaluation      │              │    Evaluation       │         │
-│  ├─────────────────────┤              ├─────────────────────┤         │
-│  │ • Precision@K      │              │ • Faithfulness      │         │
-│  │ • Recall@K         │              │ • Answer Relevance  │         │
-│  │ • MRR              │              │ • Context Precision │         │
-│  │ • Hit Rate         │              │ • Context Recall    │         │
-│  │ • NDCG             │              │ • LLM-as-Judge      │         │
-│  └─────────────────────┘              └─────────────────────┘         │
+│  ┌─────────────────────┐              ┌─────────────────────┐           │
+│  │    RETRIEVAL        │              │    GENERATION       │           │
+│  │    Evaluation       │              │    Evaluation       │           │
+│  ├─────────────────────┤              ├─────────────────────┤           │
+│  │ • Precision@K       │              │ • Faithfulness      │           │
+│  │ • Recall@K          │              │ • Answer Relevance  │           │
+│  │ • MRR               │              │ • Context Precision │           │
+│  │ • Hit Rate          │              │ • Context Recall    │           │
+│  │ • NDCG              │              │ • LLM-as-Judge      │           │
+│  └─────────────────────┘              └─────────────────────┘           │
 │                                                                         │
-│  ┌─────────────────────────────────────────────────────────────────┐   │
-│  │                     End-to-End Metrics                          │   │
-│  │   • RAGAS  • ARES  • TruLens  • Custom Evaluations            │   │
-│  └─────────────────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────────────────┐    │
+│  │                     End-to-End Metrics                          │    │
+│  │   • RAGAS  • ARES  • TruLens  • Custom Evaluations              │    │
+│  └─────────────────────────────────────────────────────────────────┘    │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 

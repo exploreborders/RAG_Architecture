@@ -11,15 +11,15 @@ Impact of Chunking:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Too Small                          Too Large
-┌─────────────┐                    ┌─────────────┐
+┌─────────────┐                    ┌──────────────┐
 │ • Loss of   │                    │ • Too much   │
-│   context    │  OPTIMAL          │   noise      │
-│ • Fragmented │◄─────────────────►│ • Lost focus │
-│   meaning    │    CHUNK          │ • Higher     │
-│ • Poor       │    SIZE           │   cost       │
-│   retrieval  │                    │ • Cuts off   │
+│   context   │  OPTIMAL           │   noise      │
+│ • Fragmented│◄──────────────────►│ • Lost focus │
+│   meaning   │    CHUNK           │ • Higher     │
+│ • Poor      │    SIZE            │   cost       │
+│   retrieval │                    │ • Cuts off   │
 └─────────────┘                    │   concepts   │
-                                    └─────────────┘
+                                   └──────────────┘
 ```
 
 ## Chunking Strategies
@@ -232,12 +232,12 @@ Max chunk size: {max_chunk_size} characters"""
 
 ### Factors to Consider
 
-| Factor | Smaller Chunks | Larger Chunks |
-|--------|----------------|---------------|
-| **Query Type** | Specific facts | Broad topics |
-| **Context Needed** | Precise answers | Full understanding |
+| Factor              | Smaller Chunks             | Larger Chunks            |
+|---------------------|----------------------------|--------------------------|
+| **Query Type**      | Specific facts             | Broad topics             | 
+| **Context Needed**  | Precise answers            | Full understanding       |
 | **Embedding Model** | Models have context limits | Better with more context |
-| **Compute Cost** | Lower | Higher |
+| **Compute Cost**    | Lower                      | Higher                   |
 
 ### Experimentation Guide
 
@@ -382,14 +382,14 @@ class HybridChunker:
 
 ## Summary Table
 
-| Strategy | Best For | Trade-offs |
-|----------|----------|------------|
-| **Fixed** | Simple documents | May break semantics |
-| **Recursive** | General purpose | Good default |
-| **Semantic** | Quality-critical | Slower |
-| **Sentence** | Natural text | Variable size |
-| **Markdown** | Documentation | Loses cross-section |
-| **Code** | Repositories | Language-specific |
+| Strategy      | Best For         | Trade-offs          |
+|---------------|------------------|---------------------|
+| **Fixed**     | Simple documents | May break semantics |
+| **Recursive** | General purpose  | Good default        |
+| **Semantic**  | Quality-critical | Slower              |
+| **Sentence**  | Natural text     | Variable size       |
+| **Markdown**  | Documentation    | Loses cross-section |
+| **Code**      | Repositories     | Language-specific   |
 
 ---
 

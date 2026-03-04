@@ -14,7 +14,7 @@ RAG works by:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    RAG Pipeline                              │
+│                    RAG Pipeline                             │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │   User Query                                                │
@@ -22,14 +22,14 @@ RAG works by:
 │       ▼                                                     │
 │   ┌─────────────┐                                           │
 │   │  Retrieval  │ ◄──── External Knowledge Base             │
-│   │   Engine    │     (Vector DB +/ Knowledge Graph)       │
+│   │   Engine    │      (Vector DB +/ Knowledge Graph)       │
 │   └──────┬──────┘                                           │
 │          │                                                  │
 │          ▼                                                  │
-│   ┌─────────────┐     ┌─────────────┐                      │
-│   │  Retrieved  │────►│     LLM     │                      │
-│   │   Context   │     │  Generation │                      │
-│   └─────────────┘     └──────┬──────┘                      │
+│   ┌─────────────┐     ┌─────────────┐                       │
+│   │  Retrieved  │────►│     LLM     │                       │
+│   │   Context   │     │  Generation │                       │
+│   └─────────────┘     └──────┬──────┘                       │
 │                              │                              │
 │                              ▼                              │
 │                       ┌─────────────┐                       │
@@ -45,11 +45,11 @@ RAG works by:
 
 Traditional LLMs have three fundamental limitations:
 
-| Limitation | Description | Impact |
-|------------|-------------|--------|
-| **Knowledge Cutoff** | Training data has a fixed date | Cannot answer questions about recent events |
-| **Hallucinations** | Model generates plausible but false information | Unreliable for factual queries |
-| **No Source Attribution** | Cannot cite or reference sources | Hard to verify responses |
+| Limitation                | Description                                     | Impact                                      |
+|---------------------------|-------------------------------------------------|---------------------------------------------|
+| **Knowledge Cutoff**      | Training data has a fixed date                  | Cannot answer questions about recent events |
+| **Hallucinations**        | Model generates plausible but false information | Unreliable for factual queries              |
+| **No Source Attribution** | Cannot cite or reference sources                | Hard to verify responses                    |
 
 ### How RAG Addresses These
 

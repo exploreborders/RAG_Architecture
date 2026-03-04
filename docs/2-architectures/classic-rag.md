@@ -16,9 +16,9 @@ Classic RAG Pipeline:
                                    │
                                    ▼
                         ┌─────────────────────┐
-                        │  Embedding Model     │
-                        │  (Convert query to   │
-                        │   vector)            │
+                        │  Embedding Model    │
+                        │  (Convert query to  │
+                        │   vector)           │
                         └──────────┬──────────┘
                                    │
                                    ▼
@@ -36,8 +36,8 @@ Classic RAG Pipeline:
                  │  Retrieved  │──────►│  Template   │
                  │   Chunks    │       │             │
                  └─────────────┘       └──────┬──────┘
-                                               │
-                                               ▼
+                                              │
+                                              ▼
                                         ┌─────────────┐
                                         │     LLM     │
                                         │  Generation │
