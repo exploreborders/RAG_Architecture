@@ -9,17 +9,17 @@ This repository is organized into multiple learning paths suitable for different
 ### Beginner - Getting Started
 - [What is RAG?](docs/1-theory/what-is-rag.md)
 - [Why RAG?](docs/1-theory/why-rag.md)
-- [Classic RAG Implementation](docs/2-architectures/classic-rag/)
+- [Classic RAG Implementation](docs/2-architectures/classic-rag.md)
 
 ### Intermediate - Applied RAG
-- [Knowledge Graph RAG](docs/2-architectures/kg-rag/)
-- [Agentic RAG](docs/2-architectures/agentic-rag/)
+- [Knowledge Graph RAG](docs/2-architectures/kg-rag.md)
+- [Agentic RAG](docs/2-architectures/agentic-rag.md)
 - [Technical Deep Dives](docs/3-technical/)
 - [Best Practices](docs/4-best-practices/)
 
 ### Advanced - Research Topics
-- [Multimodal RAG](docs/2-architectures/multimodal-rag/)
-- [Advanced Patterns](docs/2-architectures/advanced-patterns/)
+- [Multimodal RAG](docs/2-architectures/multimodal-rag.md)
+- [Advanced Patterns](docs/2-architectures/advanced-patterns.md)
 - [Research Directions](docs/5-pros-cons/research-directions.md)
 
 ## 📖 Content Overview

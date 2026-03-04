@@ -26,24 +26,24 @@ Agentic RAG Design Patterns:
 │                        Agentic Patterns                             │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐            │
-│  │  Planning   │    │   Tool Use  │    │ Reflection  │            │
-│  │             │    │             │    │             │            │
-│  │ • Decompose │    │ • Search    │    │ • Evaluate  │            │
-│  │   queries   │    │ • Retrieve  │    │ • Critique  │            │
-│  │ • Create    │    │ • Generate  │    │ • Refine    │            │
-│  │   execution │    │ • Compute   │    │             │            │
-│  │   plan      │    │             │    │             │            │
-│  └─────────────┘    └─────────────┘    └─────────────┘            │
-│                                                                      │
-│  ┌─────────────┐      ┌─────────────┐                               │
-│  │   Memory    │-Agent│                                  │  Multi │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐              │
+│  │  Planning   │    │   Tool Use  │    │ Reflection  │              │
+│  │             │    │             │    │             │              │
+│  │ • Decompose │    │ • Search    │    │ • Evaluate  │              │
+│  │   queries   │    │ • Retrieve  │    │ • Critique  │              │
+│  │ • Create    │    │ • Generate  │    │ • Refine    │              │
+│  │   execution │    │ • Compute   │    │             │              │
+│  │   plan      │    │             │    │             │              │
+│  └─────────────┘    └─────────────┘    └─────────────┘              │
+│                                                                     │
+│  ┌─────────────┐      ┌──────────────┐                              │
+│  │   Memory    │      │  Multi Agent │                              │    
 │  │             │      │ Collaboration│                              │
-│  │ • Short-term│      │             │                               │
-│  │ • Long-term │      │ • Specialist│                               │
-│  │ • Context   │      │   agents    │                               │
-│  │   window    │      │ • Debate    │                               │
-│  └─────────────┘      └─────────────┘                               │
+│  │ • Short-term│      │              │                              │
+│  │ • Long-term │      │ • Specialist │                              │
+│  │ • Context   │      │   agents     │                              │
+│  │   window    │      │ • Debate     │                              │
+│  └─────────────┘      └──────────────┘                              │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -73,9 +73,9 @@ AG Architecture:
     ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
     │  Tool: Vector   │  │  Tool: Web      │  │  Tool: KG       │
     │  Search         │  │  Search         │  │  Traversal      │
-    └────────┬────────┘  └────────┬────────┘  └────────┬────────┘
-             │                     │                     │
-             └─────────────────────┼─────────────────────┘
+    └────────┬────────┘  └─────────┬───────┘  └────────┬────────┘
+             │                     │                   │
+             └─────────────────────┼───────────────────┘
                                    │
                                    ▼
                     ┌──────────────────────────────┐
