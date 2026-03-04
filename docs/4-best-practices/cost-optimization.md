@@ -335,8 +335,8 @@ class CostOptimizedRAG:
 The biggest cost savings is using **Ollama** (local models) instead of OpenAI:
 
 ```python
-# Instead of OpenAI ($)
-llm = ChatOllama(model="llama3.2")  # ~$0.01-0.03/query
+# OpenAI (paid)
+llm = ChatOpenAI(model="gpt-4")  # ~$0.01-0.03/query
 
 # Use Ollama (free, local)
 llm = ChatOllama(model="llama3.2")  # Free!
