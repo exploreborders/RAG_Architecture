@@ -150,17 +150,17 @@ Query ──► [Is retrieval needed?] ──►
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    RAG Architecture Spectrum                  │
+│                    RAG Architecture Spectrum                │
 ├─────────────────────────────────────────────────────────────┤
-│                                                              │
+│                                                             │
 │  Naive RAG ──► Advanced RAG ──► Modular RAG ──► Agentic RAG │
-│      │              │              │              │           │
-│   Basic         Enhanced       Composable   Autonomous     │
-│   Pipeline      Retrieval      Components    Agents          │
-│                                                              │
-│  Simple Q&A   Complex         Flexible     Multi-step       │
-│               Queries          Workflows    Reasoning        │
-│                                                              │
+│      │              │               │              │        │
+│   Basic         Enhanced        Composable    Autonomous    │
+│   Pipeline      Retrieval       Components    Agents        │
+│                                                             │
+│   Simple Q&A    Complex         Flexible      Multi-step    │
+│                 Queries         Workflows     Reasoning     │
+│                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 

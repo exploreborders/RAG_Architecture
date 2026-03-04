@@ -36,11 +36,9 @@ This repository is organized into multiple learning paths suitable for different
 
 | Notebook | Description |
 |----------|-------------|
-| [01-classic-rag-implementation.ipynb](notebooks/01-classic-rag-implementation.ipynb) | Build your first RAG pipeline |
-| [02-kg-rag-implementation.ipynb](notebooks/02-kg-rag-implementation.ipynb) | Add knowledge graph reasoning |
-| [03-agentic-rag-implementation.ipynb](notebooks/03-agentic-rag-implementation.ipynb) | Implement autonomous agents |
-| [04-evaluation-workshop.ipynb](notebooks/04-evaluation-workshop.ipynb) | Measure RAG performance |
-| [05-production-deployment.ipynb](notebooks/05-production-deployment.ipynb) | Deploy to production |
+| [01-classic-rag-implementation.ipynb](notebooks/01-classic-rag-implementation.ipynb) | Build your first RAG pipeline with LangChain |
+| [03-agentic-rag-implementation.ipynb](notebooks/03-agentic-rag-implementation.ipynb) | Implement autonomous agents with LangGraph |
+| [04-evaluation-workshop.ipynb](notebooks/04-evaluation-workshop.ipynb) | Measure RAG performance with RAGAS |
 
 ## 🎯 Quick Start
 
