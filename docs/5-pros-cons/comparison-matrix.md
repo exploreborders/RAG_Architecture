@@ -177,7 +177,7 @@ Classic RAG
      │
      │ Add relationships needed?
      ▼
-KG-RAG ◄──────────────┐
+KG-RAG ◄───────────────┐
      │                 │
      │                 │ Complex workflows?
      ▼                 │

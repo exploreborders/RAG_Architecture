@@ -14,16 +14,16 @@ RAG Security Dimensions:
 │                       Security Areas                                    │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐       │
-│  │    Data        │  │    Input       │  │   Access       │       │
-│  │    Privacy     │  │    Security    │  │   Control      │       │
-│  ├─────────────────┤  ├─────────────────┤  ├─────────────────┤       │
-│  │ • PII detection│  │ • Prompt       │  │ • Authentication│       │
-│  │ • Data         │  │   injection    │  │ • Authorization │       │
-│  │   encryption   │  │ • Malicious    │  │ • Rate limiting │       │
-│  │ • Secure       │  │   queries     │  │ • Audit logging │       │
-│  │   storage      │  │ • Abuse       │  │                 │       │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘       │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐          │
+│  │    Data         │  │    Input        │  │   Access        │          │
+│  │    Privacy      │  │    Security     │  │   Control       │          │
+│  ├─────────────────┤  ├─────────────────┤  ├─────────────────┤          │
+│  │ • PII detection │  │ • Prompt        │  │ • Authentication│          │
+│  │ • Data          │  │   injection     │  │ • Authorization │          │
+│  │   encryption    │  │ • Malicious     │  │ • Rate limiting │          │
+│  │ • Secure        │  │   queries       │  │ • Audit logging │          │
+│  │   storage       │  │ • Abuse         │  │                 │          │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘          │
 │                                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -78,7 +78,7 @@ class PIIRedactor:
         
         redacted = text
         
-_type, pattern in        for pii self.patterns.items():
+        for pii_type, pattern in self.patterns.items():
             redacted = re.sub(
                 pattern,
                 f"[{pii_type.upper()}_REDACTED]",

@@ -206,7 +206,7 @@ class IntelligentChunking:
     """Use LLM to determine optimal chunks."""
     
     def __init__(self, llm=None):
-        self.llm = llm or ChatOllama(model="llama3.2")-4")
+        self.llm = llm or ChatOllama(model="llama3.2")
     
     def split(self, text: str, max_chunk_size: int = 1000) -> list:
         """Intelligently split text."""

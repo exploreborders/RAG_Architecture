@@ -102,7 +102,7 @@ class QueryRewriter:
     """Rewrite queries for better retrieval."""
     
     def __init__(self, llm=None):
-        self.llm = llm or ChatOllama(model="llama3.2")-4")
+        self.llm = llm or ChatOllama(model="llama3.2")
     
     def rewrite(self, query: str) -> str:
         """Rewrite query to improve retrieval."""

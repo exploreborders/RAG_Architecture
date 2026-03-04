@@ -205,7 +205,7 @@ class RAGEvaluator:
     """Evaluate RAG using LLM as judge."""
     
     def __init__(self, llm=None):
-        self.llm = llm or ChatOllama(model="llama3.2")-4")
+        self.llm = llm or ChatOllama(model="llama3.2")
     
     def evaluate_faithfulness(self, question: str, answer: str, context: str) -> float:
         """Evaluate if answer is grounded in context."""

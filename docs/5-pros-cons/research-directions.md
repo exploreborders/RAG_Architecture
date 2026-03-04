@@ -11,30 +11,30 @@ RAG Research Landscape:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                     Research Frontiers                                   │
+│                     Research Frontiers                                  │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐       │
-│  │ Adaptive       │  │ Efficiency     │  │ Multi-modal    │       │
-│  │ Retrieval      │  │ & Cost         │  │ Reasoning      │       │
-│  ├─────────────────┤  ├─────────────────┤  ├─────────────────┤       │
-│  │ • When to      │  │ • Budget-aware │  │ • Cross-modal  │       │
-│  │   retrieve    │  │   policies     │  │   alignment    │       │
-│  │ • How much    │  │ • Token        │  │ • Unified      │       │
-│  │   context     │  │   optimization │  │   embeddings   │       │
-│  │ • Retrieval   │  │ • Caching      │  │ • Video/Audio  │       │
-│  │   planning    │  │                │  │   RAG          │       │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘       │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐          │
+│  │ Adaptive        │  │ Efficiency      │  │ Multi-modal     │          │
+│  │ Retrieval       │  │ & Cost          │  │ Reasoning       │          │
+│  ├─────────────────┤  ├─────────────────┤  ├─────────────────┤          │
+│  │ • When to       │  │ • Budget-aware  │  │ • Cross-modal   │          │
+│  │   retrieve      │  │   policies      │  │   alignment     │          │
+│  │ • How much      │  │ • Token         │  │ • Unified       │          │
+│  │   context       │  │   optimization  │  │   embeddings    │          │
+│  │ • Retrieval     │  │ • Caching       │  │ • Video/Audio   │          │
+│  │   planning      │  │                 │  │   RAG           │          │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘          │
 │                                                                         │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐       │
-│  │ Evaluation     │  │ Security &     │  │ Agentic &      │       │
-│  │ & Benchmarking │  │ Privacy        │  │ Autonomous     │       │
-│  ├─────────────────┤  ├─────────────────┤  ├─────────────────┤       │
-│  │ • Holistic     │  │ • Poisoning    │  │ • Multi-agent  │       │
-│  │   metrics      │  │   defense      │  │   systems      │       │
-│  │ • LLM-as-judge │  │ • Privacy      │  │ • Tool use     │       │
-│  │ • Cost/latency │  │   preserving   │  │   orchestration│       │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘       │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐          │
+│  │ Evaluation      │  │ Security &      │  │ Agentic &       │          │
+│  │ & Benchmarking  │  │ Privacy         │  │ Autonomous      │          │
+│  ├─────────────────┤  ├─────────────────┤  ├─────────────────┤          │
+│  │ • Holistic      │  │ • Poisoning     │  │ • Multi-agent   │          │
+│  │   metrics       │  │   defense       │  │   systems       │          │
+│  │ • LLM-as-judge  │  │ • Privacy       │  │ • Tool use      │          │
+│  │ • Cost/latency  │  │   preserving    │  │   orchestration │          │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘          │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
