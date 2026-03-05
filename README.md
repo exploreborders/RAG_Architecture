@@ -67,7 +67,7 @@ result = rag.query("What is RAG?")
 ```python
 # Ollama Setup (local, free) - RECOMMENDED
 from langchain_ollama import ChatOllama, OllamaEmbeddings
-from langchain_chroma import Chroma
+from langchain_community.vectorstores import Chroma
 
 llm = ChatOllama(model="llama3.2")
 embeddings = OllamaEmbeddings(model="nomic-embed-text")

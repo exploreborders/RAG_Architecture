@@ -299,7 +299,7 @@ class CostOptimizedRAG:
     
     def add_documents(self, documents: list):
         """Add documents to the vector store."""
-        from langchain_chroma import Chroma
+        from langchain_community.vectorstores import Chroma
         
         self.vectorstore = Chroma.from_documents(
             documents, 

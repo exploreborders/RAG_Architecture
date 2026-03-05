@@ -113,9 +113,8 @@ Modular RAG Components:
 Self-RAG Process:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Query ──► [Is retrieval needed?] ──►
+Query ──► [Is retrieval needed?] ──► Yes ──► Retrieve ──► Generate ──► Critique
               │
-              ├─ Yes ──► Retrieve ──► Generate ──► Critique
               │
               └─ No ──► Direct Generation ──► Critique
 ```

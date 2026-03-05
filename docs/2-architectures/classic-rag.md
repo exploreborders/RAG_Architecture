@@ -89,7 +89,7 @@ embeddings = OllamaEmbeddings(model="nomic-embed-text")
 
 ### 4. Vector Store
 ```python
-from langchain_chroma import Chroma
+from langchain_community.vectorstores import Chroma
 
 vectorstore = Chroma.from_documents(
     documents=texts,
@@ -107,7 +107,7 @@ retriever = vectorstore.as_retriever(
 
 ### 6. QA Chain (Ollama)
 ```python
-from langchain.chains import RetrievalQA
+from langchain_classic.chains import RetrievalQA
 from langchain_ollama import ChatOllama
 
 qa_chain = RetrievalQA.from_chain_type(
@@ -131,8 +131,8 @@ Prerequisites: Install Ollama and pull models:
 from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_ollama import OllamaEmbeddings, ChatOllama
-from langchain_chroma import Chroma
-from langchain.chains import RetrievalQA
+from langchain_community.vectorstores import Chroma
+from langchain_classic.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 
 # Configuration
@@ -271,7 +271,7 @@ def create_rag_pipeline(provider: str = "ollama"):  # Default to Ollama!
     if provider == "ollama":
         # Ollama (local, free) - DEFAULT
         from langchain_ollama import ChatOllama, OllamaEmbeddings
-        from langchain_chroma import Chroma
+        from langchain_community.vectorstores import Chroma
         
         llm = ChatOllama(model="llama3.2")
         embeddings = OllamaEmbeddings(model="nomic-embed-text")
@@ -279,7 +279,7 @@ def create_rag_pipeline(provider: str = "ollama"):  # Default to Ollama!
     elif provider == "openai":
         # OpenAI (cloud)
         from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-        from langchain_chroma import Chroma
+        from langchain_community.vectorstores import Chroma
         
         llm = ChatOpenAI(model="gpt-4o")
         embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
@@ -329,7 +329,7 @@ Classic RAG with Ollama (Local, Free)
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.chat_models import ChatOllama
 from langchain_community.vectorstores import Chroma
-from langchain.chains import RetrievalQA
+from langchain_classic.chains import RetrievalQA
 from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 

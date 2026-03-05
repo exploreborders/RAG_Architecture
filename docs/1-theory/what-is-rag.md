@@ -129,8 +129,8 @@ RAG may not be needed when:
 ## Quick Example
 
 ```python
-from langchain.chains import RetrievalQA
-from langchain_chroma import Chroma
+from langchain_classic.chains import RetrievalQA
+from langchain_community.vectorstores import Chroma
 from langchain_ollama import OllamaEmbeddings, ChatOllama
 
 # Create vector store from documents (using Ollama - free, local)

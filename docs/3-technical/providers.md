@@ -167,7 +167,7 @@ Complete RAG wrapper with provider support
 
 from langchain_core.documents import Document
 from langchain_core.vectorstores import VectorStore
-from langchain.chains import RetrievalQA
+from langchain_classic.chains import RetrievalQA
 
 class RAGProvider:
     """
@@ -215,7 +215,7 @@ class RAGProvider:
         """Create vector store."""
         
         if self.vector_store_type == "chroma":
-            from langchain_chroma import Chroma
+            from langchain_community.vectorstores import Chroma
             return Chroma(
                 embedding_function=self.provider.embeddings,
                 persist_directory=self.persist_directory
@@ -235,7 +235,7 @@ class RAGProvider:
         
         if self._vectorstore is None:
             # Create new with documents
-            from langchain_chroma import Chroma
+            from langchain_community.vectorstores import Chroma
             self._vectorstore = Chroma.from_documents(
                 documents=documents,
                 embedding=self.provider.embeddings,

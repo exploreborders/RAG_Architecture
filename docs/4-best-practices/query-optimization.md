@@ -414,7 +414,7 @@ Respond with just the strategy name:"""
     def _keyword_retrieve(self, query: str) -> list:
         """Retrieve using keyword-based BM25 approach."""
         from langchain_community.retrievers import BM25Retriever
-        from langchain.schema import Document
+        from langchain_core.documents import Document
         
         # Create BM25 retriever from documents
         bm25_retriever = BM25Retriever.from_documents(self.vectorstore._chroma_collection.get()["documents"])

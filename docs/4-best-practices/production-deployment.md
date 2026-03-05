@@ -121,7 +121,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 import os
 from langchain_ollama import ChatOllama, OllamaEmbeddings
-from langchain_chroma import Chroma
+from langchain_community.vectorstores import Chroma
 from langchain_core.documents import Document
 import redis
 

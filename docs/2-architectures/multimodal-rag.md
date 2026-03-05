@@ -110,7 +110,7 @@ from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_ollama import ChatOllama
-from langchain.chains import RetrievalQA
+from langchain_classic.chains import RetrievalQA
 from PIL import Image
 import os
 

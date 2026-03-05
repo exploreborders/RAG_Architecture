@@ -109,7 +109,7 @@ Agentic RAG with LangGraph
 
 from langgraph.graph import StateGraph, END
 from langchain_community.tools import Tool
-from langchain_chroma import Chroma
+from langchain_community.vectorstores import Chroma
 from langchain_ollama import OllamaEmbeddings, ChatOllama
 from langchain.prompts import ChatPromptTemplate
 from pydantic import BaseModel

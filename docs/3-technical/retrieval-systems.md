@@ -74,7 +74,7 @@ Query "What is RAG?"
 Dense Retrieval with LangChain + Ollama
 """
 
-from langchain_chroma import Chroma
+from langchain_community.vectorstores import Chroma
 from langchain_ollama import OllamaEmbeddings
 
 # Create vector store (using Ollama embeddings - free, local)
