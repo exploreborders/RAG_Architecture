@@ -412,16 +412,67 @@ Respond with just the strategy name:"""
         return self.vectorstore.similarity_search(query, k=4)
     
     def _keyword_retrieve(self, query: str) -> list:
-        # Use BM25
-        pass
+        """Retrieve using keyword-based BM25 approach."""
+        from langchain_community.retrievers import BM25Retriever
+        from langchain.schema import Document
+        
+        # Create BM25 retriever from documents
+        bm25_retriever = BM25Retriever.from_documents(self.vectorstore._chroma_collection.get()["documents"])
+        
+        # Get relevant documents
+        docs = bm25_retriever.get_relevant_documents(query)
+        
+        return docs[:4]  # Return top 4 results
     
     def _hybrid_retrieve(self, query: str) -> list:
-        # Use hybrid approach
-        pass
+        """Retrieve using hybrid search (keyword + semantic)."""
+        from langchain_community.retrievers import BM25Retriever
+        from langchain.retrievers import EnsembleRetriever
+        
+        # Create both retrievers
+        vector_retriever = self.vectorstore.as_retriever(search_kwargs={"k": 4})
+        
+        # Get BM25 retriever
+        bm25_retriever = BM25Retriever.from_documents(
+            self.vectorstore._chroma_collection.get()["documents"]
+        )
+        
+        # Create ensemble retriever
+        ensemble = EnsembleRetriever(
+            retrievers=[vector_retriever, bm25_retriever],
+            weights=[0.7, 0.3]  # Weight semantic higher
+        )
+        
+        return ensemble.get_relevant_documents(query)
     
     def _multi_retrieve(self, query: str) -> list:
-        # Decompose and retrieve
-        pass
+        """Retrieve using multi-query approach for comprehensive results."""
+        from typing import Set
+        
+        # Generate multiple query variations
+        prompt = f"""Generate 3 different search queries for this question.
+        
+Question: {query}
+
+Format as comma-separated list:"""
+
+        response = self.llm.invoke(prompt)
+        variations = [query] + [v.strip() for v in response.content.split(",") if v.strip()]
+        
+        # Retrieve for each variation
+        all_docs = []
+        seen_content: Set[str] = set()
+        
+        for q in variations[:3]:  # Limit to 3 variations
+            docs = self.vectorstore.similarity_search(q, k=4)
+            
+            for doc in docs:
+                if doc.page_content not in seen_content:
+                    all_docs.append(doc)
+                    seen_content.add(doc.page_content)
+        
+        # Return top 8 combined results
+        return all_docs[:8]
     
     def retrieve(self, query: str) -> list:
         """Execute adaptive retrieval."""
