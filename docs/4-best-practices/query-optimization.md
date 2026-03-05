@@ -119,7 +119,7 @@ Guidelines:
 
 Rewritten query:"""
 
-        rewritten = self.llm.predict(prompt)
+        rewritten = self.llm.invoke(prompt)
         return rewritten.strip()
     
     def expand_for_search(self, query: str) -> str:
@@ -131,7 +131,7 @@ Query: {query}
 
 Format as comma-separated list:"""
 
-        response = self.llm.predict(prompt)
+        response = self.llm.invoke(prompt)
         variations = [query] + [v.strip() for v in response.split(",")]
         
         return variations
@@ -145,7 +145,7 @@ Question: {query}
 
 Format as numbered list:"""
 
-        response = self.llm.predict(prompt)
+        response = self.llm.invoke(prompt)
         # Parse numbered list
         lines = [l.strip() for l in response.split("\n") if l.strip()]
         sub_queries = [l.split(".", 1)[-1].strip() for l in lines if l[0].isdigit()]
@@ -178,7 +178,7 @@ Question: {query}
 
 Hypothetical answer:"""
 
-        hypothetical = self.llm.predict(prompt)
+        hypothetical = self.llm.invoke(prompt)
         
         # Step 2: Embed both query and hypothetical
         query_embedding = self.vectorstore.embedding.embed_query(query)
@@ -231,7 +231,7 @@ Question: {query}
 
 Return as comma-separated list:"""
 
-        response = self.llm.predict(prompt)
+        response = self.llm.invoke(prompt)
         queries = [query] + [q.strip() for q in response.split(",")]
         
         # Retrieve for each
@@ -354,7 +354,7 @@ class RerankingRetriever:
         
         # Re-rank
         doc_texts = [doc.page_content for doc in initial_docs]
-        scores = self.encoder.predict([(query, doc) for doc in doc_texts])
+        scores = self.encoder.invoke([(query, doc) for doc in doc_texts])
         
         # Sort by score
         scored_docs = sorted(
@@ -396,7 +396,7 @@ Strategies:
 
 Respond with just the strategy name:"""
 
-        strategy = self.llm.predict(prompt).strip().lower()
+        strategy = self.llm.invoke(prompt).strip().lower()
         
         # Map to actual strategy
         strategies = {

@@ -222,7 +222,7 @@ Respond with JSON array of chunks, each containing:
 
 Max chunk size: {max_chunk_size} characters"""
 
-        response = self.llm.predict(prompt)
+        response = self.llm.invoke(prompt)
         chunks = json.loads(response)
         
         return [c["content"] for c in chunks]
@@ -317,7 +317,7 @@ def get_chunking_strategy(document_type: str):
 Enrich chunks with metadata
 """
 
-from langchain.schema import Document
+from langchain_core.documents import Document
 
 def create_enriched_chunks(documents: list) -> list:
     """Add useful metadata to chunks."""

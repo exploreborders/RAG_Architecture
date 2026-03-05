@@ -121,7 +121,7 @@ class MultimodalRAG:
         self.persist_directory = persist_directory
         self.embeddings = OpenAIEmbeddings()
         self.vectorstore = None
-        self.llm = ChatOllama(model="llama3.2"))
+        self.llm = ChatOllama(model="llama3.2")
     
     def load_documents(self, directory: str):
         """Load documents of various types."""
@@ -150,7 +150,7 @@ class MultimodalRAG:
         """Process images into descriptions."""
         
         from langchain_ollama import ChatOllama
-        from langchain.schema import HumanMessage
+        from langchain_core.messages import HumanMessage
         
         descriptions = []
         
@@ -187,7 +187,7 @@ class MultimodalRAG:
         texts = splitter.split_documents(documents)
         
         # Add image descriptions as documents
-        from langchain.schema import Document
+        from langchain_core.documents import Document
         
         image_docs = [
             Document(
@@ -224,7 +224,7 @@ Question: {question}
 
 Answer:"""
         
-        answer = self.llm.predict(prompt)
+        answer = self.llm.invoke(prompt)
         
         return {
             "answer": answer,
@@ -386,7 +386,7 @@ class AudioRAG:
         transcript = self.transcribe_audio(audio_path)
         
         # Create document
-        from langchain.schema import Document
+        from langchain_core.documents import Document
         
         doc = Document(
             page_content=transcript,
@@ -435,7 +435,7 @@ Using GPT-4V or Claude for Multimodal Generation
 """
 
 from langchain_ollama import ChatOllama
-from langchain.schema import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 
 class MultimodalGenerator:
     """Generate responses using multimodal LLM."""

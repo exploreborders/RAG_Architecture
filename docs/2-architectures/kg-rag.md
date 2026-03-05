@@ -108,7 +108,7 @@ from langchain_experimental.graph_transformers import LLMGraphTransformer
 from langchain_community.docstore.in_memory import InMemoryDocstore
 
 # Extract entities and relationships using LLM
-llm = ChatOllama(model="llama3.2"))
+llm = ChatOllama(model="llama3.2")
 
 graph_transformer = LLMGraphTransformer(llm=llm)
 
@@ -151,7 +151,7 @@ CREATE (a)-[:PRODUCES]->(b)
 Hybrid Retrieval: Vector Search + Graph Traversal
 """
 
-from langchain.schema import Document
+from langchain_core.documents import Document
 
 class HybridKGRetriever:
     """Combines vector and graph retrieval."""
@@ -195,7 +195,7 @@ class HybridKGRetriever:
         Return as comma-separated list.
         """
         
-        result = self.llm.predict(prompt)
+        result = self.llm.invoke(prompt)
         return [e.strip() for e in result.split(",")]
     
     def _graph_retrieve(self, entities: List[str]) -> List[Document]:
@@ -395,7 +395,7 @@ graph = StateGraph(GraphState)
 def extract_entities(state: GraphState):
     """Extract entities using LLM."""
     # Entity extraction logic
-    entities = llm.predict(
+    entities = llm.invoke(
         f"Extract entities from: {state['question']}"
     )
     return {"entities": entities.split(",")}
@@ -420,7 +420,7 @@ def generate(state: GraphState):
     """Generate final answer."""
     context = state["graph_results"] + state["vector_results"]
     prompt = f"Answer based on: {context}\n\nQuestion: {state['question']}"
-    answer = llm.predict(prompt)
+    answer = llm.invoke(prompt)
     return {"final_answer": answer}
 
 # Build workflow

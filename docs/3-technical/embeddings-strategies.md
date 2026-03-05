@@ -171,7 +171,7 @@ class LateChunkingEmbedder:
 Store multiple vectors per chunk for richer representation
 """
 
-from langchain.schema import Document
+from langchain_core.documents import Document
 from langchain_community.embeddings import OpenAIEmbeddings
 
 class MultiVectorEmbedder:

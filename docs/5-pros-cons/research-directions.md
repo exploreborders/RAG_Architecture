@@ -78,7 +78,7 @@ Query: {query}
 
 Probability:"""
         
-        response = self.llm.predict(prompt)
+        response = self.llm.invoke(prompt)
         return float(response.strip())
     
     def optimal_k(self, query: str) -> int:

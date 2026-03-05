@@ -68,7 +68,7 @@ Question: {query}
 
 Hypothetical Document:"""
 
-        return self.llm.predict(prompt)
+        return self.llm.invoke(prompt)
     
     def retrieve(self, query: str, k: int = 4):
         """Retrieve using HyDE strategy."""
@@ -129,7 +129,7 @@ Consider:
 
 Answer yes or no:"""
 
-        response = self.llm.predict(prompt).strip().lower()
+        response = self.llm.invoke(prompt).content.strip().lower()
         return "yes" in response
     
     def evaluate_faithfulness(self, answer: str, context: str) -> float:
@@ -142,21 +142,21 @@ Answer: {answer}
 On a scale of 0-10, how much is the answer supported by the context?
 Only respond with a number:"""
 
-        return float(self.llm.predict(prompt).strip()) / 10
+        return float(self.llm.invoke(prompt).content.strip()) / 10
     
     def run(self, query: str) -> str:
         """Execute Self-RAG."""
         
         # Decision: retrieve or not
         if not self.should_retrieve(query):
-            return self.llm.predict(f"Answer this question: {query}")
+            return self.llm.invoke(f"Answer this question: {query}").content
         
         # Retrieve
         docs = self.retriever.get_relevant_documents(query)
         context = "\n\n".join([doc.page_content for doc in docs])
         
         # Generate
-        answer = self.llm.predict(
+        answer = self.llm.invoke(
             f"Context:\n{context}\n\nQuestion: {query}\n\nAnswer:"
         )
         
@@ -166,7 +166,7 @@ Only respond with a number:"""
         # Refine if needed
         if score < 0.7:
             # Try with more context or reformulate
-            refined = self.llm.predict(
+            refined = self.llm.invoke(
                 f"The previous answer had low context support.\n"
                 f"Context: {context}\n\nQuestion: {query}\n\nProvide a better answer:"
             )
@@ -211,7 +211,7 @@ Rate from 1-5:
 
 Respond as JSON:"""
 
-        response = self.llm.predict(prompt)
+        response = self.llm.invoke(prompt)
         return json.loads(response)
     
     def correct_retrieval(self, query: str, docs: list) -> list:
@@ -232,7 +232,7 @@ Respond as JSON:"""
         """Try alternative retrieval strategies."""
         
         # Try expanding query
-        expanded = self.llm.predict(
+        expanded = self.llm.invoke(
             f"Expand this query with synonyms: {query}"
         )
         
@@ -260,7 +260,7 @@ Check for:
 
 Respond as JSON:"""
 
-        return json.loads(self.llm.predict(prompt))
+        return json.loads(self.llm.invoke(prompt).content)
     
     def run(self, query: str) -> str:
         """Execute Corrective RAG with checks."""
@@ -274,7 +274,7 @@ Respond as JSON:"""
         context = "\n\n".join([doc.page_content for doc in docs])
         
         # Generate
-        answer = self.llm.predict(
+        answer = self.llm.invoke(
             f"Context:\n{context}\n\nQuestion: {query}\n\nAnswer:"
         )
         
@@ -301,7 +301,7 @@ Provide a corrected answer that:
 - Directly answers the question
 - Is well-structured:"""
 
-        return self.llm.predict(prompt)
+        return self.llm.invoke(prompt)
 ```
 
 ## 4. GraphRAG (Microsoft)
@@ -361,7 +361,7 @@ class GraphRAG:
         
         for community in communities:
             # Summarize each community
-            summary = self.llm.predict(
+            summary = self.llm.invoke(
                 f"Summarize this knowledge community: {community['nodes']}"
             )
             # Store summary
@@ -385,7 +385,7 @@ class GraphRAG:
         context = "\n\n".join([c["summary"] for c in communities])
         
         # Generate answer
-        return self.llm.predict(f"""
+        return self.llm.invoke(f"""
             Context from multiple knowledge sources:
             {context}
             
@@ -416,7 +416,7 @@ class GraphRAG:
         
         context = "\n\n".join(context_parts)
         
-        return self.llm.predict(f"""
+        return self.llm.invoke(f"""
             Context: {context}
             
             Question: {query}
@@ -476,7 +476,7 @@ Options:
 
 Respond with just one word:"""
 
-        response = self.llm.predict(prompt).strip().lower()
+        response = self.llm.invoke(prompt).content.strip().lower()
         
         mode_map = {
             "semantic": RetrievalMode.SEMANTIC,
@@ -566,7 +566,7 @@ class IterativeRAG:
             all_context.extend(new_context)
             
             # Generate partial answer for feedback
-            partial = self.llm.predict(
+            partial = self.llm.invoke(
                 f"Context:\n{chr(10).join(all_context)}\n\n"
                 f"Question: {query}\n\n"
                 f"Partial answer so far:"
@@ -582,7 +582,7 @@ class IterativeRAG:
             query = f"{query} Also need: {missing}"
         
         # Final answer
-        return self.llm.predict(
+        return self.llm.invoke(
             f"Context:\n{chr(10).join(all_context)}\n\n"
             f"Question: {query}\n\n"
             f"Final answer:"
@@ -599,7 +599,7 @@ Context:
 Can this question be fully answered with the above context?
 Yes or no:"""
 
-        response = self.llm.predict(prompt).strip().lower()
+        response = self.llm.invoke(prompt).content.strip().lower()
         return "yes" in response
     
     def _get_missing_info(self, query: str, partial_answer: str) -> str:
@@ -612,7 +612,7 @@ Partial Answer: {partial_answer}
 What information is still missing or incomplete?
 Briefly describe:"""
 
-        response = self.llm.predict(prompt).strip()
+        response = self.llm.invoke(prompt).strip()
         
         if "nothing" in response.lower() or "complete" in response.lower():
             return ""

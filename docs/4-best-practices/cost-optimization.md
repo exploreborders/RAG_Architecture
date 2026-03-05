@@ -161,13 +161,15 @@ Generation Cost Optimization
 """
 
 # Strategy 1: Use smaller/faster models
+
+# OPTION A: Use Ollama (local, free) - RECOMMENDED
 from langchain_ollama import ChatOllama
 
-# Instead of GPT-4
-# llm = ChatOllama(model="llama3.2"))
+llm = ChatOllama(model="llama3.2")  # Free, runs locally
 
-# Use GPT-4o-mini for simple queries
-llm = ChatOllama(model="llama3.2"))
+# OPTION B: Use OpenAI (cloud API)
+# from langchain_openai import ChatOpenAI
+# llm = ChatOpenAI(model="gpt-4o-mini")  # Cheaper than gpt-4o
 
 # Strategy 2: Reduce context
 def truncate_context(context: str, max_tokens: int = 4000):
@@ -198,7 +200,7 @@ def cached_llm_call(prompt: str, model: str = "gpt-4o-mini") -> str:
     """Cache LLM responses."""
     
     llm = ChatOpenAI(model=model)
-    return llm.predict(prompt)
+    return llm.invoke(prompt)
 ```
 
 ## 4. Vector Database Cost
@@ -250,21 +252,39 @@ def cleanup_unused_vectors(vectorstore, threshold_days: int = 30):
 ```python
 """
 Complete Cost-Optimized RAG Pipeline
+
+This is a COST-OPTIMIZED RAG, so we use FREE local models by default (Ollama).
+For paid alternatives, simply switch to OpenAI.
 """
 
 class CostOptimizedRAG:
-    """RAG with cost optimization at every step."""
+    """RAG with maximum cost optimization - uses FREE local models by default."""
     
     def __init__(
         self,
         embedding_model: str = "nomic-embed-text",
-        llm_model: str = "gpt-4o-mini",
+        llm_model: str = "llama3.2",
+        provider: str = "ollama",  # "ollama" (free) or "openai" (paid)
         use_cache: bool = True,
         use_tiered_retrieval: bool = True
     ):
-        # Use cheaper models
-        self.embeddings = OpenAIEmbeddings(model=embedding_model)
-        self.llm = ChatOpenAI(model=llm_model)
+        self.provider = provider
+        
+        # Initialize embeddings based on provider
+        if provider == "ollama":
+            from langchain_ollama import OllamaEmbeddings
+            self.embeddings = OllamaEmbeddings(model=embedding_model)
+        else:
+            from langchain_openai import OpenAIEmbeddings
+            self.embeddings = OpenAIEmbeddings(model=embedding_model)
+        
+        # Initialize LLM based on provider
+        if provider == "ollama":
+            from langchain_ollama import ChatOllama
+            self.llm = ChatOllama(model=llm_model)
+        else:
+            from langchain_openai import ChatOpenAI
+            self.llm = ChatOpenAI(model=llm_model)
         
         # Setup caching
         self.use_cache = use_cache
@@ -273,11 +293,19 @@ class CostOptimizedRAG:
             self.query_cache = {}
         
         # Tiered retrieval
+        self.vectorstore = None  # Will be set when documents are added
         if use_tiered_retrieval:
             self.retriever = TieredRetrieval()
-        else:
-            self.vectorstore = Chroma.from_documents(documents, self.embeddings)
-            self.retriever = self.vectorstore.as_retriever(k=3)
+    
+    def add_documents(self, documents: list):
+        """Add documents to the vector store."""
+        from langchain_chroma import Chroma
+        
+        self.vectorstore = Chroma.from_documents(
+            documents, 
+            self.embeddings
+        )
+        self.retriever = self.vectorstore.as_retriever(k=3)
     
     def query(self, question: str) -> dict:
         """Query with cost optimization."""
@@ -287,14 +315,23 @@ class CostOptimizedRAG:
             return self.query_cache[question]
         
         # Retrieve (cheap)
-        docs = self.retriever.retrieve(question, k=3)
+        docs = self.retriever.get_relevant_documents(question)
         
         # Truncate context
         context = "\n\n".join([d.page_content for d in docs])[:4000]
         
-        # Generate (with small model)
-        prompt = f"Context: {context}\n\nQuestion: {question}\n\nAnswer:"
-        answer = self.llm.predict(prompt)
+        # Generate
+        if self.provider == "ollama":
+            # Ollama uses .invoke()
+            response = self.llm.invoke(context + "\n\nQuestion: " + question)
+            answer = response.content if hasattr(response, 'content') else str(response)
+        else:
+            # OpenAI uses .invoke() with messages format
+            from langchain_core.messages import HumanMessage
+            response = self.llm.invoke([
+                HumanMessage(content=context + "\n\nQuestion: " + question)
+            ])
+            answer = response.content if hasattr(response, 'content') else str(response)
         
         # Cache result
         if self.use_cache:
@@ -305,7 +342,17 @@ class CostOptimizedRAG:
     def get_cost_estimate(self, question: str) -> dict:
         """Estimate cost for a query."""
         
-        # Rough estimates (in USD)
+        if self.provider == "ollama":
+            # Ollama is FREE
+            return {
+                "embedding": 0.0,
+                "retrieval": 0.0,
+                "generation": 0.0,
+                "total": 0.0,
+                "note": "Using Ollama - completely FREE!"
+            }
+        
+        # OpenAI costs (approximate)
         embedding_cost = len(question) / 1000 * 0.00002  # $0.02/1M tokens
         retrieval_cost = 0.0001  # Fixed
         generation_cost = len(question) / 1000 * 0.00015  # gpt-4o-mini
@@ -316,6 +363,15 @@ class CostOptimizedRAG:
             "generation": generation_cost,
             "total": sum([embedding_cost, retrieval_cost, generation_cost])
         }
+
+
+# Usage with FREE Ollama (RECOMMENDED)
+rag = CostOptimizedRAG(provider="ollama")  # FREE!
+rag.add_documents(documents)
+result = rag.query("What is RAG?")
+
+# Usage with paid OpenAI (alternative)
+# rag = CostOptimizedRAG(provider="openai", llm_model="gpt-4o-mini")
 ```
 
 ## Cost Comparison

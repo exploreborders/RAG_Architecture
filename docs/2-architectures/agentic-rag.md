@@ -173,7 +173,7 @@ Create a plan to answer it. Consider:
 
 Respond as a JSON list of steps."""
     
-    response = llm.predict(prompt)
+    response = llm.invoke(prompt)
     plan = json.loads(response)
     
     return {"plan": plan, "iterations": 0}
@@ -214,7 +214,7 @@ Respond with:
 - "need_more" if need additional retrieval
 - "refine" if need to reformulate query"""
 
-    evaluation = llm.predict(prompt).strip().lower()
+    evaluation = llm.invoke(prompt).content.strip().lower()
     
     return {"evaluation": evaluation}
 
@@ -233,7 +233,7 @@ Question: {state['question']}
 
 Provide a detailed answer with citations."""
     
-    answer = llm.predict(prompt)
+    answer = llm.invoke(prompt)
     
     return {"final_answer": answer}
 
@@ -336,7 +336,7 @@ Each subtask should be handled by a different agent:
 
 Return as JSON: {{"tasks": [{"agent": "research", "task": "..."}]}}"""
     
-    tasks = json.loads(llm.predict(prompt))
+    tasks = json.loads(llm.invoke(prompt).content)
     return {"task_breakdown": tasks["tasks"]}
 
 # Execute agent node
@@ -428,7 +428,7 @@ class SelfRAGChain:
     
     def run(self, question: str) -> str:
         # Step 1: Decide if retrieval is needed
-        if_need_retrieval = self.llm.predict(
+        if_need_retrieval = self.llm.invoke(
             f"""Question: {question}
             
 Should we retrieve additional context? Answer yes or no."""
@@ -442,7 +442,7 @@ Should we retrieve additional context? Answer yes or no."""
             context = ""
         
         # Step 3: Generate initial response
-        initial_response = self.llm.predict(
+        initial_response = self.llm.invoke(
             f"""Context: {context}
 
 Question: {question}
@@ -451,7 +451,7 @@ Provide your answer."""
         )
         
         # Step 4: Reflect on response
-        reflection = self.llm.predict(
+        reflection = self.llm.invoke(
             f"""Original question: {question}
 Your answer: {initial_response}
 
@@ -464,7 +464,7 @@ Be critical."""
             more_docs = self.retriever.get_relevant_documents(reflection)
             more_context = context + "\n\n" + "\n\n".join([doc.page_content for doc in more_docs])
             
-            final_response = self.llm.predict(
+            final_response = self.llm.invoke(
                 f"""Context: {more_context}
 
 Question: {question}

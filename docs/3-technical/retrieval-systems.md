@@ -255,7 +255,7 @@ class ThreeStageRetriever:
         """Re-rank using cross-encoder."""
         
         pairs = [(query, doc.page_content) for doc in candidates]
-        scores = self.reranker.predict(pairs)
+        scores = self.reranker.invoke(pairs)
         
         # Sort by score
         return [doc for doc, _ in sorted(
@@ -340,7 +340,7 @@ Strategies:
 
 Choose one:"""
 
-        response = self.llm.predict(prompt).strip().lower()
+        response = self.llm.invoke(prompt).content.strip().lower()
         
         # Map to available retrievers
         if "keyword" in response:

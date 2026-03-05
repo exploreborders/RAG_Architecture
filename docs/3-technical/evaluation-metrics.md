@@ -225,7 +225,7 @@ Rate faithfulness from 0-10 where:
 
 Respond with only the number."""
 
-        response = self.llm.predict(prompt)
+        response = self.llm.invoke(prompt)
         return float(response.strip()) / 10
     
     def evaluate_answer_quality(self, question: str, answer: str) -> float:
@@ -244,7 +244,7 @@ Rate from 0-10:
 
 Respond with only the number."""
 
-        response = self.llm.predict(prompt)
+        response = self.llm.invoke(prompt)
         return float(response.strip()) / 10
     
     def evaluate_context_quality(self, question: str, contexts: list) -> float:
@@ -264,7 +264,7 @@ Rate from 0-10:
 
 Respond with only the number."""
 
-        response = self.llm.predict(prompt)
+        response = self.llm.invoke(prompt)
         return float(response.strip()) / 10
     
     def full_evaluation(self, question: str, answer: str, contexts: list) -> dict:

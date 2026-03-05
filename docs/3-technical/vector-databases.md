@@ -57,7 +57,7 @@ Chroma DB Setup and Usage
 
 from langchain_community.vectorstores import Chroma
 from langchain_ollama import OllamaEmbeddings
-from langchain.schema import Document
+from langchain_core.documents import Document
 
 # Create embeddings
 embeddings = OpenAIEmbeddings()
@@ -534,4 +534,4 @@ What's your priority?
 
 ---
 
-*Next: [Production Deployment](./production-deployment.md)*
+*Next: [Production Deployment](../4-best-practices/production-deployment.md)*
