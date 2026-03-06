@@ -15,7 +15,12 @@ This repository is organized into multiple learning paths suitable for different
 - [Knowledge Graph RAG](docs/2-architectures/kg-rag.md)
 - [Agentic RAG](docs/2-architectures/agentic-rag.md)
 - [Technical Deep Dives](docs/3-technical/)
+  - [Query Rewriting](docs/3-technical/query-rewriting.md)
+  - [Reranking](docs/3-technical/reranking.md)
+  - [Sentence Window Retrieval](docs/3-technical/sentence-window-retrieval.md)
 - [Best Practices](docs/4-best-practices/)
+  - [Observability](docs/4-best-practices/observability.md)
+  - [Caching](docs/4-best-practices/caching.md)
 
 ### Advanced - Research Topics
 - [Multimodal RAG](docs/2-architectures/multimodal-rag.md)
@@ -28,8 +33,8 @@ This repository is organized into multiple learning paths suitable for different
 |---------|-------------|
 | [Theory](docs/1-theory/) | Foundational concepts, evolution, and theory behind RAG |
 | [Architectures](docs/2-architectures/) | Deep dives into Classic RAG, KG-RAG, Agentic RAG, Multimodal RAG |
-| [Technical](docs/3-technical/) | Embeddings, vector databases, retrieval systems, evaluation, providers |
-| [Best Practices](docs/4-best-practices/) | Production-ready patterns, optimization, scaling, security |
+| [Technical](docs/3-technical/) | Embeddings, vector databases, retrieval systems, reranking, query rewriting, evaluation, providers |
+| [Best Practices](docs/4-best-practices/) | Production-ready patterns, optimization, scaling, security, observability, caching |
 | [Comparison](docs/5-pros-cons/) | Pros/cons matrix, use case recommendations |
 
 ## 🧑‍💻 Interactive Notebooks
@@ -41,6 +46,7 @@ This repository is organized into multiple learning paths suitable for different
 | [03-agentic-rag-implementation.ipynb](notebooks/03-agentic-rag-implementation.ipynb) | Implement autonomous agents with LangGraph |
 | [04-evaluation-workshop.ipynb](notebooks/04-evaluation-workshop.ipynb) | Measure RAG performance with RAGAS |
 | [05-production-deployment.ipynb](notebooks/05-production-deployment.ipynb) | Deploy RAG to production |
+| [06-advanced-retrieval-techniques.ipynb](notebooks/06-advanced-retrieval-techniques.ipynb) | Query rewriting, HyDE, and reranking |
 
 ## 🚀 Quick Start
 
@@ -101,14 +107,24 @@ vectorstore = Chroma.from_documents(documents, embeddings)
 ```
 RAG_Architecture/
 ├── docs/
-│   ├── 1-theory/           # Foundational RAG concepts
-│   ├── 2-architectures/     # RAG architecture patterns
+│   ├── 1-theory/            # Foundational RAG concepts
+│   ├── 2-architectures/      # RAG architecture patterns
 │   ├── 3-technical/         # Technical deep dives
+│   │   ├── query-rewriting.md
+│   │   ├── reranking.md
+│   │   ├── sentence-window-retrieval.md
+│   │   └── ...
 │   ├── 4-best-practices/   # Production best practices
-│   ├── 5-pros-cons/        # Comparisons and research
+│   │   ├── observability.md
+│   │   ├── caching.md
+│   │   └── ...
+│   ├── 5-pros-cons/         # Comparisons and research
 │   └── _technical/          # Provider implementations
 │       └── providers.py     # RAGProvider class
-├── notebooks/               # Interactive Jupyter notebooks
+├── notebooks/                # Interactive Jupyter notebooks
+│   ├── 01-classic-rag-implementation.ipynb
+│   ├── 06-advanced-retrieval-techniques.ipynb
+│   └── ...
 ├── requirements.txt         # Python dependencies
 └── README.md
 ```
@@ -149,6 +165,17 @@ This resource is based on the latest research in Retrieval-Augmented Generation,
 - Agentic RAG Survey (arXiv:2501.09136)
 - Comprehensive RAG Survey (arXiv:2506.00054)
 - Multimodal RAG Survey (arXiv:2502.08826)
+- HyDE: Hypothetical Document Embeddings (arXiv:2212.10496)
+- Self-RAG (arXiv:2410.13496)
+
+### Additional Resources
+
+| Topic | Resource |
+|-------|----------|
+| HyDE | [GitHub](https://github.com/texttron/hyde) |
+| Advanced RAG | [Weaviate Blog](https://weaviate.io/blog/advanced-rag) |
+| Langfuse | [RAG Observability](https://langfuse.com/blog/2025-10-28-rag-observability-and-evals) |
+| Query Rewriting | [DEV Community](https://dev.to/rogiia/build-an-advanced-rag-app-query-rewriting-h3p) |
 
 ---
 

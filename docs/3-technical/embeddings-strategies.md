@@ -431,6 +431,11 @@ def benchmark_embeddings(embeddings, test_pairs: list) -> dict:
     }
 ```
 
+## Related Topics
+
+- [Cost Optimization](../4-best-practices/cost-optimization.md) - Optimize embedding costs
+- [Chunking Strategies](../4-best-practices/chunking-strategies.md) - Optimize chunk sizes for embeddings
+
 ---
 
 *Next: [Retrieval Systems](retrieval-systems.md)*

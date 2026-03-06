@@ -108,7 +108,7 @@ from langchain_community.document_loaders import (
 )
 from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import Chroma
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_ollama import ChatOllama
 from langchain_classic.chains import RetrievalQA
 from PIL import Image
@@ -295,7 +295,7 @@ Video RAG Implementation
 """
 
 from langchain_community.document_loaders import YoutubeLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 class VideoRAG:
     """RAG for video content."""

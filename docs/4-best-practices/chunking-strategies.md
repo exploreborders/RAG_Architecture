@@ -31,7 +31,7 @@ Too Small                          Too Large
 Fixed-Size Chunking
 """
 
-from langchain.text_splitter import CharacterTextSplitter
+from langchain_text_splitters import CharacterTextSplitter
 
 # Simple character-based
 splitter = CharacterTextSplitter(
@@ -53,7 +53,7 @@ chunks = splitter.split_text(large_text)
 Recursive Chunking - Try multiple separators
 """
 
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
@@ -104,9 +104,9 @@ chunks = semantic_splitter.split_text(text)
 Sentence-Level Chunking
 """
 
-from langchain.text_splitter import NLTKTextSplitter
+from langchain_text_splitters import NLTKTextSplitter
 # or
-from langchain.text_splitter import SpacyTextSplitter
+from langchain_text_splitters import SpacyTextSplitter
 
 # Using NLTK
 nltk_splitter = NLTKTextSplitter(
@@ -136,7 +136,7 @@ chunks = spacy_splitter.split_text(text)
 Structure-Aware Chunking for Markdown
 """
 
-from langchain.text_splitter import MarkdownTextSplitter
+from langchain_text_splitters import MarkdownTextSplitter
 
 markdown_splitter = MarkdownTextSplitter(
     chunk_size=1000,
@@ -146,7 +146,7 @@ markdown_splitter = MarkdownTextSplitter(
 chunks = markdown_splitter.split_text(markdown_content)
 
 # For HTML
-from langchain.text_splitter import HTMLHeaderTextSplitter
+from langchain_text_splitters import HTMLHeaderTextSplitter
 
 html_splitter = HTMLHeaderTextSplitter(
     headers_to_split_on=[
@@ -169,7 +169,7 @@ chunks = html_splitter.split_text(html_content)
 Programming Language Chunking
 """
 
-from langchain.text_splitter import Language
+from langchain_text_splitters import Language
 
 # Support for many languages
 code_splitters = {}

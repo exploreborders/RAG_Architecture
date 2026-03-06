@@ -449,6 +449,11 @@ class RAGBenchmark:
 | **End-to-End** | RAGAS Score | Overall system performance |
 | **End-to-End** | LLM-as-Judge | Flexible, semantic evaluation |
 
+## Related Topics
+
+- [Observability](../4-best-practices/observability.md) - Monitor and debug your RAG system
+- [Production Deployment](../4-best-practices/production-deployment.md) - Deploy with monitoring
+
 ---
 
 *Next: [Best Practices - Chunking Strategies](../4-best-practices/chunking-strategies.md)*

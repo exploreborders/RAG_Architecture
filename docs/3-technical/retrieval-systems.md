@@ -415,4 +415,31 @@ def evaluate_retrieval(retriever, test_cases: list) -> dict:
 
 ---
 
+## References
+
+### Retrieval Techniques
+
+| Resource | Description |
+|----------|-------------|
+| [BM25 Algorithm](https://en.wikipedia.org/wiki/Okapi_BM25) | Wikipedia explanation of BM25 |
+| [Reciprocal Rank Fusion](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf) | Original RRF paper |
+
+### Reranking
+
+| Resource | Description |
+|----------|-------------|
+| [Cross-Encoders - Sentence Transformers](https://sbert.net/examples/cross_encoder/training/rerankers/README.html) | Official documentation |
+| [Reranking with Cross-Encoders](https://medium.com/@rossashman/the-art-of-rag-part-3-reranking-with-cross-encoders-688a16b64669) | Tutorial on cross-encoder reranking |
+| [Cohere Rerank](https://cohere.com/rerank) | Commercial reranking API |
+| [Training Reranker Models](https://huggingface.co/blog/train-reranker) | HuggingFace guide |
+
+### Hybrid Search
+
+| Resource | Description |
+|----------|-------------|
+| [Advanced RAG Techniques - Weaviate](https://weaviate.io/blog/advanced-rag) | Comprehensive guide to hybrid search and more |
+| [Neo4j Advanced RAG](https://neo4j.com/blog/genai/advanced-rag-techniques/) | 15 advanced RAG techniques |
+
+---
+
 *Next: [Evaluation Metrics](evaluation-metrics.md)*

@@ -98,11 +98,18 @@ Hypothetical Document:"""
 - When users ask in different ways than documents are written
 - For questions requiring explanatory answers
 
+> **Paper**: [arXiv:2212.10496](https://arxiv.org/abs/2212.10496)
+> **GitHub**: [texttron/hyde](https://github.com/texttron/hyde)
+> **Blog**: [Better RAG with HyDE - Zilliz](https://zilliz.com/learn/improve-rag-and-information-retrieval-with-hyde-hypothetical-document-embeddings)
+
 ## 2. Self-RAG
 
 ### Concept
 
 Train or prompt the model to decide when to retrieve and how to critique its own output.
+
+> **Paper**: [arXiv:2410.13496](https://arxiv.org/abs/2410.13496)
+> **GitHub**: [AkariAsai/self-rag](https://github.com/AkariAsai/self-rag)
 
 ```python
 """
@@ -630,6 +637,36 @@ Briefly describe:"""
 | **GraphRAG** | Graph-based knowledge retrieval | High | Large documents |
 | **Router** | Dynamic strategy selection | Medium | Variable queries |
 | **Iterative** | Refine until quality | High | Complex questions |
+
+---
+
+## References
+
+### Core Papers
+
+| Paper | Link |
+|-------|------|
+| HyDE: Precise Zero-Shot Dense Retrieval | [arXiv:2212.10496](https://arxiv.org/abs/2212.10496) |
+| Self-RAG: Learning to Retrieve, Generate, and Critique | [arXiv:2410.13496](https://arxiv.org/abs/2410.13496) |
+| Corrective RAG | [arXiv:2401.15884](https://arxiv.org/abs/2401.15884) |
+| GraphRAG: From Local to Global | [Microsoft Research](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-knowledge/) |
+
+### Implementations
+
+| Resource | Description |
+|----------|-------------|
+| [HyDE GitHub](https://github.com/texttron/hyde) | Official HyDE implementation |
+| [Self-RAG GitHub](https://github.com/AkariAsai/self-rag) | Self-RAG implementation |
+| [Microsoft GraphRAG](https://github.com/microsoft/graphrag) | Microsoft GraphRAG |
+| [RAG Techniques Collection](https://github.com/NirDiamant/RAG_Techniques) | Comprehensive RAG techniques |
+
+### Tutorials & Blogs
+
+| Blog | Description |
+|------|-------------|
+| [Advanced RAG Techniques - Weaviate](https://weaviate.io/blog/advanced-rag) | Comprehensive RAG techniques guide |
+| [Neo4j Advanced RAG](https://neo4j.com/blog/genai/advanced-rag-techniques/) | 15 advanced RAG techniques |
+| [HyDE Tutorial - Zilliz](https://zilliz.com/learn/improve-rag-and-information-retrieval-with-hyde-hypothetical-document-embeddings) | HyDE explanation |
 
 ---
 

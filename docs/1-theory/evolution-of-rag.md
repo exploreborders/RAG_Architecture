@@ -103,11 +103,14 @@ Modular RAG Components:
 
 ### Self-RAG (2024)
 
-**"Self-RAG: Learning to Retrieve, Generate, and Critique"**
+**"Self-RAG: Learning to Retrieve, Generate, and Critique"** (Asai et al., 2024)
 
 - Model learns to retrieve when needed
 - Generates reflection tokens
 - Self-critiques its outputs
+
+> **Paper**: [arXiv:2410.13496](https://arxiv.org/abs/2410.13496)
+> **GitHub**: [https://github.com/AkariAsai/self-rag](https://github.com/AkariAsai/self-rag)
 
 ```
 Self-RAG Process:
@@ -130,11 +133,14 @@ Query ──► [Is retrieval needed?] ──► Yes ──► Retrieve ──�
 
 ### Graph RAG (Microsoft)
 
-**"From Local to Global: A Graph RAG Approach"**
+**"From Local to Global: A Graph RAG Approach"** (Microsoft Research, 2024)
 
 - Builds knowledge graphs from documents
 - Community summarization
 - Global knowledge synthesis
+
+> **Blog**: [GraphRAG: Unlocking LLM knowledge](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-knowledge/)
+> **GitHub**: [microsoft/graphrag](https://github.com/microsoft/graphrag)
 
 ### Multimodal RAG (2025)
 
@@ -195,6 +201,36 @@ Query ──► [Is retrieval needed?] ──► Yes ──► Retrieve ──�
 - Better evaluation frameworks
 - Production-ready patterns emerging
 - Cost optimization becoming critical
+
+---
+
+## References
+
+### Core RAG Papers
+
+| Paper | Year | Link |
+|-------|------|------|
+| Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al.) | 2020 | [arXiv:2005.11401](https://arxiv.org/abs/2005.11401) |
+| Self-RAG: Learning to Retrieve, Generate, and Critique | 2024 | [arXiv:2410.13496](https://arxiv.org/abs/2410.13496) |
+| A Systematic Survey of RAG | 2025 | [arXiv:2508.06401](https://arxiv.org/abs/2508.06401) |
+| Comprehensive RAG Survey | 2025 | [arXiv:2506.00054](https://arxiv.org/abs/2506.00054) |
+| Agentic RAG Survey | 2025 | [arXiv:2501.09136](https://arxiv.org/abs/2501.09136) |
+| Multimodal RAG Survey | 2025 | [arXiv:2502.08826](https://arxiv.org/abs/2502.08826) |
+
+### GraphRAG & Knowledge Graph RAG
+
+| Resource | Description |
+|----------|-------------|
+| [Microsoft GraphRAG](https://github.com/microsoft/graphrag) | Official Microsoft GraphRAG implementation |
+| [GraphRAG Blog](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-knowledge/) | Microsoft Research blog post |
+
+### Tools & Frameworks
+
+| Tool | Description |
+|------|-------------|
+| [LangGraph](https://langchain-ai.github.io/langgraph/) | Agentic RAG orchestration |
+| [AutoGen](https://microsoft.github.io/autogen/) | Microsoft multi-agent framework |
+| [LlamaIndex](https://www.llamaindex.ai/) | RAG-focused data framework |
 
 ---
 

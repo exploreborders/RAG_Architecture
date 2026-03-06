@@ -84,7 +84,7 @@ from langchain_community.graphs import Neo4jGraph
 from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import Neo4jVector
 from langchain_ollama import ChatOllama
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_classic.chains import RetrievalQA
 from pydantic import BaseModel
 from typing import List, Tuple
@@ -264,7 +264,7 @@ from langchain_community.vectorstores import Neo4jVector
 from langchain_ollama import OllamaEmbeddings
 from langchain_ollama import ChatOllama
 from langchain_classic.chains import RetrievalQA
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_experimental.graph_transformers import LLMGraphTransformer
 
 class KGRAGPipeline:
