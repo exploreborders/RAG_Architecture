@@ -333,7 +333,7 @@ class CachedRAGPipeline:
         
         if not docs:
             # Retrieve from vector store
-            docs = self.retriever.get_relevant_documents(question)
+            docs = self.retriever.invoke(question)
             
             # Cache retrieval results
             if self.retrieval_cache:

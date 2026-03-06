@@ -436,7 +436,7 @@ Should we retrieve additional context? Answer yes or no."""
         
         if "yes" in if_need_retrieval.lower():
             # Step 2: Retrieve
-            docs = self.retriever.get_relevant_documents(question)
+            docs = self.retriever.invoke(question)
             context = "\n\n".join([doc.page_content for doc in docs])
         else:
             context = ""
@@ -461,7 +461,7 @@ Be critical."""
         
         # Step 5: Refine if needed
         if "missing" in reflection.lower() or "incomplete" in reflection.lower():
-            more_docs = self.retriever.get_relevant_documents(reflection)
+            more_docs = self.retriever.invoke(reflection)
             more_context = context + "\n\n" + "\n\n".join([doc.page_content for doc in more_docs])
             
             final_response = self.llm.invoke(

@@ -167,7 +167,7 @@ class SentenceWindowRetriever:
         """
         
         # Step 1: Retrieve matching child chunks
-        child_docs = self.retriever.get_relevant_documents(query)
+        child_docs = self.retriever.invoke(query)
         
         # Step 2: Get unique parent documents
         parent_contents = set()
@@ -248,7 +248,7 @@ class AutoMergingRetriever:
         
         # Start with smallest chunks
         smallest_level = self.level_stores[0]
-        initial_docs = smallest_level["retriever"].get_relevant_documents(query)
+        initial_docs = smallest_level["retriever"].invoke(query)
         
         # Track which parent documents we've seen
         parent_map = {}

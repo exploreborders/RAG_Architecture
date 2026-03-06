@@ -87,7 +87,7 @@ class CrossEncoderReranker:
         """
         
         # Stage 1: Initial retrieval (get more candidates)
-        initial_docs = self.base_retriever.get_relevant_documents(query)
+        initial_docs = self.base_retriever.invoke(query)
         initial_docs = initial_docs[:initial_k]
         
         # Stage 2: Prepare query-doc pairs
@@ -109,7 +109,7 @@ class CrossEncoderReranker:
     def rerank_with_scores(self, query: str, initial_k: int = 50) -> list:
         """Rerank and return with scores."""
         
-        initial_docs = self.base_retriever.get_relevant_documents(query)[:initial_k]
+        initial_docs = self.base_retriever.invoke(query)[:initial_k]
         
         pairs = [[query, doc.page_content] for doc in initial_docs]
         scores = self.cross_encoder.predict(pairs)
@@ -333,7 +333,7 @@ class RerankingPipeline:
         """Retrieve with reranking."""
         
         # Stage 1: Initial retrieval
-        initial_docs = self.base_retriever.get_relevant_documents(query)
+        initial_docs = self.base_retriever.invoke(query)
         
         if not initial_docs:
             return []
@@ -355,7 +355,7 @@ class RerankingPipeline:
     def retrieve_with_metadata(self, query: str) -> dict:
         """Retrieve with full metadata."""
         
-        initial_docs = self.base_retriever.get_relevant_documents(query)
+        initial_docs = self.base_retriever.invoke(query)
         doc_contents = [doc.page_content for doc in initial_docs]
         
         pairs = [[query, doc] for doc in doc_contents]

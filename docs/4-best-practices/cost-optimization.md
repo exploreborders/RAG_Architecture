@@ -113,10 +113,10 @@ Retrieval Cost Optimization
 
 # Strategy 1: Reduce top_k
 # Instead of k=10
-results = retriever.get_relevant_documents(query, k=10)
+results = retriever.invoke(query, k=10)
 
 # Use smaller k
-results = retriever.get_relevant_documents(query, k=3)
+results = retriever.invoke(query, k=3)
 
 # Strategy 2: Use cheaper retrieval first
 class TieredRetrieval:
@@ -128,14 +128,14 @@ class TieredRetrieval:
     
     def retrieve(self, query: str, k: int = 4):
         # Fast retrieval first
-        fast_results = self.fast_retriever.get_relevant_documents(query, k=k*2)
+        fast_results = self.fast_retriever.invoke(query, k=k*2)
         
         # Check confidence
         if self._high_confidence(fast_results):
             return fast_results[:k]
         
         # Only use expensive if needed
-        accurate_results = self.accurate_retriever.get_relevant_documents(
+        accurate_results = self.accurate_retriever.invoke(
             query, k=k
         )
         
@@ -315,7 +315,7 @@ class CostOptimizedRAG:
             return self.query_cache[question]
         
         # Retrieve (cheap)
-        docs = self.retriever.get_relevant_documents(question)
+        docs = self.retriever.invoke(question)
         
         # Truncate context
         context = "\n\n".join([d.page_content for d in docs])[:4000]

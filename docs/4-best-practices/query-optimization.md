@@ -163,9 +163,10 @@ HyDE: Generate hypothetical documents
 class HyDERetriever:
     """Use HyDE for better retrieval."""
     
-    def __init__(self, vectorstore, llm):
+    def __init__(self, vectorstore, llm, embeddings):
         self.vectorstore = vectorstore
         self.llm = llm
+        self.embeddings = embeddings
     
     def retrieve(self, query: str, k: int = 4) -> list:
         """Retrieve using HyDE."""
@@ -181,8 +182,8 @@ Hypothetical answer:"""
         hypothetical = self.llm.invoke(prompt)
         
         # Step 2: Embed both query and hypothetical
-        query_embedding = self.vectorstore.embedding.embed_query(query)
-        hypo_embedding = self.vectorstore.embedding.embed_query(hypothetical)
+        query_embedding = self.embeddings.embed_query(query)
+        hypo_embedding = self.embeddings.embed_query(hypothetical)
         
         # Step 3: Use hypothetical for retrieval
         # (averaging or using hypothetical alone)
@@ -283,8 +284,8 @@ class HybridSearchRetriever:
         """Combine both retrievers."""
         
         # Get results from both
-        vector_docs = self.vector_retriever.get_relevant_documents(query)
-        bm25_docs = self.bm25_retriever.get_relevant_documents(query)
+        vector_docs = self.vector_retriever.invoke(query)
+        bm25_docs = self.bm25_retriever.invoke(query)
         
         # Combine with weighting
         combined = self._combine_results(
@@ -420,7 +421,7 @@ Respond with just the strategy name:"""
         bm25_retriever = BM25Retriever.from_documents(self.vectorstore._chroma_collection.get()["documents"])
         
         # Get relevant documents
-        docs = bm25_retriever.get_relevant_documents(query)
+        docs = bm25_retriever.invoke(query)
         
         return docs[:4]  # Return top 4 results
     
@@ -443,7 +444,7 @@ Respond with just the strategy name:"""
             weights=[0.7, 0.3]  # Weight semantic higher
         )
         
-        return ensemble.get_relevant_documents(query)
+        return ensemble.invoke(query)
     
     def _multi_retrieve(self, query: str) -> list:
         """Retrieve using multi-query approach for comprehensive results."""

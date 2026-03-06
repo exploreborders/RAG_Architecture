@@ -54,9 +54,10 @@ from langchain_community.vectorstores import Chroma
 class HyDERetriever:
     """HyDE: Hypothetical Document Embeddings."""
     
-    def __init__(self, vectorstore, llm):
+    def __init__(self, vectorstore, llm, embeddings):
         self.vectorstore = vectorstore
         self.llm = llm
+        self.embeddings = embeddings
     
     def generate_hypothetical(self, query: str) -> str:
         """Generate hypothetical answer document."""
@@ -77,14 +78,14 @@ Hypothetical Document:"""
         hypothetical = self.generate_hypothetical(query)
         
         # Get embeddings
-        query_emb = self.vectorstore.embedding.embed_query(query)
-        hypo_emb = self.vectorstore.embedding.embed_query(hypothetical)
+        query_emb = self.embeddings.embed_query(query)
+        hypo_emb = self.embeddings.embed_query(hypothetical)
         
         # Combine embeddings (average)
         combined_emb = [(q + h) / 2 for q, h in zip(query_emb, hypo_emb)]
         
         # Search
-        results = self.vectorstore.vectorstore.similarity_search_by_vector(
+        results = self.vectorstore.similarity_search_by_vector(
             combined_emb,
             k=k
         )
@@ -159,7 +160,7 @@ Only respond with a number:"""
             return self.llm.invoke(f"Answer this question: {query}").content
         
         # Retrieve
-        docs = self.retriever.get_relevant_documents(query)
+        docs = self.retriever.invoke(query)
         context = "\n\n".join([doc.page_content for doc in docs])
         
         # Generate
@@ -243,11 +244,11 @@ Respond as JSON:"""
             f"Expand this query with synonyms: {query}"
         )
         
-        docs = self.retriever.get_relevant_documents(expanded)
+        docs = self.retriever.invoke(expanded)
         
         if not docs:
             # Try general search
-            docs = self.retriever.get_relevant_documents(query)
+            docs = self.retriever.invoke(query)
         
         return docs
     
@@ -273,7 +274,7 @@ Respond as JSON:"""
         """Execute Corrective RAG with checks."""
         
         # Retrieve
-        docs = self.retriever.get_relevant_documents(query)
+        docs = self.retriever.invoke(query)
         
         # Check and correct retrieval
         docs = self.correct_retrieval(query, docs)
@@ -504,7 +505,7 @@ Respond with just one word:"""
         
         retriever = self.retrievers.get(mode.value, self.retrievers["semantic"])
         
-        return retriever.get_relevant_documents(query)
+        return retriever.invoke(query)
     
     def retrieve_parallel(self, query: str) -> list:
         """Parallel retrieval from multiple sources."""
@@ -512,7 +513,7 @@ Respond with just one word:"""
         results = []
         
         for mode, retriever in self.retrievers.items():
-            docs = retriever.get_relevant_documents(query)
+            docs = retriever.invoke(query)
             results.extend(docs)
         
         # Deduplicate and rerank
@@ -558,7 +559,7 @@ class IterativeRAG:
         
         for iteration in range(self.max_iterations):
             # Retrieve
-            docs = self.retriever.get_relevant_documents(query)
+            docs = self.retriever.invoke(query)
             new_context = [doc.page_content for doc in docs]
             
             # Check if we have enough information

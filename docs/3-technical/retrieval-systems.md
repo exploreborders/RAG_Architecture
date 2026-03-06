@@ -158,7 +158,7 @@ bm25_retriever.k1 = 1.5  # Term frequency saturation
 bm25_retriever.b = 0.75  # Document length normalization
 
 # Retrieve
-results = bm25_retriever.get_relevant_documents("What is RAG?")
+results = bm25_retriever.invoke("What is RAG?")
 
 # With custom parameters
 results = bm25_retriever.invoke("What is RAG?")
@@ -358,7 +358,7 @@ Choose one:"""
         
         retriever = self.retrievers.get(strategy, self.retrievers["semantic"])
         
-        return retriever.get_relevant_documents(query)[:k]
+        return retriever.invoke(query)[:k]
 ```
 
 ## Retrieval Evaluation
@@ -378,7 +378,7 @@ def evaluate_retrieval(retriever, test_cases: list) -> dict:
     }
     
     for query, relevant in test_cases:
-        retrieved = retriever.get_relevant_documents(query)
+        retrieved = retriever.invoke(query)
         
         # Calculate metrics
         retrieved_ids = [doc.id for doc in retrieved]

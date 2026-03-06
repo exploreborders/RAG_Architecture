@@ -66,7 +66,7 @@ def retrieval_pipeline(query: str):
     # This function is now automatically traced!
     
     # Step 1: Retrieve documents
-    docs = retriever.get_relevant_documents(query)
+    docs = retriever.invoke(query)
     
     # Step 2: Generate context
     context = "\n\n".join([doc.page_content for doc in docs])
@@ -104,7 +104,7 @@ def rag_pipeline(query: str):
         # Step 1: Retrieval
         with trace.span(name="retrieval") as retrieval_span:
             start = time.time()
-            docs = retriever.get_relevant_documents(query)
+            docs = retriever.invoke(query)
             retrieval_span.update(
                 output={"num_docs": len(docs)},
                 metadata={
@@ -218,7 +218,7 @@ def evaluate_rag_system(test_questions: list):
     # Generate predictions
     results = []
     for q in test_questions:
-        docs = retriever.get_relevant_documents(q.question)
+        docs = retriever.invoke(q.question)
         context = "\n\n".join([d.page_content for d in docs])
         answer = llm.invoke(f"Context: {context}\n\nQuestion: {q.question}")
         
@@ -308,7 +308,7 @@ def rag_pipeline_with_metrics(query: str):
     with REQUEST_LATENCY.time():
         # Retrieval
         with RETRIEVAL_LATENCY.time():
-            docs = retriever.get_relevant_documents(query)
+            docs = retriever.invoke(query)
         
         RETRIEVAL_COUNT.observe(len(docs))
         
@@ -353,7 +353,7 @@ tracer = trace.get_tracer(__name__)
 def rag_pipeline(query: str):
     with tracer.start_as_current_span("retrieval") as span:
         span.set_attribute("query", query)
-        docs = retriever.get_relevant_documents(query)
+        docs = retriever.invoke(query)
         span.set_attribute("num_docs", len(docs))
     
     with tracer.start_as_current_span("generation") as span:
@@ -429,7 +429,7 @@ def debug_retrieval(query: str, top_k: int = 10):
     """Debug retrieval to find issues."""
     
     # Get more results than usual
-    docs = retriever.get_relevant_documents(query)
+    docs = retriever.invoke(query)
     
     print(f"Query: {query}")
     print(f"\nRetrieved {len(docs)} documents:")
@@ -461,7 +461,7 @@ def debug_latency(query: str):
     
     # Retrieval
     start = time.time()
-    docs = retriever.get_relevant_documents(query)
+    docs = retriever.invoke(query)
     times['retrieval'] = time.time() - start
     
     # Context prep

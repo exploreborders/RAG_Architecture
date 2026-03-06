@@ -148,7 +148,7 @@ Queries:"""
         # Retrieve from each query
         all_docs = []
         for q in queries:
-            docs = self.base_retriever.get_relevant_documents(q)
+            docs = self.base_retriever.invoke(q)
             all_docs.extend(docs)
         
         # Deduplicate
@@ -212,7 +212,7 @@ Sub-questions (one per line):"""
         
         all_docs = []
         for sq in sub_queries:
-            docs = retriever.get_relevant_documents(sq)
+            docs = retriever.invoke(sq)
             all_docs.extend(docs)
         
         return self._deduplicate(all_docs)
@@ -230,9 +230,10 @@ HyDE Implementation
 class HyDERetriever:
     """HyDE: Hypothetical Document Embeddings."""
     
-    def __init__(self, vectorstore, llm):
+    def __init__(self, vectorstore, llm, embeddings):
         self.vectorstore = vectorstore
         self.llm = llm
+        self.embeddings = embeddings
     
     def generate_hypothetical(self, query: str) -> str:
         """Generate hypothetical answer document."""
@@ -253,8 +254,8 @@ Hypothetical Document:"""
         hypothetical = self.generate_hypothetical(query)
         
         # Get embeddings for both
-        query_emb = self.vectorstore.embedding.embed_query(query)
-        hypo_emb = self.vectorstore.embedding.embed_query(hypothetical)
+        query_emb = self.embeddings.embed_query(query)
+        hypo_emb = self.embeddings.embed_query(hypothetical)
         
         # Combine embeddings (average)
         combined_emb = [
@@ -262,7 +263,7 @@ Hypothetical Document:"""
         ]
         
         # Search using combined embedding
-        results = self.vectorstore.vectorstore.similarity_search_by_vector(
+        results = self.vectorstore.similarity_search_by_vector(
             combined_emb,
             k=k
         )
@@ -307,7 +308,7 @@ class AdvancedQueryRewriter:
         
         if strategy == "rewrite":
             rewritten = self.rewriter.rewrite(query)
-            docs = self.base_retriever.get_relevant_documents(rewritten)
+            docs = self.base_retriever.invoke(rewritten)
             return {"strategy": strategy, "query": rewritten, "docs": docs}
         
         elif strategy == "decompose":
@@ -329,7 +330,7 @@ class AdvancedQueryRewriter:
         
         else:
             # Default: no rewriting
-            docs = self.base_retriever.get_relevant_documents(query)
+            docs = self.base_retriever.invoke(query)
             return {"strategy": "none", "query": query, "docs": docs}
     
     def _select_strategy(self, query: str) -> str:
