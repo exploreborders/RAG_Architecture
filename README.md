@@ -28,8 +28,8 @@ This repository is organized into multiple learning paths suitable for different
 |---------|-------------|
 | [Theory](docs/1-theory/) | Foundational concepts, evolution, and theory behind RAG |
 | [Architectures](docs/2-architectures/) | Deep dives into Classic RAG, KG-RAG, Agentic RAG, Multimodal RAG |
-| [Technical](docs/3-technical/) | Embeddings, vector databases, retrieval systems, evaluation, **providers (OpenAI/Ollama)** |
-| [Best Practices](docs/4-best-practices/) | Production-ready patterns, optimization, scaling |
+| [Technical](docs/3-technical/) | Embeddings, vector databases, retrieval systems, evaluation, providers |
+| [Best Practices](docs/4-best-practices/) | Production-ready patterns, optimization, scaling, security |
 | [Comparison](docs/5-pros-cons/) | Pros/cons matrix, use case recommendations |
 
 ## 🧑‍💻 Interactive Notebooks
@@ -37,24 +37,39 @@ This repository is organized into multiple learning paths suitable for different
 | Notebook | Description |
 |----------|-------------|
 | [01-classic-rag-implementation.ipynb](notebooks/01-classic-rag-implementation.ipynb) | Build your first RAG pipeline with LangChain |
+| [02-kg-rag-implementation.ipynb](notebooks/02-kg-rag-implementation.ipynb) | Implement Knowledge Graph enhanced RAG |
 | [03-agentic-rag-implementation.ipynb](notebooks/03-agentic-rag-implementation.ipynb) | Implement autonomous agents with LangGraph |
 | [04-evaluation-workshop.ipynb](notebooks/04-evaluation-workshop.ipynb) | Measure RAG performance with RAGAS |
+| [05-production-deployment.ipynb](notebooks/05-production-deployment.ipynb) | Deploy RAG to production |
 
-## 🎯 Quick Start
+## 🚀 Quick Start
+
+### Prerequisites
+
+1. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Install Ollama** (recommended for local/privacy-friendly usage):
+   - Download from: https://ollama.ai
+   - Run: `ollama pull llama3.2`
+   - Run: `ollama pull nomic-embed-text`
+
+### Option 1: Using RAGProvider (Recommended)
 
 ```python
-# Using Ollama (local, free, privacy-friendly) - RECOMMENDED
-# First, install Ollama: https://ollama.ai
-# Then run: ollama pull llama3.2
-# And: ollama pull nomic-embed-text
-
 from docs._technical.providers import RAGProvider
 
-rag = RAGProvider(provider="ollama")  # Default!
-rag.add_documents(documents)
+# Using Ollama (local, free, privacy-friendly)
+rag = RAGProvider(provider="ollama")
+rag.add_documents([
+    "RAG stands for Retrieval-Augmented Generation...",
+    "RAG helps reduce hallucinations..."
+])
 result = rag.query("What is RAG?")
 
-# OR Using OpenAI (cloud API)
+# Or using OpenAI (cloud API)
 rag = RAGProvider(provider="openai")
 rag.add_documents(documents)
 result = rag.query("What is RAG?")
@@ -62,7 +77,7 @@ result = rag.query("What is RAG?")
 # Same interface regardless of provider!
 ```
 
-### Manual Setup (without wrapper)
+### Option 2: Manual Setup
 
 ```python
 # Ollama Setup (local, free) - RECOMMENDED
@@ -77,8 +92,25 @@ vectorstore = Chroma.from_documents(documents, embeddings)
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 llm = ChatOpenAI(model="gpt-4o")
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+embeddings = OpenAIEmbedding(model="text-embedding-3-small")
 vectorstore = Chroma.from_documents(documents, embeddings)
+```
+
+## 📁 Project Structure
+
+```
+RAG_Architecture/
+├── docs/
+│   ├── 1-theory/           # Foundational RAG concepts
+│   ├── 2-architectures/     # RAG architecture patterns
+│   ├── 3-technical/         # Technical deep dives
+│   ├── 4-best-practices/   # Production best practices
+│   ├── 5-pros-cons/        # Comparisons and research
+│   └── _technical/          # Provider implementations
+│       └── providers.py     # RAGProvider class
+├── notebooks/               # Interactive Jupyter notebooks
+├── requirements.txt         # Python dependencies
+└── README.md
 ```
 
 ## 🔄 Architecture Comparison
@@ -103,7 +135,7 @@ See [detailed comparison](docs/5-pros-cons/comparison-matrix.md)
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read our contributing guidelines first.
+Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) first.
 
 ## 📄 License
 
