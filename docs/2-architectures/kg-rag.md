@@ -481,20 +481,32 @@ app = graph.compile()
 ## Evaluation Metrics
 
 ```python
-from ragas.metrics import context_recall, context_precision
+from deepeval.test_case import LLMTestCase
+from deepeval.metrics import ContextualRecallMetric, ContextualPrecisionMetric, FaithfulnessMetric
+from deepeval.models import OllamaModel
+
+# Initialize with Ollama
+ollama_model = OllamaModel(model="llama3.2")
+
+# Create test case
+test_case = LLMTestCase(
+    input="What is RAG?",
+    actual_output="RAG stands for...",
+    retrieval_context=["RAG is...", "It combines..."]
+)
 
 # Knowledge graph specific metrics
-kg_metrics = [
-    context_recall,      # Does retrieved context answer the question?
-    context_precision,   # Are retrieved items relevant?
-]
+context_recall = ContextualRecallMetric(model=ollama_model)
+context_precision = ContextualPrecisionMetric(model=ollama_model)
+faithfulness = FaithfulnessMetric(model=ollama_model)
 
-results = evaluate(
-    questions=questions,
-    contexts=contexts,
-    answers=answers,
-    metrics=kg_metrics
-)
+context_recall.measure(test_case)
+context_precision.measure(test_case)
+faithfulness.measure(test_case)
+
+print(f"Context Recall: {context_recall.score}")
+print(f"Context Precision: {context_precision.score}")
+print(f"Faithfulness: {faithfulness.score}")
 ```
 
 ---

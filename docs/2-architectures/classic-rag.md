@@ -133,7 +133,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_ollama import OllamaEmbeddings, ChatOllama
 from langchain_community.vectorstores import Chroma
 from langchain_classic.chains import RetrievalQA
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 
 # Configuration
 DOC_PATH = "data/document.txt"
@@ -480,18 +480,32 @@ retriever = vectorstore.as_retriever(
 ## Evaluation
 
 ```python
-from ragas import evaluate
-from ragas.metrics import faithfulness, answer_relevancy, context_precision
+from deepeval.test_case import LLMTestCase
+from deepeval.metrics import FaithfulnessMetric, AnswerRelevancyMetric, ContextualPrecisionMetric
+from deepeval.models import OllamaModel
 
-# Evaluate RAG pipeline
-results = evaluate(
-    questions=questions,
-    contexts=contexts,
-    answers=answers,
-    metrics=[faithfulness, answer_relevancy, context_precision]
+# Initialize with Ollama
+ollama_model = OllamaModel(model="llama3.2")
+
+# Create test cases
+test_case = LLMTestCase(
+    input="What is RAG?",
+    actual_output="RAG stands for Retrieval-Augmented Generation...",
+    retrieval_context=["RAG is a framework...", "It combines retrieval..."]
 )
 
-print(results)
+# Evaluate
+faithfulness = FaithfulnessMetric(model=ollama_model)
+answer_relevancy = AnswerRelevancyMetric(model=ollama_model)
+context_precision = ContextualPrecisionMetric(model=ollama_model)
+
+faithfulness.measure(test_case)
+answer_relevancy.measure(test_case)
+context_precision.measure(test_case)
+
+print(f"Faithfulness: {faithfulness.score}")
+print(f"Answer Relevancy: {answer_relevancy.score}")
+print(f"Context Precision: {context_precision.score}")
 ```
 
 ---

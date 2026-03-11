@@ -142,7 +142,7 @@ def rag_pipeline(query: str):
 LangChain + Langfuse Integration
 """
 
-from langchain_community.chat_models import ChatOllama
+from langchain_ollama import ChatOllama
 from langfuse.callback import LangchainCallbackHandler
 
 # Create handler
@@ -206,46 +206,61 @@ async def submit_user_feedback(feedback: FeedbackRequest):
 
 ```python
 """
-RAG Evaluation in Langfuse
+RAG Evaluation in Langfuse using DeepEval
 """
 
-from ragas import evaluate
-from datasets import Dataset
+from deepeval.test_case import LLMTestCase
+from deepeval.metrics import FaithfulnessMetric, AnswerRelevancyMetric
+from deepeval.metrics import ContextualPrecisionMetric, ContextualRecallMetric
+from deepeval.models import OllamaModel
 
 def evaluate_rag_system(test_questions: list):
-    """Evaluate RAG system using RAGAS."""
+    """Evaluate RAG system using DeepEval."""
     
-    # Generate predictions
+    # Initialize DeepEval with Ollama
+    ollama_model = OllamaModel(model="llama3.2")
+    faithfulness = FaithfulnessMetric(model=ollama_model)
+    answer_relevancy = AnswerRelevancyMetric(model=ollama_model)
+    context_precision = ContextualPrecisionMetric(model=ollama_model)
+    context_recall = ContextualRecallMetric(model=ollama_model)
+    
+    # Generate predictions and evaluate
     results = []
     for q in test_questions:
         docs = retriever.invoke(q.question)
         context = "\n\n".join([d.page_content for d in docs])
         answer = llm.invoke(f"Context: {context}\n\nQuestion: {q.question}")
         
+        # Create test case
+        test_case = LLMTestCase(
+            input=q.question,
+            actual_output=answer.content,
+            retrieval_context=[d.page_content for d in docs],
+            expected_output=q.ground_truth
+        )
+        
+        # Evaluate
+        faithfulness.measure(test_case)
+        answer_relevancy.measure(test_case)
+        context_precision.measure(test_case)
+        context_recall.measure(test_case)
+        
         results.append({
             "question": q.question,
-            "answer": answer.content,
-            "contexts": [d.page_content for d in docs],
-            "ground_truth": q.ground_truth
+            "faithfulness": faithfulness.score,
+            "answer_relevancy": answer_relevancy.score,
+            "context_precision": context_precision.score,
+            "context_recall": context_recall.score
         })
-    
-    # Evaluate with RAGAS
-    dataset = Dataset.from_list(results)
-    scores = evaluate(dataset, metrics=[
-        faithfulness,
-        answer_relevancy,
-        context_precision,
-        context_recall
-    ])
     
     # Log to Langfuse
     langfuse.score(
-        name="ragas_eval",
-        value=scores["faithfulness"],
+        name="faithfulness",
+        value=results[0]["faithfulness"],
         trace_id=current_trace_id
     )
     
-    return scores
+    return results
 ```
 
 ## 2. General Observability

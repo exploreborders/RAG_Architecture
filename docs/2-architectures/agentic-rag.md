@@ -111,7 +111,7 @@ from langgraph.graph import StateGraph, END
 from langchain_community.tools import Tool
 from langchain_community.vectorstores import Chroma
 from langchain_ollama import OllamaEmbeddings, ChatOllama
-from langchain.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel
 from typing import List, TypedDict, Optional
 import json
@@ -365,11 +365,11 @@ app = graph.compile()
 
 ```python
 """
-Agentic RAG using LangChain's AgentExecutor
+Agentic RAG using LangGraph
 """
 
-from langchain.agents import AgentExecutor, create_openai_functions_agent
-from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langgraph.prebuilt import create_react_agent
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_community.tools import Tool
 
 # Define prompt
@@ -391,21 +391,12 @@ Be thorough - don't hesitate to retrieve more information if needed."""),
     MessagesPlaceholder(variable_name="agent_scratchpad")
 ])
 
-# Create agent
-agent = create_openai_functions_agent(llm, tools, prompt)
-
-# Create executor
-agent_executor = AgentExecutor(
-    agent=agent,
-    tools=tools,
-    verbose=True,
-    max_iterations=5,
-    handle_parsing_errors=True
-)
+# Create agent using LangGraph prebuilt
+agent = create_react_agent(llm, tools)
 
 # Run
-result = agent_executor.invoke({
-    "input": "What are the key differences between RAG architectures?"
+result = agent.invoke({
+    "messages": [("user", "What are the key differences between RAG architectures?")]
 })
 ```
 
@@ -416,8 +407,8 @@ result = agent_executor.invoke({
 Self-RAG: Model reflects on its own retrieval
 """
 
-from langchain.chains import LLMChain
-from langchain.output_parsers import CommaSeparatedListOutputParser
+from langchain_core.runnables import RunnablePassthrough
+from langchain_core.output_parsers import CommaSeparatedListOutputParser
 
 class SelfRAGChain:
     """Self-Reflective RAG Chain."""

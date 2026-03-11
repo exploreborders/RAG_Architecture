@@ -49,7 +49,7 @@ LLM-Based Query Rewriting
 """
 
 from langchain_ollama import ChatOllama
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 
 llm = ChatOllama(model="llama3.2")
 

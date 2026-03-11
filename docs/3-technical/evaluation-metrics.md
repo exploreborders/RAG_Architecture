@@ -124,62 +124,49 @@ def hit_rate(retrieved: list, relevant: list, k: int) -> float:
 
 ## Generation Metrics
 
-### Using RAGAS
+### Using DeepEval
 
 ```python
 """
-RAGAS (RAG Assessment) Evaluation
+DeepEval Evaluation (supports Ollama for local evaluation)
 """
 
-from ragas import evaluate
-from ragas.metrics import (
-    faithfulness,
-    answer_relevancy,
-    context_precision,
-    context_recall
+from deepeval.test_case import LLMTestCase
+from deepeval.metrics import (
+    FaithfulnessMetric,
+    AnswerRelevancyMetric,
+    ContextualPrecisionMetric,
+    ContextualRecallMetric
 )
-from datasets import Dataset
+from deepeval.models import OllamaModel
 
-# Prepare evaluation data
-eval_data = {
-    "question": [
-        "What is RAG?",
-        "How does vector search work?",
-        "What are the benefits of RAG?"
-    ],
-    "answer": [
-        "RAG stands for Retrieval-Augmented Generation...",
-        "Vector search uses embeddings to find...",
-        "RAG helps reduce hallucinations..."
-    ],
-    "contexts": [
-        ["RAG is a framework...", "It combines retrieval..."],
-        ["Vector embeddings...", "Similarity search..."],
-        ["Benefits include...", "Reduced hallucinations..."]
-    ],
-    "ground_truth": [
-        "RAG is a technique...",
-        "Vector search works by...",
-        "RAG provides..."
-    ]
-}
+# Initialize with Ollama (no API key required)
+ollama_model = OllamaModel(model="llama3.2")
 
-# Create dataset
-dataset = Dataset.from_dict(eval_data)
-
-# Evaluate
-results = evaluate(
-    dataset=dataset,
-    metrics=[
-        faithfulness,
-        answer_relevancy,
-        context_precision,
-        context_recall
-    ]
+# Create test case
+test_case = LLMTestCase(
+    input="What is RAG?",
+    actual_output="RAG stands for Retrieval-Augmented Generation...",
+    retrieval_context=["RAG is a framework...", "It combines retrieval..."],
+    expected_output="RAG is Retrieval-Augmented Generation, a technique..."
 )
 
-print(results)
-# Returns DataFrame with scores for each metric
+# Initialize metrics
+faithfulness = FaithfulnessMetric(model=ollama_model)
+answer_relevancy = AnswerRelevancyMetric(model=ollama_model)
+context_precision = ContextualPrecisionMetric(model=ollama_model)
+context_recall = ContextualRecallMetric(model=ollama_model)
+
+# Run evaluation
+faithfulness.measure(test_case)
+answer_relevancy.measure(test_case)
+context_precision.measure(test_case)
+context_recall.measure(test_case)
+
+print(f"Faithfulness: {faithfulness.score}")
+print(f"Answer Relevancy: {answer_relevancy.score}")
+print(f"Context Precision: {context_precision.score}")
+print(f"Context Recall: {context_recall.score}")
 ```
 
 ### Metric Definitions
@@ -199,7 +186,7 @@ LLM-as-Judge for RAG Evaluation
 """
 
 from langchain_ollama import ChatOllama
-from langchain.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 
 class RAGEvaluator:
     """Evaluate RAG using LLM as judge."""
