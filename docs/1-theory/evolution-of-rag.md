@@ -25,11 +25,11 @@ RAG            Retrieval         Context           Agentic
 
 ### Meta's Landmark Paper
 
-**"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"** (Lewis et al., 2020)
+**"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"** ([arXiv:2005.11401](https://arxiv.org/abs/2005.11401))
 
 Key innovations:
 - First formal RAG architecture
-- Combined dense retrieval (DPR) with seq2seq generation
+- Combined dense retrieval (DPR - Dense Passage Retrieval) with seq2seq (sequence-to-sequence) generation
 - Pre-trained on large-scale knowledge bases
 
 ### Architecture
@@ -47,25 +47,33 @@ Query ──► Dense Retriever ──► Top-K Docs ──► Generator
                          └─────────────┘
 ```
 
+> **Summary (2020)**: The foundational RAG paper established the core pattern of retrieving relevant documents and using them as context for generation. This basic architecture became the baseline for all future improvements.
+
 ## 2021-2022: Advanced Retrieval
+
+*Building on the foundational RAG architecture, researchers focused on improving the retrieval component itself.*
 
 ### Key Developments
 
 | Year | Innovation | Description |
 |------|------------|-------------|
 | 2021 | DPR Improvements | Better dense retrievers |
-| 2021 | BM25 + Dense | Hybrid search emergence |
+| 2021 | BM25 + Dense | Hybrid search emergence (keyword + embedding) |
 | 2022 | In-context RAG | Few-shot learning with retrieval |
 | 2022 | Atlas | Fine-tuned retriever + generator |
 
 ### The Rise of Hybrid Search
 
 Combining keyword and semantic search:
-- **BM25**: Traditional, robust for exact matches
-- **Dense (Embedding)**: Semantic understanding
-- **Hybrid**: Best of both worlds
+- **BM25**: Traditional keyword-based ranking, robust for exact matches
+- **Dense (Embedding)**: Semantic understanding using neural networks
+- **Hybrid**: Best of both worlds - combines keyword precision with semantic understanding
+
+> **Summary (2021-2022)**: The focus shifted from basic retrieval to combining multiple search methods. Hybrid search emerged as a best practice, and researchers began exploring fine-tuned models specifically for retrieval tasks.
 
 ## 2023: Modular RAG
+
+*As RAG matured, the community moved from a linear pipeline to a modular, composable architecture.*
 
 ### Paradigm Shift
 
@@ -95,11 +103,15 @@ Modular RAG Components:
 ### Key Innovations (2023)
 
 1. **Query Rewriting**: Improve query quality before retrieval
-2. **Re-ranking**: Improve retrieved result quality
+2. **Reranking**: Improve retrieved result quality using a second-stage scorer
 3. **Chunking Strategies**: Optimize context windows
 4. **Multi-vector**: Store multiple representations
 
+> **Summary (2023)**: RAG became modular and composable. Query rewriting, reranking, and intelligent chunking became standard techniques. Developers could now mix and match components based on their use case.
+
 ## 2024-2025: Agentic & Advanced RAG
+
+*The next leap came with autonomous systems that could decide when and how to retrieve information.*
 
 ### Self-RAG (2024)
 
@@ -148,6 +160,8 @@ Query ──► [Is retrieval needed?] ──► Yes ──► Retrieve ──�
 - Images, Video, Audio
 - Cross-modal retrieval
 - Unified embedding spaces
+
+> **Summary (2024-2025)**: RAG became autonomous with Self-RAG and agentic systems. Graph RAG emerged for global knowledge understanding, and multimodal capabilities extended RAG beyond text.
 
 ## Current State (2026)
 
