@@ -511,4 +511,12 @@ print(f"Faithfulness: {faithfulness.score}")
 
 ---
 
+## Try It Yourself
+
+Practice implementing Knowledge Graph RAG with this notebook:
+
+- [KG-RAG Implementation Notebook](../notebooks/02-kg-rag-implementation.ipynb)
+
+---
+
 *Next: [Agentic RAG](../2-architectures/agentic-rag/)*

@@ -110,6 +110,14 @@ Hypothetical Document:"""
 - When users ask in different ways than documents are written
 - For questions requiring explanatory answers
 
+### Pros and Cons
+
+| ✅ Pros | ❌ Cons |
+|---------|---------|
+| Better semantic matching | Can hallucinate hypothetical docs |
+| Handles vocabulary mismatch | Slower (extra LLM call) |
+| Good for abstract questions | More compute cost |
+
 > **Paper**: [arXiv:2212.10496](https://arxiv.org/abs/2212.10496)
 > **GitHub**: [texttron/hyde](https://github.com/texttron/hyde)
 > **Blog**: [Better RAG with HyDE - Zilliz](https://zilliz.com/learn/improve-rag-and-information-retrieval-with-hyde-hypothetical-document-embeddings)
@@ -196,6 +204,21 @@ Only respond with a number:"""
         
         return answer
 ```
+
+### When to Use Self-RAG
+
+- When response quality is critical and must be verified
+- When you need the model to self-critique its output
+- For applications requiring source verification
+- When you want to reduce unnecessary retrievals
+
+### Pros and Cons
+
+| ✅ Pros | ❌ Cons |
+|---------|---------|
+| High quality, verified output | Complex implementation |
+| Reduces hallucinations | Higher latency (multiple calls) |
+| Learns when to retrieve | Requires fine-tuning for best results |
 
 ## 3. Corrective RAG
 
@@ -330,6 +353,21 @@ Provide a corrected answer that:
         return self.llm.invoke(prompt)
 ```
 
+### When to Use Corrective RAG
+
+- For production systems requiring error handling
+- When retrieval quality is unpredictable
+- For high-stakes applications (medical, legal, financial)
+- When you need to detect and fix hallucinations
+
+### Pros and Cons
+
+| ✅ Pros | ❌ Cons |
+|---------|---------|
+| Automatic error detection | More complex pipeline |
+| Improves reliability | Additional LLM calls for checking |
+| Handles edge cases well | Higher latency |
+
 ## 4. GraphRAG (Microsoft)
 
 ### Concept
@@ -463,6 +501,21 @@ class GraphRAG:
             return self.retrieve_local(query)
 ```
 
+### When to Use GraphRAG
+
+- For large document collections requiring global context
+- When questions need information from multiple sources
+- For queries about relationships between entities
+- When you need both local (specific) and global (holistic) answers
+
+### Pros and Cons
+
+| ✅ Pros | ❌ Cons |
+|---------|---------|
+| Global understanding of corpus | Requires Neo4j setup |
+| Captures entity relationships | More complex implementation |
+| Community summarization | Higher initial setup cost |
+
 ## 5. Router Pattern
 
 ### Concept
@@ -557,6 +610,21 @@ Respond with just one word:"""
         
         return unique
 ```
+
+### When to Use Router
+
+- For applications with diverse query types
+- When different queries need different retrieval strategies
+- For hybrid search systems (semantic + keyword)
+- When you want to optimize cost by using cheaper methods when possible
+
+### Pros and Cons
+
+| ✅ Pros | ❌ Cons |
+|---------|---------|
+| Flexible, multi-strategy | Routing logic can be complex |
+| Cost optimization | Requires understanding query patterns |
+| Better recall/precision | May miss edge cases |
 
 ## 6. Iterative Refinement
 
@@ -653,6 +721,21 @@ Briefly describe:"""
         return response
 ```
 
+### When to Use Iterative Refinement
+
+- For complex, multi-step questions requiring deep reasoning
+- When a single retrieval pass is insufficient
+- For questions that need information from multiple sources
+- When you want to ensure comprehensive answers
+
+### Pros and Cons
+
+| ✅ Pros | ❌ Cons |
+|---------|---------|
+| Comprehensive answers | Highest latency |
+| Handles complex questions | Most compute intensive |
+| Adapts to missing info | Hard to determine when done |
+
 ## Summary Table
 
 | Pattern | Purpose | Complexity | Best For |
@@ -693,6 +776,14 @@ Briefly describe:"""
 | [Advanced RAG Techniques - Weaviate](https://weaviate.io/blog/advanced-rag) | Comprehensive RAG techniques guide |
 | [Neo4j Advanced RAG](https://neo4j.com/blog/genai/advanced-rag-techniques/) | 15 advanced RAG techniques |
 | [HyDE Tutorial - Zilliz](https://zilliz.com/learn/improve-rag-and-information-retrieval-with-hyde-hypothetical-document-embeddings) | HyDE explanation |
+
+---
+
+## Try It Yourself
+
+Practice implementing advanced retrieval techniques with this notebook:
+
+- [Advanced Retrieval Techniques Notebook](../notebooks/06-advanced-retrieval-techniques.ipynb)
 
 ---
 

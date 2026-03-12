@@ -556,6 +556,21 @@ def image_to_text_search(query_image: str, text_docs: list) -> list:
 | **Alignment** | Cross-modal matching challenges |
 | **Quality** | Depends on transcription/description quality |
 
+## When to Use Multimodal RAG
+
+- When your data includes images, video, or audio that needs to be searched
+- For applications requiring cross-modal retrieval (e.g., "find the image that matches this text description")
+- When you need to answer questions about visual or audio content
+- For content moderation, media analysis, or document understanding with embedded images
+
+---
+
+## Try It Yourself
+
+Practice RAG evaluation techniques with this notebook:
+
+- [Evaluation Workshop Notebook](../notebooks/04-evaluation-workshop.ipynb)
+
 ---
 
 *Next: [Advanced Patterns](./advanced-patterns.md)*

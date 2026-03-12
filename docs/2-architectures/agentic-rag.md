@@ -539,4 +539,12 @@ class CostOptimizedAgent:
 
 ---
 
+## Try It Yourself
+
+Practice implementing Agentic RAG with this notebook:
+
+- [Agentic RAG Implementation Notebook](../notebooks/03-agentic-rag-implementation.ipynb)
+
+---
+
 *Next: [Multimodal RAG](../2-architectures/multimodal-rag/)*

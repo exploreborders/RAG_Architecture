@@ -508,6 +508,25 @@ print(f"Answer Relevancy: {answer_relevancy.score}")
 print(f"Context Precision: {context_precision.score}")
 ```
 
+## Summary Table
+
+| Aspect | Recommendation |
+|--------|----------------|
+| **Provider** | Ollama for local/privacy; OpenAI for quality |
+| **Embedding** | nomic-embed-text (free) or OpenAI text-embedding-3-small |
+| **Chunk Size** | 500-1000 chars for general text; smaller for code |
+| **Top-K** | 3-5 for simple Q&A; 5-10 for complex questions |
+| **Retrieval** | Semantic search (default); hybrid for better recall |
+| **Model** | llama3.2 for local; gpt-4o for quality |
+
+---
+
+## Try It Yourself
+
+Practice implementing Classic RAG with this notebook:
+
+- [Classic RAG Implementation Notebook](../notebooks/01-classic-rag-implementation.ipynb)
+
 ---
 
 *Next: [Knowledge Graph RAG](../2-architectures/kg-rag/)*
