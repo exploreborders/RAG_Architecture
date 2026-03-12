@@ -22,7 +22,7 @@ RAG works by:
 │       ▼                                                     │
 │   ┌─────────────┐                                           │
 │   │  Retrieval  │ ◄──── External Knowledge Base             │
-│   │   Engine    │      (Vector DB +/ Knowledge Graph)       │
+│   │   Engine    │      (Vector DB and/or Knowledge Graph)   │
 │   └──────┬──────┘                                           │
 │          │                                                  │
 │          ▼                                                  │
@@ -132,9 +132,18 @@ RAG may not be needed when:
 from langchain_classic.chains import RetrievalQA
 from langchain_community.vectorstores import Chroma
 from langchain_ollama import OllamaEmbeddings, ChatOllama
+from langchain_core.documents import Document
+
+# Create test documents (replace with your actual documents)
+documents = [
+    Document(page_content="RAG enhances LLMs by retrieving relevant information from external knowledge bases.")
+]
 
 # Create vector store from documents (using Ollama - free, local)
-vectorstore = Chroma.from_documents(documents, OllamaEmbeddings(model="nomic-embed-text"))
+vectorstore = Chroma.from_documents(
+    documents=documents,
+    embedding=OllamaEmbeddings(model="nomic-embed-text")
+)
 
 # Create QA chain (using Ollama - free, local)
 qa = RetrievalQA.from_chain_type(
@@ -143,7 +152,8 @@ qa = RetrievalQA.from_chain_type(
 )
 
 # Query
-result = qa.run("What are the key benefits of RAG?")
+result = qa.invoke("What are the key benefits of RAG?")
+print(result['result'])  # Print the answer
 ```
 
 ## Next Steps
