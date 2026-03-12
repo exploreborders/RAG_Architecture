@@ -25,12 +25,14 @@ RAG            Retrieval         Context           Agentic
 
 ### Meta's Landmark Paper
 
-**"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"** ([arXiv:2005.11401](https://arxiv.org/abs/2005.11401))
+**"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"** (Lewis et al., 2020)
 
 Key innovations:
 - First formal RAG architecture
 - Combined dense retrieval (DPR - Dense Passage Retrieval) with seq2seq (sequence-to-sequence) generation
 - Pre-trained on large-scale knowledge bases
+
+> **Paper**: [arXiv:2005.11401](https://arxiv.org/abs/2005.11401)
 
 ### Architecture
 
