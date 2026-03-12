@@ -338,7 +338,7 @@ KG-RAG with LlamaIndex and Neo4j
 """
 
 from llama_index.core import KnowledgeGraphIndex
-from llama_index.kg_retrievers import KnowledgeGraphRAGRetriever
+from llama_index.core.retrievers import KnowledgeGraphRAGRetriever
 from llama_index.llms.openai import OpenAI
 from llama_index.core import SimpleDirectoryReader
 

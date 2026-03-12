@@ -110,7 +110,6 @@ from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_ollama import ChatOllama
-from langchain_classic.chains import RetrievalQA
 from PIL import Image
 import os
 
@@ -158,8 +157,8 @@ class MultimodalRAG:
             # Load image
             image = Image.open(img_path)
             
-            # Use LLM to describe image
-            # (In practice, use GPT-4V or similar)
+            # Use Ollama vision model to describe image
+            # (In practice, use Ollama vision model like llama3.2-vision)
             prompt = f"Describe this image in detail: {img_path}"
             
             # For actual multimodal, use:
@@ -361,9 +360,19 @@ class VideoRAG:
 ```python
 """
 Audio/Podcast RAG
+
+NOTE: Requires faster-whisper to be installed:
+    pip install faster-whisper
 """
 
-import whisper
+# Check if faster-whisper is available
+try:
+    import faster_whisper
+except ImportError:
+    raise ImportError(
+        "faster-whisper not installed. Install with: pip install faster-whisper"
+    )
+
 from langchain_community.document_loaders import AudioTranscriptLoader
 
 class AudioRAG:
@@ -372,12 +381,13 @@ class AudioRAG:
     def __init__(self):
         self.embeddings = OllamaEmbeddings(model="nomic-embed-text")
         self.vectorstore = None
-        self.whisper_model = whisper.load_model("base")
+        # Use faster-whisper for transcription
+        self.whisper_model = faster_whisper.WhisperModel("base", device="cpu", compute_type="int8")
     
     def transcribe_audio(self, audio_path: str) -> str:
         """Transcribe audio to text."""
-        result = self.whisper_model.transcribe(audio_path)
-        return result["text"]
+        segments, info = self.whisper_model.transcribe(audio_path)
+        return " ".join([segment.text for segment in segments])
     
     def load_audio(self, audio_path: str):
         """Load and transcribe audio."""
@@ -431,17 +441,20 @@ class AudioRAG:
 
 ```python
 """
-Using GPT-4V or Claude for Multimodal Generation
+Using Ollama Vision Models for Multimodal Generation
+
+NOTE: Before running, pull the vision model:
+    ollama pull llama3.2-vision
 """
 
 from langchain_ollama import ChatOllama
-from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage
 
 class MultimodalGenerator:
     """Generate responses using multimodal LLM."""
     
-    def __init__(self, model: str = "gpt-4-vision-preview"):
-        self.llm = ChatOpenAI(model=model)
+    def __init__(self, model: str = "llama3.2-vision"):
+        self.llm = ChatOllama(model=model)
     
     def generate_with_images(self, question: str, images: list, context: str):
         """Generate answer incorporating images."""
@@ -490,7 +503,11 @@ class MultimodalGenerator:
 Cross-Modal Retrieval Examples
 """
 
-# Text-to-Image Search
+import os
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Initialize embeddings (use the MultimodalEmbeddings class from above)
+# multimodal_embeddings = MultimodalEmbeddings()
 def text_to_image_search(query: str, image_dir: str) -> list:
     """Find images matching text query."""
     

@@ -51,6 +51,10 @@ accelerate>=0.30.0
 neo4j>=5.0.0
 networkx>=3.3.0
 
+# Optional: Audio/Video Processing
+faster-whisper>=1.0.0
+youtube-transcript-api>=0.6.0
+
 # Optional: Web & APIs
 requests>=2.31.0
 fastapi>=0.110.0
