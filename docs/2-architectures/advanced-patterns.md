@@ -4,6 +4,14 @@
 
 This document covers advanced RAG patterns that go beyond the basic retrieve-then-generate architecture. These patterns address specific challenges like retrieval quality, error handling, and complex reasoning.
 
+> **Prerequisites**: Basic understanding of RAG, embeddings, and vector databases
+> 
+> **Key Terms You'll See**:
+> - **HyDE**: Hypothetical Document Embeddings - uses LLM-generated hypothetical answers for better retrieval
+> - **Self-RAG**: Model that learns when to retrieve and how to critique its own output
+> - **Corrective RAG**: Pipeline that detects and fixes retrieval/generation errors
+> - **GraphRAG**: Uses knowledge graphs for structured retrieval
+
 ## Pattern Taxonomy
 
 ```
@@ -46,6 +54,9 @@ Generate a hypothetical answer document, then use it for retrieval instead of th
 ```python
 """
 HyDE Implementation
+
+Requirements:
+    pip install langchain langchain-community langchain-ollama chromadb
 """
 
 from langchain_ollama import ChatOllama
@@ -115,6 +126,9 @@ Train or prompt the model to decide when to retrieve and how to critique its own
 ```python
 """
 Self-RAG Implementation (Reflection-based)
+
+Requirements:
+    pip install langchain langchain-ollama
 """
 
 class SelfRAGChain:
@@ -192,7 +206,11 @@ Detect and correct retrieval or generation errors during the pipeline.
 ```python
 """
 Corrective RAG Implementation
+
+Requirements:
+    pip install langchain langchain-ollama
 """
+import json
 
 class CorrectiveRAG:
     """Detect and correct errors in RAG pipeline."""
@@ -321,6 +339,10 @@ Build a knowledge graph from documents and use community summaries for retrieval
 ```python
 """
 GraphRAG Implementation
+
+Requirements:
+    pip install langchain langchain-experimental neo4j
+    # Note: Requires Neo4j database running
 """
 
 from langchain_community.graphs import Neo4jGraph
@@ -450,6 +472,9 @@ Dynamically route queries to different retrieval or processing strategies.
 ```python
 """
 Query Router Implementation
+
+Requirements:
+    pip install langchain langchain-ollama
 """
 
 from enum import Enum
