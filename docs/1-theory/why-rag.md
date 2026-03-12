@@ -45,7 +45,7 @@ Studies show that LLMs can have hallucination rates of **15-30%** in factual que
 LLM Training Timeline:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    ▼ Training Data Cutoff: June 2024
+    ▼ Training Data Cutoff: 2023
            │
            │     Current Date: March 2026
            │            │
