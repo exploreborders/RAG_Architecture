@@ -190,7 +190,6 @@ qa_chain = RetrievalQA.from_chain_type(
     llm=llm,
     chain_type="stuff",
     retriever=retriever,
-    prompt=PROMPT,
     return_source_documents=True
 )
 
@@ -211,35 +210,35 @@ for doc in result["source_documents"]:
 Classic RAG Implementation with LlamaIndex + Ollama
 """
 
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
-from llama_index.core.retrievers import VectorRetriever
-from llama_index.core.query_engine import RetrieverQueryEngine
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Document, Settings
+from llama_index.embeddings.langchain import LangchainEmbedding
 from llama_index.llms.ollama import Ollama
+from langchain_ollama import OllamaEmbeddings
 
-# 1. Load Documents
-documents = SimpleDirectoryReader("data").load_data()
+# Configure Settings to use Ollama
+Settings.llm = Ollama(model="llama3.2")
 
-# 2. Create Index
+# Use LangChain Ollama embeddings
+lc_embeddings = OllamaEmbeddings(model="nomic-embed-text")
+embedding = LangchainEmbedding(lc_embeddings)
+
+# 1. Load Documents (or use sample documents)
+# documents = SimpleDirectoryReader("data").load_data()
+documents = [Document(text="RAG is a technique for AI information retrieval.")]
+
+# 2. Create Index with Ollama embeddings
 index = VectorStoreIndex.from_documents(
     documents,
+    embed_model=embedding,
     chunk_size=1000,
     chunk_overlap=200
 )
 
-# 3. Configure Retriever
-retriever = VectorRetriever(
-    index=index,
-    similarity_top_k=4
-)
+# 3. Create Query Engine (using Ollama)
+query_engine = index.as_query_engine()
 
-# 4. Create Query Engine (using Ollama)
-query_engine = RetrieverQueryEngine.from_args(
-    retriever=retriever,
-    llm=Ollama(model="llama3.2")
-)
-
-# 5. Query
-response = query_engine.query("What is the main topic?")
+# 4. Query
+response = query_engine.query("What is RAG?")
 
 print(response)
 print("\nSources:")

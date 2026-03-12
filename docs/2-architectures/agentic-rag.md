@@ -361,7 +361,7 @@ graph.add_edge("synthesis", END)
 app = graph.compile()
 ```
 
-## Implementation with LangChain
+## Implementation with LangGraph (ReAct Agent)
 
 ```python
 """

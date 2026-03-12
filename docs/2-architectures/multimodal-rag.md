@@ -23,7 +23,7 @@ Information Modalities in Organizations:
 │  Tables:    10%  - Spreadsheets, databases                           │
 │                                                                      │
 │  Traditional RAG only handles: [=====>  Text <======]                │
-│  Multimodal RAG handles:            [=====================> All      │
+│  Multimodal RAG handles:       [=====================> All           │
 │                                                                      │
 └──────────────────────────────────────────────────────────────────────┘
 ```
@@ -119,7 +119,7 @@ class MultimodalRAG:
     
     def __init__(self, persist_directory: str = "./multimodal_db"):
         self.persist_directory = persist_directory
-        self.embeddings = OpenAIEmbeddings()
+        self.embeddings = OllamaEmbeddings(model="nomic-embed-text")
         self.vectorstore = None
         self.llm = ChatOllama(model="llama3.2")
     
@@ -301,7 +301,7 @@ class VideoRAG:
     """RAG for video content."""
     
     def __init__(self):
-        self.embeddings = OpenAIEmbeddings()
+        self.embeddings = OllamaEmbeddings(model="nomic-embed-text")
         self.vectorstore = None
     
     def load_video(self, video_source: str, language: str = "en"):
@@ -370,7 +370,7 @@ class AudioRAG:
     """RAG for audio content."""
     
     def __init__(self):
-        self.embeddings = OpenAIEmbeddings()
+        self.embeddings = OllamaEmbeddings(model="nomic-embed-text")
         self.vectorstore = None
         self.whisper_model = whisper.load_model("base")
     

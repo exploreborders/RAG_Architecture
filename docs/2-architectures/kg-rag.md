@@ -270,11 +270,11 @@ from langchain_experimental.graph_transformers import LLMGraphTransformer
 class KGRAGPipeline:
     """End-to-end Knowledge Graph RAG pipeline."""
     
-    def __init__(self, neo4j_config: dict, openai_config: dict):
+    def __init__(self, neo4j_config: dict):
         # Initialize components
         self.graph = Neo4jGraph(**neo4j_config)
-        self.embeddings = OpenAIEmbeddings(**openai_config)
-        self.llm = ChatOpenAI(**openai_config)
+        self.embeddings = OllamaEmbeddings(model="nomic-embed-text")
+        self.llm = ChatOllama(model="llama3.2")
         self.vectorstore = None
         self.qa_chain = None
     
