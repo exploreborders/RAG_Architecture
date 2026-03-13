@@ -128,7 +128,7 @@ Query "RAG system"
        │
        ▼
 ┌──────────────────┐     ┌──────────────────┐
-│ Calculate BM25   │ ◄─── │ TF × IDF        │
+│ Calculate BM25   │ ◄───│ TF × IDF         │
 │ scores           │     │ scoring          │
 └──────────────────┘     └──────────────────┘
        │
@@ -175,6 +175,34 @@ results = bm25_retriever.invoke("What is RAG?")
 | **Tuneability** | k1, b params | Model selection |
 
 ## 3. Hybrid Retrieval
+
+### How It Works
+
+```
+Hybrid Retrieval:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Query "What is RAG?"                 
+       │
+       ▼
+┌──────────────────┐     ┌──────────────────┐
+│ BM25 Retriever   │     │ Dense Retriever  │
+│ (keyword match)  │     │ (semantic match) │
+└────────┬─────────┘     └────────┬─────────┘
+         │                       │
+         └───────────┬───────────┘
+                     │
+                     ▼
+         ┌─────────────────────┐
+         │  Combine & Re-rank  │
+         │  (Weighted/RRF)     │
+         └──────────┬──────────┘
+                    │
+                    ▼
+         ┌─────────────────────┐
+         │   Top-K Results     │
+         └─────────────────────┘
+```
 
 ### Implementation
 
@@ -267,7 +295,34 @@ class ThreeStageRetriever:
 
 ## 4. Knowledge Graph Retrieval
 
-```python
+### How It Works
+
+```
+Knowledge Graph Retrieval:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Query "Who supplies Company X?"                 
+       │
+       ▼
+┌──────────────────────────┐
+│  Entity Extraction       │  ──► ["Company X", "supplier"]
+└────────────┬─────────────┘
+             │
+             ▼
+┌──────────────────────────┐
+│  Graph Traversal (Cypher)│
+│  MATCH (e:Entity)-[r]-() │  ──► Traverse relationships
+│  WHERE e.name = "X"      │
+└────────────┬─────────────┘
+             │
+             ▼
+┌──────────────────────────┐
+│  Return connected        │
+│  entities & paths        │
+└──────────────────────────┘
+```
+
+### Implementation
 """
 Knowledge Graph Retrieval
 """
@@ -313,7 +368,38 @@ class KGRetriever:
 
 ## 5. Adaptive Retrieval
 
-```python
+### How It Works
+
+```
+Adaptive Retrieval:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Query "What is RAG?"                 
+       │
+       ▼
+┌──────────────────────────┐
+│  Query Analysis (LLM)    │  ──► Determine intent
+│  "semantic search"       │
+└────────────┬─────────────┘
+             │
+             ▼
+    ┌────────┴────────┐
+    │                 │
+    ▼                 ▼
+┌──────────┐    ┌──────────┐
+│  Dense   │    │   BM25   │
+│  Search  │    │  Search  │
+└────┬─────┘    └────┬─────┘
+     │                │
+     └────────┬───────┘
+              │
+              ▼
+    ┌──────────────────┐
+    │  Combine Results │
+    └──────────────────┘
+```
+
+### Implementation
 """
 Adaptive Retrieval: Choose strategy based on query
 """

@@ -12,9 +12,9 @@ Embedding Process:
 
 Text Input                    Embedding Model                  Vector Output
 ┌─────────────┐             ┌─────────────────┐            ┌─────────────┐
-│ "What is    │────────────►│                 │───────────►│ [0.12,      │
-│  RAG?"      │             │   Embedding     │            │  -0.34,     │
-│             │             │   Model         │            │   0.78,     │
+│             │────────────►│                 │───────────►│ [0.12,      │
+│  "What is   │             │   Embedding     │            │  -0.34,     │
+│  RAG?"      │             │   Model         │            │   0.78,     │
 │             │             │                 │            │  ...]       │
 └─────────────┘             └─────────────────┘            └─────────────┘
 
@@ -82,6 +82,8 @@ embeddings = OpenAIEmbeddings(
 # Create embeddings
 text = "What is Retrieval-Augmented Generation?"
 vector = embeddings.embed_query(text)
+
+### BGE Embeddings
 
 ```python
 """

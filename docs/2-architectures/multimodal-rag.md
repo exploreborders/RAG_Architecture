@@ -59,17 +59,17 @@ Multimodal RAG Architecture:
               └──────────────────┬─────────────────────┘
                                  │
                                  ▼
-    ┌─────────────────────────────────────────────────────────────┐
-    │                   Multimodal Index                          │
-    │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐      │
-    │  │Text Vector  │  │Image Vector │  │Audio/Video      │      │
-    │  │   Store     │  │   Store     │  │    Store        │      │
-    │  └─────────────┘  └─────────────┘  └─────────────────┘      │
-    │                                                             │
-    │  ┌─────────────────────────────────────────────────────┐    │
-    │  │      Knowledge Graph (Multimodal Entities)          │    │
-    │  └─────────────────────────────────────────────────────┘    │
-    └─────────────────────────────────────────────────────────────┘
+    ┌───────────────────────────────────────────────────────────┐
+    │                   Multimodal Index                        │
+    │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐    │
+    │  │Text Vector  │  │Image Vector │  │Audio/Video      │    │
+    │  │   Store     │  │   Store     │  │    Store        │    │
+    │  └─────────────┘  └─────────────┘  └─────────────────┘    │
+    │                                                           │
+    │  ┌─────────────────────────────────────────────────────┐  │
+    │  │      Knowledge Graph (Multimodal Entities)          │  │
+    │  └─────────────────────────────────────────────────────┘  │
+    └───────────────────────────────────────────────────────────┘
                                  │
                                  ▼
               ┌────────────────────────────────────────┐
@@ -239,7 +239,6 @@ Using Multimodal Embedding Models
 """
 
 from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.embeddings.sentence_transformer import SentenceTransformer
 
 # Option 1: Use a multimodal embedding model
 # like CLIP or BLIP
