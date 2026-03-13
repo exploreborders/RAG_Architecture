@@ -105,21 +105,6 @@ embeddings_base = HuggingFaceEmbeddings(
 )
 ```
 
-### Cohere Embeddings
-
-```python
-"""
-Cohere Embeddings
-"""
-
-from langchain_community.embeddings import CohereEmbeddings
-
-embeddings = CohereEmbeddings(
-    cohere_api_key="your-key",
-    model="embed-english-v3.0"
-)
-```
-
 ## Advanced Embedding Strategies
 
 ### 1. Late Chunking
@@ -372,15 +357,15 @@ Budget?
   │
   ├─ Low budget ──► BGE (open source)
   │
-  └─ Can pay ──► Quality needed?
+                  └─ Can pay ──► Quality needed?
                     │
-                    ├─ Production ──► Cohere / OpenAI-3-small
+                    ├─ Production ──► OpenAI-3-small
                     │
                     └─ Best quality ──► OpenAI-3-large / BGE-large
 
 Special needs?
   │
-  ├─ Multilingual ──► BGE-multilingual / Cohere
+  ├─ Multilingual ──► BGE-multilingual
   │
   ├─ Code ──► code-bge / OpenAI-code
   │
