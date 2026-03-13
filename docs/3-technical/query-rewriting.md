@@ -41,7 +41,7 @@ User Query: "How do I install the package?"
 
 ### 1. LLM-Based Query Rewriting
 
-Use an LLM to rewrite the query into a more retrieval-friendly form.
+Use an LLM to rewrite the query into a more retrieval-friendly form. This is the most common and versatile technique - use it for most queries where you want to improve precision.
 
 ```python
 """
@@ -100,15 +100,12 @@ Version 3:""")
 
 ### 2. Multi-Query Retrieval
 
-Generate multiple query variations and retrieve from all of them.
+Generate multiple query variations and retrieve from all of them. This technique is useful when you want comprehensive results and are willing to handle some redundancy.
 
 ```python
 """
 Multi-Query Retrieval
 """
-
-from langchain.retrievers import ContextualCompressionRetriever
-from langchain.retrievers.merger_retriever import MergerRetriever
 
 class MultiQueryRetriever:
     """Generate and retrieve with multiple query versions."""
@@ -170,7 +167,7 @@ Queries:"""
 
 ### 3. Sub-Query Decomposition
 
-Break complex queries into simpler sub-queries.
+Break complex queries into simpler sub-queries. Use this when you have complex, multi-part questions that need to be answered from different parts of your knowledge base.
 
 ```python
 """
@@ -220,7 +217,7 @@ Sub-questions (one per line):"""
 
 ### 4. HyDE (Hypothetical Document Embeddings)
 
-Generate a hypothetical answer document and use it for retrieval.
+Generate a hypothetical answer document and use it for retrieval. Use HyDE when you have conceptual or meaning-based searches where exact keyword matching isn't sufficient.
 
 ```python
 """
