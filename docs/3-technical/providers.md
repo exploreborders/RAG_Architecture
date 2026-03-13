@@ -160,6 +160,8 @@ class LLMProvider:
 
 ### Complete RAG Wrapper
 
+Note: This RAGProvider currently supports Ollama and OpenAI. Anthropic can be added by extending the LLMProvider class.
+
 ```python
 """
 Complete RAG wrapper with provider support
@@ -167,7 +169,9 @@ Complete RAG wrapper with provider support
 
 from langchain_core.documents import Document
 from langchain_core.vectorstores import VectorStore
-from langchain_classic.chains import RetrievalQA
+from langchain_core.runnables import RunnableSequence
+from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
 
 class RAGProvider:
     """
@@ -192,17 +196,18 @@ class RAGProvider:
         provider: str = "ollama",  # Default to Ollama!
         llm_model: Optional[str] = None,
         embedding_model: Optional[str] = None,
-        persist_directory: str = "./vector_db"
+        persist_directory: str = "./vector_db",
+        vector_store_type: str = "chroma"  # Default to chroma
     ):
-        self.provider = LLMProvider(
+        self.llm_provider = LLMProvider(
             provider=provider,
             llm_model=llm_model,
             embedding_model=embedding_model
         )
-        self.vector_store_type = vector_store
+        self.vector_store_type = vector_store_type
         self.persist_directory = persist_directory
         self._vectorstore = None
-        self._qa_chain = None
+        self._chain = None
     
     @property
     def vectorstore(self):
@@ -217,15 +222,19 @@ class RAGProvider:
         if self.vector_store_type == "chroma":
             from langchain_community.vectorstores import Chroma
             return Chroma(
-                embedding_function=self.provider.embeddings,
+                embedding_function=self.llm_provider.embeddings,
                 persist_directory=self.persist_directory
             )
         
         elif self.vector_store_type == "faiss":
             from langchain_community.vectorstores import FAISS
+            # FAISS requires dimension - get it from embedding
+            sample_embedding = self.llm_provider.embeddings.embed_query("sample")
+            dim = len(sample_embedding)
+            import numpy as np
             return FAISS.from_documents(
                 documents=[],
-                embedding=self.provider.embeddings
+                embedding=self.llm_provider.embeddings
             )
         
         raise ValueError(f"Unknown vector store: {self.vector_store_type}")
@@ -238,40 +247,49 @@ class RAGProvider:
             from langchain_community.vectorstores import Chroma
             self._vectorstore = Chroma.from_documents(
                 documents=documents,
-                embedding=self.provider.embeddings,
+                embedding=self.llm_provider.embeddings,
                 persist_directory=self.persist_directory
             )
         else:
             # Add to existing
             self._vectorstore.add_documents(documents)
     
-    def create_qa_chain(self, chain_type: str = "stuff"):
-        """Create QA chain."""
+    def create_qa_chain(self):
+        """Create QA chain using modern LangChain patterns."""
         
         retriever = self.vectorstore.as_retriever(
             search_kwargs={"k": 4}
         )
         
-        self._qa_chain = RetrievalQA.from_chain_type(
-            llm=self.provider.llm,
-            chain_type=chain_type,
-            retriever=retriever,
-            return_source_documents=True
+        # Modern RAG chain using LCEL
+        prompt = PromptTemplate.from_template(
+            "Use the following context to answer the question.\n\n"
+            "Context: {context}\n\n"
+            "Question: {question}\n\n"
+            "Answer:"
         )
+        
+        self._chain = prompt | self.llm_provider.llm | StrOutputParser()
+        self._retriever = retriever
     
     def query(self, question: str) -> dict:
         """Query the RAG system."""
         
-        if self._qa_chain is None:
+        if self._chain is None:
             self.create_qa_chain()
         
-        result = self._qa_chain.invoke({"query": question})
+        # Get relevant documents
+        docs = self._retriever.invoke(question)
+        context = "\n\n".join([doc.page_content for doc in docs])
+        
+        # Generate answer
+        answer = self._chain.invoke({"question": question, "context": context})
         
         return {
-            "answer": result["result"],
+            "answer": answer,
             "sources": [
                 {"content": doc.page_content, "metadata": doc.metadata}
-                for doc in result.get("source_documents", [])
+                for doc in docs
             ]
         }
     
@@ -279,9 +297,9 @@ class RAGProvider:
         """Get information about current models."""
         
         return {
-            "provider": self.provider.provider.value,
-            "llm_model": self.provider.llm_model,
-            "embedding_model": self.provider.embedding_model,
+            "provider": self.llm_provider.provider.value,
+            "llm_model": self.llm_provider.llm_model,
+            "embedding_model": self.llm_provider.embedding_model,
             "vector_store": self.vector_store_type
         }
 ```
