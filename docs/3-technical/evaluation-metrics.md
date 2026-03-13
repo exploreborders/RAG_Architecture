@@ -126,6 +126,8 @@ def hit_rate(retrieved: list, relevant: list, k: int) -> float:
 
 ### Using DeepEval
 
+DeepEval is an open-source evaluation framework that supports Ollama for local evaluation (no API key required). It's great for testing RAG systems without relying on external APIs.
+
 ```python
 """
 DeepEval Evaluation (supports Ollama for local evaluation)
@@ -180,13 +182,16 @@ print(f"Context Recall: {context_recall.score}")
 
 ### Custom Evaluation with LLM-as-Judge
 
+LLM-as-Judge uses an LLM to evaluate RAG outputs. This approach is flexible and can evaluate semantic quality that traditional metrics miss.
+
+**When to use LLM-as-Judge:** Use this when you want flexible, semantic evaluation without setting up external frameworks. It's especially useful for domain-specific evaluation where standard metrics don't apply.
+
 ```python
 """
 LLM-as-Judge for RAG Evaluation
 """
 
 from langchain_ollama import ChatOllama
-from langchain_core.prompts import ChatPromptTemplate
 
 class RAGEvaluator:
     """Evaluate RAG using LLM as judge."""
@@ -282,13 +287,15 @@ print(result)
 
 ### Traditional Generation Metrics
 
+BLEU and ROUGE are traditional text generation metrics. Note: ROUGE is less useful for RAG systems since it measures overlap with reference text, but can be useful for evaluating summarization.
+
 ```python
 """
 BLEU, ROUGE for text generation
 """
 
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
-from rouge import Rouge
+from rouge_score import rouge_scorer
 
 def calculate_bleu(reference: str, hypothesis: str) -> float:
     """Calculate BLEU score."""
@@ -297,9 +304,13 @@ def calculate_bleu(reference: str, hypothesis: str) -> float:
 
 def calculate_rouge(reference: str, hypothesis: str) -> dict:
     """Calculate ROUGE scores."""
-    rouge = Rouge()
-    scores = rouge.get_scores(hypothesis, reference)
-    return scores[0]
+    scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
+    scores = scorer.score(reference, hypothesis)
+    return {
+        'rouge1': scores['rouge1'].fmeasure,
+        'rouge2': scores['rouge2'].fmeasure,
+        'rougeL': scores['rougeL'].fmeasure
+    }
 
 # Example
 reference = "The cat sat on the mat"
@@ -313,6 +324,10 @@ print(f"ROUGE: {rouge}")
 ```
 
 ## TruLens Evaluation
+
+TruLens is an evaluation framework from TruEra that provides detailed feedback on RAG quality. It's particularly useful for understanding *why* your RAG system is performing well or poorly.
+
+**When to use TruLens:** Use TruLens when you need detailed instrumentation and feedback on your RAG pipeline, especially for debugging and optimization.
 
 ```python
 """
