@@ -82,8 +82,11 @@ embeddings = OpenAIEmbeddings(
 # Create embeddings
 text = "What is Retrieval-Augmented Generation?"
 vector = embeddings.embed_query(text)
+```
 
 ### BGE Embeddings
+
+BGE (BAAI General Embedding) is an open-source model from Beijing Academy of AI. It offers excellent quality for free and is a great alternative to OpenAI when you want to run embeddings locally.
 
 ```python
 """
@@ -151,6 +154,8 @@ class LateChunkingEmbedder:
         return chunks
 ```
 
+**When to use this:** Late chunking is ideal for long documents where you want to preserve cross-sentence context. It works better than fixed chunking for maintaining semantic meaning across paragraph boundaries.
+
 ### 2. Multi-Vector Embeddings
 
 ```python
@@ -198,6 +203,8 @@ class MultiVectorEmbedder:
         return text.split()[:10]
 ```
 
+**When to use this:** Multi-vector embeddings are useful when you want richer document representation. Store both the full text embedding and summary/keywords embeddings separately, then combine them during retrieval.
+
 ### 3. Sentence Window Embeddings
 
 ```python
@@ -240,6 +247,8 @@ class SentenceWindowEmbedder:
             for w in windows
         ]
 ```
+
+**When to use this:** Sentence window embeddings are great when you need precise sentence-level matching but also want surrounding context for better understanding. This is the technique used in the separate Sentence Window Retrieval document.
 
 ### 4. Hierarchical Embeddings
 
@@ -284,6 +293,8 @@ class HierarchicalEmbedder:
         # Use LLM for summary
         return text[:300]
 ```
+
+**When to use this:** Hierarchical embeddings are best for very large documents where you need both fine-grained (chunk-level) and coarse-grained (document-level) search. Use chunk embeddings for precise retrieval and summary embeddings for broad matching.
 
 ## Embedding Optimization
 
