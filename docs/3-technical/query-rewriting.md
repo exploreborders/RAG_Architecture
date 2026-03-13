@@ -20,7 +20,7 @@ User Query: "How do I install the package?"
                  │
                  ▼
          ┌───────────────┐
-         │  ❌ No match  │  ← Document says "pip install"
+         │  No match     │  ← Document says "pip install"
          │  found        │    but user said "install"
          └───────────────┘
                  │
@@ -32,7 +32,7 @@ User Query: "How do I install the package?"
                  │
                  ▼
          ┌───────────────┐
-         │  ✅ Relevant  │
+         │  Relevant     │
          │  document     │    found!
          └───────────────┘
 ```
