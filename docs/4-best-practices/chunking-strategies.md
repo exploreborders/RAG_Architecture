@@ -193,6 +193,9 @@ for lang in [
 python_chunks = code_splitters[Language.PYTHON].split_text(python_code)
 ```
 
+**Pros**: Preserves code structure, respects functions/classes
+**Cons**: Language-specific, requires configuration per language
+
 ### 7. Agentic Chunking (Advanced)
 
 ```python
@@ -227,6 +230,9 @@ Max chunk size: {max_chunk_size} characters"""
         
         return [c["content"] for c in chunks]
 ```
+
+**Pros**: Highest quality, understands context, handles complex documents
+**Cons**: Slowest, most expensive (uses LLM), requires LLM API
 
 ## Choosing Chunk Size
 
@@ -379,6 +385,211 @@ class HybridChunker:
         
         return result
 ```
+
+### 4. Chunk Overlap Guidelines
+
+The overlap helps maintain context at chunk boundaries. Here's how to choose:
+
+```python
+"""
+Choosing the right overlap
+"""
+
+# Rule of thumb: overlap should be 10-20% of chunk_size
+CHUNK_OVERLAP_GUIDE = {
+    # Lower overlap
+    "code": 50,           # Code functions are self-contained
+    
+    # Medium overlap  
+    "technical": 150,      # Technical docs may have related context
+    
+    # Higher overlap
+    "narrative": 250,     # Stories need more context flow
+    
+    # For semantic chunking (uses different mechanism)
+    # Adjust breakpoint_threshold instead
+}
+```
+
+**When to use more overlap:**
+- Narrative text where context flows between paragraphs
+- Documents with related concepts across sections
+- When you need to ensure no information is lost at boundaries
+
+**When to use less overlap:**
+- Code (functions/classes are self-contained)
+- Highly structured data like tables
+- When storage/performance is a concern
+
+### 5. Handling Special Content
+
+Some content needs special treatment:
+
+```python
+"""
+Handling special content types
+"""
+
+class SpecialContentHandler:
+    """Handle code blocks, tables, and equations."""
+    
+    def __init__(self, splitter):
+        self.splitter = splitter
+    
+    def split_with_code_blocks(self, text: str) -> list:
+        """Preserve code blocks as separate chunks."""
+        
+        # Split by code fences first
+        import re
+        parts = re.split(r'(```[\s\S]*?```)', text)
+        
+        chunks = []
+        for part in parts:
+            if part.startswith('```'):
+                # Keep code blocks intact
+                chunks.append(part)
+            else:
+                # Split regular text
+                chunks.extend(self.splitter.split_text(part))
+        
+        return chunks
+    
+    def split_with_tables(self, text: str) -> list:
+        """Handle markdown tables carefully."""
+        
+        # Tables should often stay together
+        # Use separator that doesn't break tables
+        splitter = RecursiveCharacterTextSplitter(
+            chunk_size=1000,
+            separators=["\n\n", "\n|", "\n", ". "]
+        )
+        
+        return splitter.split_text(text)
+    
+    def preserve_formatting(self, text: str) -> list:
+        """Preserve important formatting."""
+        
+        # Split but keep headers with content
+        splitter = RecursiveCharacterTextSplitter(
+            chunk_size=1000,
+            # Split after headers but include header in chunk
+            separators=["\n## ", "\n# ", "\n\n", "\n", ". "]
+        )
+        
+        return splitter.split_text(text)
+```
+
+### 6. Chunk Size by Use Case
+
+Different use cases need different chunk sizes:
+
+| Use Case | Recommended Size | Overlap | Strategy |
+|----------|-----------------|---------|----------|
+| **Q&A / FAQ** | 256-512 | 50-100 | Fixed or Recursive |
+| **Document Search** | 512-1024 | 100-200 | Recursive |
+| **Summarization** | 2000-4000 | 200-400 | Semantic |
+| **Code Search** | 256-512 | 50-100 | Language-aware |
+| **Legal Documents** | 1000-1500 | 200 | Semantic |
+| **Chatbots** | 512-1024 | 100-150 | Recursive or Semantic |
+
+**Why different sizes?**
+- **Q&A**: Smaller chunks = more precise answers
+- **Summarization**: Larger chunks = more context for summary
+- **Code**: Preserve function/class boundaries
+
+### 7. Common Mistakes
+
+Avoid these chunking mistakes:
+
+```python
+"""
+Common chunking mistakes to avoid
+"""
+
+# ❌ MISTAKE 1: Chunk size too small
+splitter = RecursiveCharacterTextSplitter(chunk_size=50)  # Too small!
+
+# ❌ MISTAKE 2: No overlap (losing context)
+splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+
+# ❌ MISTAKE 3: Wrong separator for data type
+# Using sentence splitter for code
+splitter = NLTKTextSplitter()  # Wrong for code!
+
+# ❌ MISTAKE 4: Ignoring document structure
+# Treating all docs the same regardless of type
+
+# ❌ MISTAKE 5: Not testing different sizes
+# Using default without experimentation
+
+
+# ✅ CORRECT: Test and tune
+def optimal_chunking(documents: list, test_queries: list):
+    """Find optimal chunking through testing."""
+    
+    # Test multiple sizes
+    for size in [256, 512, 1024, 2048]:
+        for overlap in [50, 100, 200]:
+            splitter = RecursiveCharacterTextSplitter(
+                chunk_size=size,
+                chunk_overlap=overlap
+            )
+            # Evaluate...
+            pass
+```
+
+### 8. Testing Chunking Quality
+
+How to evaluate your chunking strategy:
+
+```python
+"""
+Testing chunking quality
+"""
+
+def evaluate_chunking_quality(chunks: list, documents: list) -> dict:
+    """Evaluate chunking quality metrics."""
+    
+    import numpy as np
+    
+    # 1. Chunk size distribution
+    chunk_lengths = [len(c.page_content) for c in chunks]
+    
+    # 2. Coverage - do chunks cover the whole document?
+    total_chunked = sum(chunk_lengths)
+    total_original = sum(len(d.page_content) for d in documents)
+    coverage = total_chunked / total_original if total_original > 0 else 0
+    
+    # 3. Fragmentation - are chunks too small?
+    small_chunks = sum(1 for l in chunk_lengths if l < 100)
+    fragmentation = small_chunks / len(chunks) if chunks else 0
+    
+    # 4. Context preservation - do chunks make sense standalone?
+    # (This is harder to measure automatically)
+    
+    return {
+        "chunk_count": len(chunks),
+        "avg_chunk_size": np.mean(chunk_lengths),
+        "min_chunk_size": min(chunk_lengths),
+        "max_chunk_size": max(chunk_lengths),
+        "coverage": coverage,
+        "fragmentation": fragmentation,
+    }
+
+# Example evaluation
+chunks = splitter.split_documents(documents)
+metrics = evaluate_chunking_quality(chunks, documents)
+
+print(f"Chunks: {metrics['chunk_count']}")
+print(f"Avg size: {metrics['avg_chunk_size']:.0f} chars")
+print(f"Coverage: {metrics['coverage']:.1%}")
+print(f"Fragmentation: {metrics['fragmentation']:.1%}")
+```
+
+**Good chunking should have:**
+- Coverage > 95% (minimal loss)
+- Fragmentation < 10% (few tiny chunks)
+- Consistent chunk sizes (not too variable)
 
 ## Summary Table
 
