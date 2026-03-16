@@ -34,10 +34,6 @@ Two-Stage Retrieval:
 Understanding the difference is key to understanding reranking:
 
 ```python
-"""
-Bi-Encoder vs Cross-Encoder
-"""
-
 # BI-ENCODER (used in initial retrieval)
 # - Encodes query and document SEPARATELY
 # - Fast (can pre-compute document embeddings)
@@ -57,14 +53,14 @@ score = cross_encoder.predict([query, document])  # 0.95
 
 ### 1. Cross-Encoder Reranking
 
-Most common approach using transformer models trained for relevance scoring.
+Most common approach using transformer models trained for relevance scoring. Use this for most reranking needs - it's free, fast, and provides good accuracy.
 
 ```python
 """
-Cross-Encoder Reranking with LangChain
+Cross-Encoder Reranking
 """
 
-from langchain_community.cross_encoders import CrossEncoder
+from sentence_transformers import CrossEncoder
 
 # Initialize cross-encoder (lightweight, fast)
 cross_encoder = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
@@ -159,61 +155,9 @@ class SentenceTransformerReranker:
         return doc_with_scores[:top_k]
 ```
 
-### 3. Cohere Reranking
+### 3. Learning to Rank (LTR)
 
-Using Cohere's commercial reranking API.
-
-```python
-"""
-Cohere Reranking
-"""
-
-import cohere
-
-co = cohere.Client(os.getenv("COHERE_API_KEY"))
-
-class CohereReranker:
-    """Rerank using Cohere API."""
-    
-    def __init__(self, model: str = "rerank-multilingual-v3.0"):
-        self.client = co
-        self.model = model
-    
-    def rerank(self, query: str, documents: list, top_k: int = 5) -> list:
-        """Rerank using Cohere."""
-        
-        results = self.client.rerank(
-            query=query,
-            documents=documents,
-            model=self.model,
-            top_n=top_k
-        )
-        
-        # Return reranked documents in order
-        return [results.results[i].document for i in range(len(results.results))]
-    
-    def rerank_with_scores(self, query: str, documents: list, top_k: int = 5) -> list:
-        """Rerank with relevance scores."""
-        
-        results = self.client.rerank(
-            query=query,
-            documents=documents,
-            model=self.model,
-            top_n=top_k
-        )
-        
-        return [
-            {
-                "document": results.results[i].document,
-                "relevance_score": results.results[i].relevance_score
-            }
-            for i in range(len(results.results))
-        ]
-```
-
-### 4. Learning to Rank (LTR)
-
-Using supervised learning for reranking.
+Using supervised learning for reranking. Use LTR when you have labeled training data and want domain-specific reranking - it requires more setup but can outperform general models on specific tasks.
 
 ```python
 """
@@ -309,7 +253,7 @@ Complete Reranking Pipeline
 """
 
 from langchain_community.vectorstores import Chroma
-from langchain_community.cross_encoders import CrossEncoder
+from sentence_transformers import CrossEncoder
 
 class RerankingPipeline:
     """Complete two-stage retrieval pipeline with reranking."""
@@ -385,7 +329,6 @@ class RerankingPipeline:
 |----------|----------|---------|----------|------|
 | **Cross-Encoder (MS MARCO)** | General purpose | Medium | High | Free |
 | **Sentence-Transformer** | Better accuracy | Medium | Higher | Free |
-| **Cohere** | Production, multilingual | Low | Highest | Paid |
 | **LTR** | Domain-specific | High | Variable | Free |
 
 ## Popular Cross-Encoder Models
