@@ -274,7 +274,7 @@ Using LangChain's built-in parent document retriever.
 LangChain Parent Document Retriever
 """
 
-from langchain.retrievers import ParentDocumentRetriever
+from langchain_classic.retrievers import ParentDocumentRetriever
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_ollama import OllamaEmbeddings
