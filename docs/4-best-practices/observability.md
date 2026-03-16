@@ -55,7 +55,7 @@ langfuse = Langfuse(
 Langfuse Tracing for RAG
 """
 
-from langfuse.decorators import observe
+from langfuse import Langfuse, observe
 
 @observe()
 def retrieval_pipeline(query: str):
@@ -88,7 +88,6 @@ Manual Langfuse Tracing
 """
 
 from langfuse import Langfuse
-from langfuse.decorators import langfuse_context
 
 langfuse = Langfuse()
 
@@ -143,10 +142,10 @@ LangChain + Langfuse Integration
 """
 
 from langchain_ollama import ChatOllama
-from langfuse.callback import LangchainCallbackHandler
+from langfuse.langchain import CallbackHandler
 
 # Create handler
-handler = LangchainCallbackHandler()
+handler = CallbackHandler()
 
 # Use with LangChain
 llm = ChatOllama(
@@ -185,11 +184,12 @@ def submit_feedback(trace_id: str, score: float, comment: str = None):
 # In your API endpoint
 @app.post("/query")
 async def query_with_feedback(request: QueryRequest):
+    # trace_id is available from the trace object
     result = rag_pipeline(request.question)
     
     return {
         "answer": result.content,
-        "trace_id": langfuse_context.get_current_trace_id()  # Get trace ID
+        "trace_id": result.trace_id  # Get trace ID from result
     }
 
 @app.post("/feedback")
@@ -555,6 +555,83 @@ client.create_run(
     outputs={"response": response.content}
 )
 ```
+
+## Which Observability Tool Should You Use?
+
+```
+┌───────────────────────────────────────────────────────────────────────────────┐
+│                    Observability Tools Decision Map                           │
+├───────────────────────────────────────────────────────────────────────────────┤
+│                                                                               │
+│    Start                                                                      │
+│      │                                                                        │
+│      ▼                                                                        │
+│    Do you need production-grade observability?                                │
+│      │                                                                        │
+│      ├─ No ──► Use basic debug functions (free!)                              │
+│      │          • debug_retrieval()                                           │
+│      │          • debug_latency()                                             │
+│      │          • check_hallucination()                                       │
+│      │                                                                        │
+│      └─ Yes ──► Continue below                                                │
+│                     │                                                         │
+│                     ▼                                                         │
+│              Are you using LangChain/LangGraph?                               │
+│                     │                                                         │
+│                     ├─ Yes ──► LangSmith ✓                                    │
+│                     │          • Native integration                           │ 
+│                     │          • Best LangChain support                       │
+│                     │                                                         │
+│                     └─ No ──► Continue below                                  │
+│                                   │                                           │
+│                                   ▼                                           │
+│                        Do you want hosted (cloud)?                            │
+│                                   │                                           │
+│                                   ├─ Yes ──► Langfuse ✓                       │
+│                                   │          • 10k free traces/month          │
+│                                   │          • Works with any LLM             │
+│                                   │          • Great UI/dashboard             │
+│                                   │                                           │
+│                                   └─ No ──► Continue below                    │
+│                                                 │                             │
+│                                                 ▼                             │
+│                                      Do you want open source?                 │
+│                                                 │                             │
+│                                                 ├─ Yes ──► OpenTelemetry ✓    │
+│                                                 │          • Industry standard│
+│                                                 │          • Self-hosted      │
+│                                                 │          • Most flexible    │
+│                                                 │                             │
+│                                                 └─ Combine tools!             │
+│                                                    • Prometheus (metrics)     │
+│                                                    • OpenTelemetry (traces)   │
+│                                                    • Custom logging           │
+│                                                                               │
+└───────────────────────────────────────────────────────────────────────────────┘
+```
+
+## Quick Decision Guide
+
+| Your Situation | Recommended | Why |
+|---------------|------------|-----|
+| **Quick debugging** | Debug functions | No setup needed |
+| **LangChain + want easy** | LangSmith | Native integration |
+| **Any LLM + hosted** | Langfuse | Best UI, free tier |
+| **Enterprise + self-hosted** | OpenTelemetry | Full control |
+| **Metrics + dashboards** | Prometheus + Grafana | Industry standard |
+| **Production + full stack** | Langfuse + Prometheus | Best of both |
+
+## Recommended Stack by Use Case
+
+| Use Case | Recommended Stack |
+|----------|------------------|
+| **Development/Debugging** | Debug functions only |
+| **Small project** | Langfuse (free tier) |
+| **LangChain project** | LangSmith |
+| **Enterprise** | OpenTelemetry + Prometheus + Grafana |
+| **Best overall** | Langfuse + custom metrics |
+
+---
 
 ## References
 
