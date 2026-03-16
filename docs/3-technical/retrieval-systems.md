@@ -213,7 +213,7 @@ Hybrid Retrieval: Combining BM25 + Dense
 
 from langchain_community.retrievers import BM25Retriever
 from langchain_community.vectorstores import Chroma
-from langchain.retrievers import EnsembleRetriever
+from langchain_classic.retrievers.ensemble import EnsembleRetriever
 
 # Create retrievers
 bm25_retriever = BM25Retriever.from_documents(documents)
@@ -252,7 +252,7 @@ def reciprocal_rank_fusion(results_lists: list, k: int = 60) -> list:
 Three-Stage Retrieval: Initial → Re-rank → Final
 """
 
-from langchain_community.cross_encoders import CrossEncoder
+from sentence_transformers import CrossEncoder
 
 class ThreeStageRetriever:
     """Retrieve, rerank, then filter."""
