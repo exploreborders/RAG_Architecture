@@ -22,15 +22,84 @@ With Caching:
 Query: "What is RAG?"           Query: "What is RAG?"
         │                                │
         ▼                                ▼
-   LLM + Retrieval          ──►      Cache HIT!
-   (expensive!)                        (instant)
+    LLM + Retrieval                    Cache HIT!
+    (expensive!)                        (instant)
 ```
+
+## Cache Layers Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    Multi-Layer Cache Architecture                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│    ┌──────────────┐                                                         │
+│    │ Query Input  │                                                         │
+│    └──────┬───────┘                                                         │
+│           │                                                                 │
+│           ▼                                                                 │
+│    ┌──────────────────────────────────────────────┐                         │
+│    │         Layer 1: Exact Cache                 │                         │
+│    │         (MD5 hash of query)                  │                         │
+│    │                                              │                         │
+│    │   Query A ──► [HIT] ──► Return               │                         │
+│    │   Query B ──► [MISS] ──► Next Layer          │                         │
+│    └──────────────────────┬───────────────────────┘                         │
+│                           │                                                 │
+│                           ▼                                                 │
+│    ┌──────────────────────────────────────────────┐                         │
+│    │       Layer 2: Semantic Cache                │                         │
+│    │    (Embedding similarity >= 0.95)            │                         │
+│    │                                              │                         │
+│    │   Similar ──► [HIT] ──► Return               │                         │
+│    │   Different ──► [MISS] ──► Next Layer        │                         │
+│    └──────────────────────┬───────────────────────┘                         │
+│                           │                                                 │
+│                           ▼                                                 │
+│    ┌──────────────────────────────────────────────┐                         │
+│    │      Layer 3: Retrieval Cache                │                         │
+│    │   (Cache documents by query hash)            │                         │
+│    │                                              │                         │
+│    │   Cached ──► [HIT] ──► Use Docs              │                         │
+│    │   Not Cached ──► [MISS] ──► Retrieve         │                         │
+│    └──────────────────────┬───────────────────────┘                         │
+│                           │                                                 │
+│                           ▼                                                 │
+│    ┌──────────────────────────────────────────────┐                         │
+│    │      Layer 4: LLM Response Cache             │                         │
+│    │    (Cache generated responses)               │                         │
+│    │                                              │                         │
+│    │   Cached ──► [HIT] ──► Return                │                         │
+│    │   Not Cached ──► [MISS] ──► Generate         │                         │
+│    └──────────────────────┬───────────────────────┘                         │
+│                           │                                                 │
+│                           ▼                                                 │
+│    ┌──────────────────────────────────────────────┐                         │
+│    │         Full RAG Pipeline                    │                         │
+│    │    (Vector Store + LLM Generation)           │                         │
+│    │         (Only if all caches miss)            │                         │
+│    └──────────────────────┬───────────────────────┘                         │
+│                           │                                                 │
+│                           ▼                                                 │
+│    ┌──────────────────────────────────────────────┐                         │
+│    │                Response Output               │                         │
+│    └──────────────────────────────────────────────┘                         │
+│                                                                             │
+│    TTL Settings by Layer:                                                   │
+│    • Exact Cache:      1 hour    (fast-changing queries)                    │
+│    • Semantic Cache:   1 hour    (similar queries)                          │
+│    • Retrieval Cache:  24 hours  (stable knowledge base)                    │
+│    • LLM Response:     2 hours   (balance freshness/cost)                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+**Note:** Redis is required for all caching strategies in this document. Install with: `pip install redis`
 
 ## Caching Strategies
 
 ### 1. Exact Match Caching
 
-The simplest form - cache by exact query string.
+Use exact match caching when you have repeated identical queries - it's the simplest and fastest approach. Best for FAQ systems or applications where users ask the same questions repeatedly.
 
 ```python
 """
@@ -87,7 +156,7 @@ class ExactMatchCache:
 
 ### 2. Semantic Caching
 
-Cache similar queries that have the same meaning, not just exact matches.
+Use semantic caching when users ask the same thing in different ways. It uses embeddings to find cached responses for queries that are semantically similar (e.g., "What is RAG?" and "Explain RAG to me"). Best for chatbots and conversational systems.
 
 ```python
 """
@@ -187,7 +256,7 @@ class SemanticCache:
 
 ### 3. Retrieval Result Caching
 
-Cache retrieval results separately from generation.
+Use retrieval result caching when your knowledge base doesn't change often but you process many queries. It caches just the retrieved documents, so you can reuse them with different prompts or LLMs. Best for stable knowledge bases.
 
 ```python
 """
@@ -233,7 +302,7 @@ class RetrievalCache:
 
 ### 4. LLM Response Caching
 
-Cache only the LLM generation part.
+Use LLM response caching when you want to save LLM API costs and the same context is used repeatedly. It caches only the generation step, not the retrieval. Best for repeated questions with the same retrieved context.
 
 ```python
 """
