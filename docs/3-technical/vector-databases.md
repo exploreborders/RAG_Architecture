@@ -60,7 +60,7 @@ from langchain_ollama import OllamaEmbeddings
 from langchain_core.documents import Document
 
 # Create embeddings
-embeddings = OpenAIEmbeddings()
+embeddings = OllamaEmbeddings(model="nomic-embed-text")
 
 # Create vector store
 vectorstore = Chroma.from_documents(
