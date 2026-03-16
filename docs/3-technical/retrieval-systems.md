@@ -323,6 +323,8 @@ Query "Who supplies Company X?"
 ```
 
 ### Implementation
+
+```python
 """
 Knowledge Graph Retrieval
 """
@@ -400,6 +402,8 @@ Query "What is RAG?"
 ```
 
 ### Implementation
+
+```python
 """
 Adaptive Retrieval: Choose strategy based on query
 """
