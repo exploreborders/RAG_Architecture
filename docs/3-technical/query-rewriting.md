@@ -80,22 +80,6 @@ class QueryRewriter:
         )
         
         return response.content.strip()
-    
-    def rewrite_multi(self, query: str) -> list:
-        """Generate multiple rewritten versions."""
-        
-        response = self.llm.invoke(f"""Generate 3 different versions of this query
-that might match different relevant documents.
-
-Original: {query}
-
-Version 1:
-Version 2:
-Version 3:""")
-        
-        lines = response.content.strip().split('\n')
-        return [l.split(':', 1)[1].strip() if ':' in l else l.strip() 
-                for l in lines if l.strip()]
 ```
 
 ### 2. Multi-Query Retrieval
