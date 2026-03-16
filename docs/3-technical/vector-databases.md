@@ -416,6 +416,76 @@ results = vectorstore.similarity_search(
 )
 ```
 
+## 7. Faiss (Facebook AI Similarity Search)
+
+### Best For: Research, Offline Processing, Maximum Control
+
+Faiss is a library for efficient similarity search, not a full database. It's excellent when you need maximum control or are working offline.
+
+```python
+"""
+Faiss Setup and Usage
+"""
+
+import faiss
+import numpy as np
+from langchain_community.vectorstores import FAISS
+from langchain_ollama import OllamaEmbeddings
+from langchain_core.documents import Document
+
+# Create embeddings
+embeddings = OllamaEmbeddings(model="nomic-embed-text")
+
+# Sample documents
+documents = [
+    Document(page_content="RAG is Retrieval-Augmented Generation", metadata={"source": "doc1"}),
+    Document(page_content="Vector databases store embeddings", metadata={"source": "doc2"}),
+]
+
+# Get embedding dimension
+sample_embedding = embeddings.embed_query("test")
+dimension = len(sample_embedding)
+
+# Create Faiss index (IP = Inner Product, use L2 for Euclidean)
+index = faiss.IndexFlatIP(dimension)
+
+# Create FAISS vector store
+vectorstore = FAISS.from_documents(
+    documents=documents,
+    embedding=embeddings
+)
+
+# Query
+results = vectorstore.similarity_search("What is RAG?", k=2)
+
+# With scores
+results_with_scores = vectorstore.similarity_search_with_score("What is RAG?", k=2)
+```
+
+### Advanced Faiss Operations
+
+```python
+"""
+Faiss: Advanced Index Types
+"""
+
+# HNSW index (faster search, more memory)
+index_hnsw = faiss.IndexHNSWFlat(dimension, 32)  # 32 = number of connections
+
+# IVF index (faster search on large datasets)
+nlist = 100  # number of clusters
+quantizer = faiss.IndexFlatIP(dimension)
+index_ivf = faiss.IndexIVFFlat(quantizer, dimension, nlist)
+
+# Train on your data (required for IVF)
+# embeddings_matrix = ... (your embeddings)
+# index_ivf.train(embeddings_matrix)
+
+# Add and search
+# index_ivf.add(embeddings_matrix)
+# D, I = index_ivf.search(query_embedding, k=10)
+```
+
 ## Indexing Strategies
 
 ### HNSW vs IVF
@@ -497,11 +567,22 @@ def paginated_search(query: str, limit: int = 100, offset: int = 0):
 
 ```
 Which Vector Database?
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Start
   │
   ▼
+Need a full database or just a search library?
+  │
+  ├─ Just search library ──► Faiss (research/offline)
+  │                            │
+  │                            │ Need more features?
+  │                            ├─ No ─► Stay with Faiss
+  │                            └─ Yes ─► Switch to database below
+  │
+  └─ Full database ──► Continue below
+                       │
+                       ▼
 How large is your dataset?
   │
   ├─ < 100K vectors ──► Chroma (prototyping)
