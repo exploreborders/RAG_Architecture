@@ -527,3 +527,7 @@ class RAGAuditor:
 ---
 
 *Next: [Cost Optimization](cost-optimization.md)*
+
+---
+
+*For deployment patterns, see [Production Deployment](production-deployment.md). For production hardening, see [Production Hardening Guide](production-hardening.md).*

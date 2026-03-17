@@ -846,4 +846,54 @@ Follow this order to deploy your RAG system to production:
 
 ---
 
-*Next: [Security Considerations](security-considerations.md)*
+## Production Considerations
+
+### What Was Simplified (and Why)
+
+This guide focuses on **understanding how RAG deployment works**. For learning purposes, several production requirements were intentionally simplified:
+
+| Aspect | In This Guide | Why Simplified |
+|--------|---------------|----------------|
+| CORS | `allow_origins=["*"]` | Easy testing from any domain |
+| Authentication | Simple API key header | Focus on core patterns |
+| Input validation | No length/content limits | Focus on RAG logic |
+| Secrets management | Environment variables | Focus on architecture |
+| TLS/HTTPS | Not covered | Assumes reverse proxy handles it |
+| Health checks | Basic `/health` only | Focus on deployment patterns |
+
+### Security Essentials for Production
+
+The patterns in this guide are correct. In production, you need to add security layers around them:
+
+| Concept | Learning Version | Production Version |
+|---------|------------------|---------------------|
+| **CORS** | `allow_origins=["*"]` | Restrict to your specific domains |
+| **Authentication** | Single hardcoded API key | OAuth2, JWT, or rotatable API keys |
+| **Input validation** | No limits | Rate limiting + query length limits + sanitization |
+| **Secrets** | Env vars in docker-compose | HashiCorp Vault, AWS Secrets Manager |
+| **TLS/SSL** | Not covered | Terminate at load balancer (nginx, cloud LB) |
+| **Audit logging** | Not covered | Log all requests with user IDs |
+
+### Operational Essentials Checklist
+
+Before deploying to production, ensure you have:
+
+- [ ] **Health checks**: Add `/health/ready` (checks dependencies) and `/health/live` endpoints
+- [ ] **Graceful shutdown**: Handle SIGTERM, drain connections, close pools
+- [ ] **Structured logging**: JSON logs with request IDs for tracing
+- [ ] **Vector DB backups**: Export/import strategy for your embeddings
+- [ ] **Monitoring alerts**: Not just dashboards - alert on errors and high latency
+- [ ] **Resource limits**: Set CPU/memory limits in Docker and Kubernetes
+- [ ] **Retry logic**: Add exponential backoff for LLM API calls
+
+### Key Takeaway
+
+> The **patterns** in this guide are correct. The **implementation** is simplified for learning. In production, add security layers around these patterns without changing the core architecture.
+
+---
+
+*[Previous: Common Mistakes to Avoid] • [Next: Security Considerations](security-considerations.md)*
+
+---
+
+*For production hardening details, see [Production Hardening Guide](production-hardening.md)*

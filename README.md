@@ -19,6 +19,8 @@ This repository is organized into multiple learning paths suitable for different
   - [Reranking](docs/3-technical/reranking.md)
   - [Sentence Window Retrieval](docs/3-technical/sentence-window-retrieval.md)
 - [Best Practices](docs/4-best-practices/)
+  - [Production Deployment](docs/4-best-practices/production-deployment.md)
+  - [Production Hardening](docs/4-best-practices/production-hardening.md)
   - [Observability](docs/4-best-practices/observability.md)
   - [Caching](docs/4-best-practices/caching.md)
 
