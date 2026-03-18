@@ -113,6 +113,8 @@ class QueryValidator:
         return True, None
 ```
 
+> **Note**: For more advanced input validation (PII detection, prompt injection protection), see [Security Considerations](security-considerations.md).
+
 ### Rate Limiting (Enhanced)
 
 The learning example uses simple IP-based rate limiting. Production should use API key-based limiting:
@@ -130,7 +132,11 @@ import time
 api_key_header = APIKeyHeader(name="X-API-Key")
 
 class ProductionRateLimiter:
-    """Rate limiter based on API keys, not IPs."""
+    """Rate limiter based on API keys, not IPs.
+    
+    Note: This in-memory implementation works for single-instance deployments.
+    For multi-replica deployments, use Redis-backed rate limiting (see below).
+    """
     
     def __init__(self):
         # {api_key: {"tokens": float, "last_update": float}}
@@ -203,7 +209,44 @@ async def production_query(
         raise HTTPException(status_code=400, detail=error)
     
     # Process query...
-```
+
+### Redis-Backed Rate Limiting (For Multi-Replica)
+
+For production deployments with multiple replicas, use Redis:
+
+```python
+"""
+Redis-backed rate limiter for distributed deployments
+"""
+
+import redis
+
+class RedisRateLimiter:
+    """Rate limiter using Redis for shared state."""
+    
+    def __init__(self, redis_url: str):
+        self.redis = redis.from_url(redis_url)
+        self.tiers = {
+            "free": 10,
+            "basic": 60,
+            "pro": 300,
+            "enterprise": float("inf")
+        }
+    
+    async def check(self, api_key: str, tier: str = "free") -> bool:
+        """Check if request is allowed using Redis INCR."""
+        
+        rate = self.tiers.get(tier, 10)
+        key = f"rate_limit:{api_key}"
+        
+        # Increment counter with expiry
+        current = self.redis.incr(key)
+        if current == 1:
+            self.redis.expire(key, 60)  # 1 minute window
+        
+        return current <= rate
+
+Or use a library like `slowapi` for easier integration.
 
 ### Secrets Management
 
@@ -221,7 +264,11 @@ import os
 REDIS_URL = os.getenv("REDIS_URL")  # Set in production env
 
 # Option 2: pydantic-settings (recommended)
+# For pydantic-settings v2:
 from pydantic_settings import BaseSettings
+
+# For pydantic-settings v1:
+# from pydantic import BaseSettings
 
 class Settings(BaseSettings):
     redis_url: str
@@ -347,13 +394,24 @@ Production should have separate liveness and readiness probes:
 ```python
 """
 Production Health Checks
+
+Note: Assumes these are defined elsewhere in your app:
+- redis_client: Redis connection instance
+- vectorstore: Your vector database (Chroma, etc.)
+- os.getenv('OLLAMA_BASE_URL'): Your LLM endpoint
 """
 
 from fastapi import APIRouter
 import redis
 import httpx
+import os
 
 router = APIRouter()
+
+# These would be your existing app-level definitions:
+# redis_client = redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379"))
+# vectorstore = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
+# OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 
 # Simple liveness check - is the app running?
 @app.get("/health/live")
@@ -413,6 +471,7 @@ import uuid
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -423,9 +482,6 @@ class RequestIDMiddleware(BaseHTTPMiddleware):
         request_id = str(uuid.uuid4())
         request.state.request_id = request_id
         
-        # Add to logging context
-        logging_extra = {"request_id": request_id}
-        
         # Process request
         response = await call_next(request)
         
@@ -434,11 +490,21 @@ class RequestIDMiddleware(BaseHTTPMiddleware):
         
         return response
 
+def log_with_request_id(logger, message: str, request_id: str, **kwargs):
+    """Log with request ID context."""
+    logger.info(
+        json.dumps({
+            "message": message,
+            "request_id": request_id,
+            **kwargs
+        })
+    )
+
 # Usage in endpoints
 @app.get("/query")
 async def query_endpoint(request: Request):
     request_id = request.state.request_id
-    logger.info(f"Processing query", extra={"request_id": request_id})
+    log_with_request_id(logger, "Processing query", request_id)
     # ... process query
 ```
 
