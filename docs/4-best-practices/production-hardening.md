@@ -209,6 +209,7 @@ async def production_query(
         raise HTTPException(status_code=400, detail=error)
     
     # Process query...
+```
 
 ### Redis-Backed Rate Limiting (For Multi-Replica)
 
@@ -247,6 +248,7 @@ class RedisRateLimiter:
         return current <= rate
 
 Or use a library like `slowapi` for easier integration.
+```
 
 ### Secrets Management
 
