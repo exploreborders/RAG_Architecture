@@ -246,7 +246,7 @@ class RedisRateLimiter:
             self.redis.expire(key, 60)  # 1 minute window
         
         return current <= rate
-
+```
 Or use a library like `slowapi` for easier integration.
 
 ### Secrets Management
