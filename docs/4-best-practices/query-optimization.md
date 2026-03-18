@@ -4,6 +4,25 @@
 
 Optimizing queries is crucial for RAG performance. This includes query understanding, rewriting, and retrieval strategy selection.
 
+> **Key insight**: The query users ask is rarely the optimal form for retrieval. Transforming queries before searching significantly improves results.
+
+### Why Query Optimization Matters
+
+```
+User Query          Documents in Vector DB
+     │                      │
+     ▼                      ▼
+"how RAG works?"    "Retrieval-Augmented Generation (RAG) is..."
+                     "RAG combines retrieval with generation..."
+                     "To implement RAG, you need..."
+
+Problem: User uses "works"
+         Docs use "implement", "combine"
+         → Low similarity despite relevance!
+```
+
+Query optimization transforms the user's question to better match how information is stored.
+
 ## Query Optimization Pipeline
 
 ```
@@ -44,6 +63,22 @@ User Query
 ```
 
 ## 1. Query Preprocessing
+
+**Concept**: Before sending a query to your vector database, you should clean and normalize it. This ensures consistent matching regardless of how the user formats their question.
+
+**Why it helps**:
+- Removes noise (extra spaces, special characters)
+- Normalizes case so "RAG" matches "rag"
+- Prevents injection attacks by removing dangerous characters
+
+**When to use**:
+- Always (this is a foundational step)
+- When users might type inconsistently
+- When you want to reduce false negatives from formatting differences
+
+**Example**:
+- Input: `"  What is RAG???  "`
+- Output: `"what is rag?"`
 
 ```python
 """
@@ -90,6 +125,22 @@ print(cleaned)  # "what is rag?"
 ```
 
 ## 2. Query Rewriting
+
+**Concept**: Users often ask questions in ways that don't match how information is stored in your documents. Query rewriting uses an LLM to transform the user's question into a form that better matches your document store.
+
+**Why it helps**:
+- Expands abbreviations (RAG → Retrieval-Augmented Generation)
+- Adds synonyms that might appear in documents
+- Clarifies ambiguous terms
+
+**When to use**:
+- User uses different terminology than your documents
+- Query is vague or ambiguous
+- User asks partial questions (e.g., "how does it work?" without specifying what)
+
+**Example**:
+- Original: `"how does it work?"`
+- Rewritten: `"how does Retrieval-Augmented Generation work?"`
 
 ```python
 """
@@ -170,6 +221,23 @@ Format as numbered list:"""
 
 ## 3. HyDE (Hypothetical Document Embeddings)
 
+**Concept**: Instead of embedding the user's question directly, HyDE first generates a hypothetical "ideal" answer, then embeds that. The idea is that the hypothetical answer will be closer in the embedding space to the actual relevant documents than the original question is.
+
+**Why it helps**:
+- The hypothetical answer has similar embedding characteristics to real documents
+- Works well when users ask conceptual questions that don't match document wording
+- Can bridge the "lexical gap" between queries and documents
+
+**When to use**:
+- Complex, conceptual questions
+- When you have high-quality documents but users ask in different ways
+- When semantic search alone isn't giving good results
+
+**Example**:
+- Original query: `"what is rag?"`
+- Hypothetical answer: `"RAG stands for Retrieval-Augmented Generation, which is a technique that enhances LLM responses by retrieving relevant information from a knowledge base before generating answers."`
+- Then embed the hypothetical answer instead of the query
+
 ```python
 """
 HyDE: Generate hypothetical documents
@@ -228,6 +296,25 @@ hyde_retriever = HyDERetriever(vectorstore, llm, embeddings)
 
 ## 4. Query Decomposition
 
+**Concept**: Some questions contain multiple parts that need to be answered separately. Query decomposition breaks complex questions into simpler sub-questions, retrieves relevant documents for each, and combines the results.
+
+**Why it helps**:
+- A single query might need information from multiple sources
+- Each sub-query can be more specific, leading to better retrieval
+- Prevents the system from answering only part of a question
+
+**When to use**:
+- Multi-part questions (e.g., "What is X and how does Y work?")
+- Questions with multiple conditions
+- Complex research questions that need comprehensive answers
+
+**Example**:
+- Original: `"What is RAG and how does it compare to fine-tuning?"`
+- Decomposed:
+  1. `"What is RAG?"`
+  2. `"What is LLM fine-tuning?"`
+  3. `"RAG vs fine-tuning comparison"`
+
 ```python
 """
 Multi-Query Retrieval
@@ -278,6 +365,24 @@ Return as comma-separated list:"""
 ```
 
 ## 5. Hybrid Search
+
+**Concept**: Semantic (vector) search excels at finding conceptually similar content but misses exact keyword matches. Keyword search (BM25) finds exact matches but misses semantic relationships. Hybrid search combines both to get the best of both worlds.
+
+**Why it helps**:
+- Vector search finds: "car" ≈ "automobile"
+- Keyword search finds: exact matches like model numbers, proper nouns
+- Combining them catches both semantic and lexical matches
+
+**When to use**:
+- Queries with specific terms or proper nouns (names, codes, product IDs)
+- When documents contain both technical terms and conceptual explanations
+- When you need high precision and recall
+
+**Example**:
+- Query: `"What is GPT-4 model context length?"`
+- Vector finds: conceptual info about context windows
+- Keyword finds: exact "GPT-4" and "context length" matches
+- Combined gives comprehensive results
 
 ```python
 """
@@ -355,6 +460,24 @@ class HybridSearchRetriever:
 
 ## 6. Re-ranking
 
+**Concept**: Initial retrieval fetches the most similar documents based on embedding distance, but similarity isn't the same as relevance. Re-ranking uses a more expensive but accurate model to score the relationship between the query and each retrieved document, then returns only the most relevant ones.
+
+**Why it helps**:
+- Vector similarity ≠ semantic relevance
+- First-stage retrieval is fast but approximate
+- Re-ranking uses cross-encoders which consider query-document pairs together
+
+**When to use**:
+- When initial retrieval has good recall but poor precision
+- When answer quality is critical
+- When you can afford the additional latency (re-ranking is slower)
+
+**Example**:
+- Query: `"how to improve RAG accuracy?"`
+- Initial retrieval returns 10 docs about various RAG topics
+- Re-ranker scores each: doc about "accuracy metrics" scores higher than doc about "RAG architecture"
+- Top 3 most relevant returned
+
 ```python
 """
 Re-ranking Retrieved Results
@@ -401,6 +524,24 @@ class RerankingRetriever:
 ```
 
 ## 7. Adaptive Retrieval
+
+**Concept**: Not all queries need the same retrieval strategy. Adaptive retrieval uses an LLM to analyze the query and choose the best strategy on the fly. This optimizes both quality and speed.
+
+**Why it helps**:
+- Simple questions don't need complex multi-query approaches
+- Saves cost and latency by using only what's needed
+- Different strategies work better for different query types
+
+**When to use**:
+- When query types vary widely (simple Q&A vs complex research)
+- When you want to optimize for both quality and cost
+- When you have multiple retrieval strategies available
+
+**How it chooses**:
+- `"semantic"`: Conceptual, meaning-based searches
+- `"keyword"`: Specific terms, names, codes
+- `"hybrid"`: Complex queries needing both
+- `"multi"`: Questions needing multiple pieces of information
 
 ```python
 """
@@ -531,15 +672,62 @@ Format as comma-separated list:"""
 
 ## Summary
 
-| Technique | When to Use | Benefit |
-|-----------|-------------|---------|
-| **Preprocessing** | Always | Clean input |
-| **Rewriting** | Vague queries | Better matches |
-| **HyDE** | Complex questions | Improved retrieval |
-| **Decomposition** | Multi-part questions | Comprehensive |
-| **Hybrid Search** | Mixed queries | Best of both |
-| **Re-ranking** | Quality-critical | Better results |
-| **Adaptive** | Variable queries | Optimized per query |
+| Technique | When to Use | Latency Impact | Benefit |
+|-----------|-------------|----------------|---------|
+| **Preprocessing** | Always | Minimal | Clean, consistent input |
+| **Rewriting** | Vague/ambiguous queries | +1 LLM call | Better matches |
+| **HyDE** | Complex questions | +1 LLM call + embedding | Improved retrieval |
+| **Decomposition** | Multi-part questions | 2-3x searches | Comprehensive answers |
+| **Hybrid Search** | Mixed queries | 2x searches | Best of both |
+| **Re-ranking** | Quality-critical | +1 cross-encoder | Better precision |
+| **Adaptive** | Variable queries | Variable | Optimized per query |
+
+### Recommended Starting Point
+
+1. **Always start** with preprocessing (it's free)
+2. **Add rewriting** if users use different terminology than your docs
+3. **Add hybrid search** if you have both concepts and specific terms
+4. **Add re-ranking** if precision is critical
+5. **Use adaptive** for complex systems with varied queries
+
+### Common Mistakes
+
+- **Over-optimizing**: Don't add all techniques at once
+- **Ignoring latency**: Each technique adds cost; measure impact
+- **No evaluation**: Test with your actual queries and documents
+
+### Quick Decision Guide
+
+```
+What are your users asking?
+      │
+      ▼
+┌─────────────────┐
+│ Simple factual? │──No──► Try query rewriting
+│ "What is X?"    │
+└────────┬────────┘
+         │Yes
+         ▼
+┌─────────────────┐
+│ Simple keyword? │──Yes──► Hybrid search
+│ "API key docs"  │
+└────────┬────────┘
+         │No
+         ▼
+┌─────────────────┐
+│ Multi-part?     │──Yes──► Query decomposition
+│ "X and Y?"      │
+└────────┬────────┘
+         │No
+         ▼
+┌─────────────────┐
+│ Need precision? │──Yes──► Add re-ranking
+│ Critical app    │
+└────────┬────────┘
+         │
+         ▼
+     Start simple, add as needed
+```
 
 ---
 
