@@ -124,7 +124,7 @@ The learning example uses simple IP-based rate limiting. Production should use A
 Production Rate Limiting
 """
 
-from fastapi import Request, HTTPException, Depends
+from fastapi import HTTPException, Depends
 from fastapi.security import APIKeyHeader
 from collections import defaultdict
 import time
@@ -163,7 +163,7 @@ class ProductionRateLimiter:
             return "basic"
         return "free"
     
-    async def check(self, api_key: str) -> bool:
+    def check(self, api_key: str) -> bool:
         """Check if request is allowed."""
         
         tier = self.get_tier(api_key)
@@ -196,7 +196,7 @@ async def production_query(
     """Production query endpoint with full security."""
     
     # Check rate limit
-    if not await rate_limiter.check(api_key):
+    if not rate_limiter.check(api_key):
         raise HTTPException(
             status_code=429,
             detail="Rate limit exceeded. Upgrade your plan."
@@ -246,7 +246,7 @@ class RedisRateLimiter:
             self.redis.expire(key, 60)  # 1 minute window
         
         return current <= rate
-```
+
 Or use a library like `slowapi` for easier integration.
 
 ### Secrets Management
@@ -265,11 +265,8 @@ import os
 REDIS_URL = os.getenv("REDIS_URL")  # Set in production env
 
 # Option 2: pydantic-settings (recommended)
-# For pydantic-settings v2:
-from pydantic_settings import BaseSettings
-
-# For pydantic-settings v1:
-# from pydantic import BaseSettings
+from pydantic_settings import BaseSettings  # v2
+# from pydantic import BaseSettings  # v1
 
 class Settings(BaseSettings):
     redis_url: str
@@ -277,7 +274,7 @@ class Settings(BaseSettings):
     ollama_base_url: str = "http://localhost:11434"
     
     class Config:
-        env_file = ".env"  # Still avoid committing secrets!
+        env_file = ".env"
         env_file_encoding = "utf-8"
 
 # Option 3: HashiCorp Vault (enterprise)
@@ -402,14 +399,12 @@ Note: Assumes these are defined elsewhere in your app:
 - os.getenv('OLLAMA_BASE_URL'): Your LLM endpoint
 """
 
-from fastapi import APIRouter
+from fastapi import FastAPI
 import redis
 import httpx
 import os
 
-router = APIRouter()
-
-# These would be your existing app-level definitions:
+# Note: These are assumed to be defined in your app:
 # redis_client = redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379"))
 # vectorstore = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
 # OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
@@ -442,9 +437,11 @@ async def readiness():
     except Exception as e:
         checks["ollama"] = f"unhealthy: {str(e)}"
     
-    # Check Vector DB (simple connectivity test)
+# Check Vector DB (simple connectivity test)
     try:
-        # Try a simple operation
+        # Note: _collection is a private attribute; adjust for your vector DB
+        # For Chroma: vectorstore._collection.count()
+        # For other DBs: use appropriate health check method
         vectorstore._collection.count()
         checks["vectordb"] = "healthy"
     except Exception as e:
