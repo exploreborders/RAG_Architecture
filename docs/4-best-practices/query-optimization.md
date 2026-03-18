@@ -102,7 +102,15 @@ class QueryRewriter:
     """Rewrite queries for better retrieval."""
     
     def __init__(self, llm=None):
-        self.llm = llm or ChatOllama(model="llama3.2")
+        self._llm = llm
+    
+    @property
+    def llm(self):
+        """Lazy load LLM to avoid creating new instance on every call."""
+        if self._llm is None:
+            from langchain_ollama import ChatOllama
+            self._llm = ChatOllama(model="llama3.2")
+        return self._llm
     
     def rewrite(self, query: str) -> str:
         """Rewrite query to improve retrieval."""
@@ -119,24 +127,28 @@ Guidelines:
 
 Rewritten query:"""
 
-        rewritten = self.llm.invoke(prompt)
+        response = self.llm.invoke(prompt)
+        # Handle both string and object responses
+        rewritten = response.content if hasattr(response, 'content') else str(response)
         return rewritten.strip()
     
-    def expand_for_search(self, query: str) -> str:
+    def expand_for_search(self, query: str) -> list[str]:
         """Generate multiple query variations."""
         
         prompt = f"""Generate 3 different versions of this query for parallel search.
-        
+
 Query: {query}
 
 Format as comma-separated list:"""
 
         response = self.llm.invoke(prompt)
-        variations = [query] + [v.strip() for v in response.split(",")]
+        # Handle both string and object responses
+        response_text = response.content if hasattr(response, 'content') else str(response)
+        variations = [query] + [v.strip() for v in response_text.split(",")]
         
         return variations
     
-    def decompose(self, query: str) -> List[str]:
+    def decompose(self, query: str) -> list[str]:
         """Break complex query into sub-queries."""
         
         prompt = f"""Break this complex question into simpler sub-questions.
@@ -146,9 +158,12 @@ Question: {query}
 Format as numbered list:"""
 
         response = self.llm.invoke(prompt)
+        # Handle both string and object responses
+        response_text = response.content if hasattr(response, 'content') else str(response)
+        
         # Parse numbered list
-        lines = [l.strip() for l in response.split("\n") if l.strip()]
-        sub_queries = [l.split(".", 1)[-1].strip() for l in lines if l[0].isdigit()]
+        lines = [l.strip() for l in response_text.split("\n") if l.strip()]
+        sub_queries = [l.split(".", 1)[-1].strip() for l in lines if l and l[0].isdigit()]
         
         return sub_queries if sub_queries else [query]
 ```
@@ -179,9 +194,11 @@ Question: {query}
 
 Hypothetical answer:"""
 
-        hypothetical = self.llm.invoke(prompt)
+        response = self.llm.invoke(prompt)
+        hypothetical = response.content if hasattr(response, 'content') else str(response)
         
         # Step 2: Embed both query and hypothetical
+        # Note: Use embed_query (deprecated but widely supported) or embed_documents
         query_embedding = self.embeddings.embed_query(query)
         hypo_embedding = self.embeddings.embed_query(hypothetical)
         
@@ -199,12 +216,14 @@ Hypothetical answer:"""
         
         return results
 
-# In LangChain
-from langchain.retrievers import ContextualCompressionRetriever
-from langchain.retrievers.document_compressors import LLMChainExtractor
+# Alternative: Use LangChain's built-in HyDE if available
+# from langchain_huggingface import HuggingFaceEmbeddings
+# from langchain_community.vectorstores import Chroma
+# from langchain.retrievers.contextual_compression import ContextualCompressionRetriever
+# from langchain_community.document_compressors import LLMChainExtractor
 
 # Using HyDE pattern
-hyde_retriever = HyDERetriever(vectorstore, llm)
+hyde_retriever = HyDERetriever(vectorstore, llm, embeddings)
 ```
 
 ## 4. Query Decomposition
@@ -233,7 +252,9 @@ Question: {query}
 Return as comma-separated list:"""
 
         response = self.llm.invoke(prompt)
-        queries = [query] + [q.strip() for q in response.split(",")]
+        # Handle both string and object responses
+        response_text = response.content if hasattr(response, 'content') else str(response)
+        queries = [query] + [q.strip() for q in response_text.split(",")]
         
         # Retrieve for each
         all_docs = []
@@ -269,16 +290,20 @@ from langchain.retrievers import EnsembleRetriever
 class HybridSearchRetriever:
     """Combine semantic and keyword search."""
     
-    def __init__(self, documents: list):
+    def __init__(self, documents: list, embeddings):
+        from langchain_community.vectorstores import Chroma
+        
         # Semantic (vector) retriever
         self.vectorstore = Chroma.from_documents(
             documents, 
-            OpenAIEmbeddings()
+            embeddings
         )
         self.vector_retriever = self.vectorstore.as_retriever(search_kwargs={"k": 4})
         
-        # Keyword (BM25) retriever
-        self.bm25_retriever = BM25Retriever.from_documents(documents)
+        # Keyword (BM25) retriever - use from_texts for raw text
+        self.bm25_retriever = BM25Retriever.from_texts(
+            [doc.page_content for doc in documents]
+        )
     
     def retrieve(self, query: str, weights: tuple = (0.5, 0.5)) -> list:
         """Combine both retrievers."""
@@ -357,6 +382,13 @@ class RerankingRetriever:
         doc_texts = [doc.page_content for doc in initial_docs]
         scores = self.encoder.invoke([(query, doc) for doc in doc_texts])
         
+        # Ensure scores is a flat list (newer versions may return different format)
+        if hasattr(scores, 'tolist'):
+            scores = scores.tolist()
+        elif len(scores) > 0 and hasattr(scores[0], '__iter__') and not isinstance(scores[0], str):
+            # Handle nested list case
+            scores = [s[0] if isinstance(s, (list, tuple)) else s for s in scores]
+        
         # Sort by score
         scored_docs = sorted(
             zip(initial_docs, scores),
@@ -397,7 +429,10 @@ Strategies:
 
 Respond with just the strategy name:"""
 
-        strategy = self.llm.invoke(prompt).strip().lower()
+        response = self.llm.invoke(prompt)
+        # Handle both string and object responses
+        response_text = response.content if hasattr(response, 'content') else str(response)
+        strategy = response_text.strip().lower()
         
         # Map to actual strategy
         strategies = {
@@ -415,10 +450,16 @@ Respond with just the strategy name:"""
     def _keyword_retrieve(self, query: str) -> list:
         """Retrieve using keyword-based BM25 approach."""
         from langchain_community.retrievers import BM25Retriever
-        from langchain_core.documents import Document
         
-        # Create BM25 retriever from documents
-        bm25_retriever = BM25Retriever.from_documents(self.vectorstore._chroma_collection.get()["documents"])
+        # Get documents from vectorstore - need to convert to texts for BM25
+        docs_data = self.vectorstore._collection.get()
+        texts = docs_data.get("documents", [])
+        
+        if not texts:
+            return []
+        
+        # Create BM25 retriever from texts
+        bm25_retriever = BM25Retriever.from_texts(texts)
         
         # Get relevant documents
         docs = bm25_retriever.invoke(query)
@@ -433,10 +474,15 @@ Respond with just the strategy name:"""
         # Create both retrievers
         vector_retriever = self.vectorstore.as_retriever(search_kwargs={"k": 4})
         
+        # Get texts from vectorstore
+        docs_data = self.vectorstore._collection.get()
+        texts = docs_data.get("documents", [])
+        
+        if not texts:
+            return vector_retriever.invoke(query)
+        
         # Get BM25 retriever
-        bm25_retriever = BM25Retriever.from_documents(
-            self.vectorstore._chroma_collection.get()["documents"]
-        )
+        bm25_retriever = BM25Retriever.from_texts(texts)
         
         # Create ensemble retriever
         ensemble = EnsembleRetriever(
@@ -458,7 +504,9 @@ Question: {query}
 Format as comma-separated list:"""
 
         response = self.llm.invoke(prompt)
-        variations = [query] + [v.strip() for v in response.content.split(",") if v.strip()]
+        # Handle both string and object responses
+        response_text = response.content if hasattr(response, 'content') else str(response)
+        variations = [query] + [v.strip() for v in response_text.split(",") if v.strip()]
         
         # Retrieve for each variation
         all_docs = []
