@@ -52,9 +52,6 @@ RAG Scaling Challenges:
 Horizontal Scaling: Multiple RAG Instances
 """
 
-import asyncio
-from queue import Queue
-
 class LoadBalancedRAG:
     """Distribute queries across multiple RAG instances with health awareness."""
     
@@ -166,8 +163,8 @@ spec:
 │   Query ──► L1 Cache (Memory) ──► L2 Cache (Redis) ──► RAG  │
 │              ~1ms hit                ~10ms hit    ~500ms    │
 │                                                             │
-│   Cache Hit: Return immediately                              │
-│   Cache Miss: Process full RAG, store in both levels       │
+│   Cache Hit: Return immediately                             │
+│   Cache Miss: Process full RAG, store in both levels        │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -190,7 +187,6 @@ Multi-Level Caching
 
 import hashlib
 import json
-from functools import lru_cache
 import redis
 from collections import OrderedDict
 
@@ -445,7 +441,6 @@ Async RAG for High Throughput
 
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
-from typing import Coroutine, Any
 
 class AsyncRAG:
     """Process queries asynchronously for higher throughput."""
@@ -496,7 +491,11 @@ class AsyncRAG:
         questions: list, 
         progress_callback=None
     ) -> list:
-        """Batch query with progress reporting."""
+        """Process queries sequentially with progress reporting.
+        
+        Use batch_query() for parallel processing.
+        This method is for when you need to track progress per query.
+        """
         
         results = []
         total = len(questions)
@@ -689,21 +688,21 @@ class IncrementalIndexer:
 **Example Dashboard Metrics**:
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    RAG Metrics Dashboard                     │
+│                    RAG Metrics Dashboard                    │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  Latency Distribution          Cache Performance             │
-│  ┌──────────────────┐        ┌──────────────────┐          │
-│  │ P50: 150ms       │        │ Hits: 85%        │          │
-│  │ P95: 420ms       │        │ Misses: 15%      │          │
-│  │ P99: 890ms       │        │ Saved: $45/hr    │          │
-│  └──────────────────┘        └──────────────────┘          │
+│  Latency Distribution          Cache Performance            │
+│  ┌──────────────────┐        ┌──────────────────┐           │
+│  │ P50: 150ms       │        │ Hits: 85%        │           │
+│  │ P95: 420ms       │        │ Misses: 15%      │           │
+│  │ P99: 890ms       │        │ Saved: $45/hr    │           │
+│  └──────────────────┘        └──────────────────┘           │
 │                                                             │
 │  Query Throughput           Error Rate                      │
-│  ┌──────────────────┐        ┌──────────────────┐          │
-│  │ Current: 150/s   │        │ Errors: 0.05%    │          │
-│  │ Peak: 300/s      │        │ Healthy: ✓       │          │
-│  └──────────────────┘        └──────────────────┘          │
+│  ┌──────────────────┐        ┌──────────────────┐           │
+│  │ Current: 150/s   │        │ Errors: 0.05%    │           │
+│  │ Peak: 300/s      │        │ Healthy: ✓       │           │
+│  └──────────────────┘        └──────────────────┘           │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -891,7 +890,7 @@ class MonitoredRAG:
                         ▼
               ┌─────────────────┐
               │   Router /      │
-              │   Meta-index   │
+              │   Meta-index    │
               └────────┬────────┘
                        │
         ┌──────────────┼──────────────┐
@@ -1080,13 +1079,13 @@ Query Complexity Detection
         ▼
 ┌─────────────────┐
 │ Simple query?   │──Yes──► Use fast model (llama3.2)
-│ (single topic) │          Latency: ~200ms, Cost: $0.001
+│ (single topic)  │         Latency: ~200ms, Cost: $0.001
 └────────┬────────┘
          │No
          ▼
 ┌─────────────────┐
 │ Medium query?   │──Yes──► Use standard model (gpt-4o-mini)
-│ (multi-part)   │          Latency: ~1s, Cost: $0.01
+│ (multi-part)    │         Latency: ~1s, Cost: $0.01
 └────────┬────────┘
          │No
          ▼
@@ -1177,7 +1176,7 @@ class TieredLLM:
         try:
             response = await config.model.agenerate([prompt])
             return response.generations[0].text
-        except Exception as e:
+        except Exception:
             # Fallback to standard tier
             if tier != ModelTier.STANDARD and not force_tier:
                 config = self.tiers[ModelTier.STANDARD]
@@ -1479,14 +1478,14 @@ What's your bottleneck?
 └─────────┬─────────┘
           │
 ┌─────────▼─────────┐
-│ High throughput?   │──► Horizontal scaling + async
-│ (> 100 RPS)        │
+│ High throughput?  │──► Horizontal scaling + async
+│ (> 100 RPS)       │
 └─────────┬─────────┘
           │
 ┌─────────▼─────────┐
-│ Large data?        │──► Index partitioning + vector scaling
-│ (> 10M vectors)    │
-└─────────────────────┘
+│ Large data?       │──► Index partitioning + vector scaling
+│ (> 10M vectors)   │
+└───────────────────┘
 ```
 
 ---
