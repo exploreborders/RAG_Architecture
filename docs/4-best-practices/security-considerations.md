@@ -11,7 +11,7 @@ RAG Security Risks:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Without Security:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 User Query ──► RAG System ──► Response
      │
@@ -27,7 +27,7 @@ User Query ──► RAG System ──► Response
 └─────────────────────────────────┘
 
 With Security:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 User Query ──► Sanitize ──► Validate ──► Process ──► Filter ──► Response
      │           │           │             │           │
@@ -1864,17 +1864,17 @@ What security measure should you implement first?
       │
       ▼
 ┌─────────────────┐
-│ Public API?      │──Yes──► Auth + Rate Limiting
+│ Public API?     │──Yes──► Auth + Rate Limiting
 └────────┬────────┘
          │No
          ▼
 ┌─────────────────┐
-│ Contains PII?    │──Yes──► PII Detection + Redaction
+│ Contains PII?   │──Yes──► PII Detection + Redaction
 └────────┬────────┘
          │No
          ▼
 ┌─────────────────┐
-│ Multi-tenant?    │──Yes──► Access Control
+│ Multi-tenant?   │──Yes──► Access Control
 └────────┬────────┘
          │No
          ▼
