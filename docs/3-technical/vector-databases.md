@@ -633,8 +633,8 @@ What's your priority?
 | Blog | Description |
 |------|-------------|
 | [Vector Database Comparison](https://www.pinecone.io/learn/vector-database-comparison) | DB selection guide |
-| [Weaviate Hybrid Search](https://weaviate.io/blog/hybrid-search) | Hybrid search guide |
-| [Pinecone Serverless](https://www.pinecone.io/learn/serverless) | Serverless architecture |
+| [Weaviate Hybrid Search](https://weaviate.io/blog/hybrid-search-for-web-developers) | Hybrid search guide |
+| [Pinecone Serverless](https://www.pinecone.io/blog/serverless/) | Serverless architecture |
 
 ### GitHub Repositories
 
