@@ -250,4 +250,4 @@ Query ──► [Is retrieval needed?] ──► Yes ──► Retrieve ──�
 
 ---
 
-*Next: [Classic RAG Architecture](../2-architectures/classic-rag/)*
+*Next: [Classic RAG Architecture](../2-architectures/classic-rag.md)*

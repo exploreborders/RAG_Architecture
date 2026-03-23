@@ -159,8 +159,8 @@ print(result['result'])  # Print the answer
 ## Next Steps
 
 - [Why RAG?](why-rag.md) - Deep dive into the motivation
-- [Classic RAG Implementation](../2-architectures/classic-rag/) - Build your first RAG
-- [Technical Deep Dive](../3-technical/) - Understand the components
+- [Classic RAG Implementation](../2-architectures/classic-rag.md) - Build your first RAG
+- [Technical Deep Dive](../3-technical/retrieval-systems.md) - Understand the components
 
 ---
 

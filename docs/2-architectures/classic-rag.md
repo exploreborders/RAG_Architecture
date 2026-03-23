@@ -438,4 +438,4 @@ Practice implementing Classic RAG with this notebook:
 
 ---
 
-*Next: [Knowledge Graph RAG](../2-architectures/kg-rag/)*
+*Next: [Knowledge Graph RAG](../2-architectures/kg-rag.md)*

@@ -584,4 +584,4 @@ Practice implementing Agentic RAG with this notebook:
 
 ---
 
-*Next: [Multimodal RAG](../2-architectures/multimodal-rag/)*
+*Next: [Multimodal RAG](../2-architectures/multimodal-rag.md)*
