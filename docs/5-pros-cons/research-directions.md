@@ -110,7 +110,7 @@ RAG Research Landscape:
 | Paper | Year | Contribution | Link |
 |-------|------|--------------|------|
 | **Self-RAG** | 2024 | Model learns to retrieve when needed | [arXiv:2310.11511](https://arxiv.org/abs/2310.11511) |
-| **Adaptive RAG** | 2024 | Route queries to optimal strategy | [https://arxiv.org/abs/2401.15884](https://arxiv.org/abs/2401.15884) |
+| **Adaptive RAG** | 2024 | Route queries to optimal strategy | [arXiv:2401.15884](https://arxiv.org/abs/2401.15884) |
 | **REPLUG** | 2023 | Retrieve and plug in external knowledge | [arXiv:2301.12652](https://arxiv.org/abs/2301.12652) |
 
 ### Research Directions
