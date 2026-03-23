@@ -1901,7 +1901,7 @@ What security measure should you implement first?
 |----------|-------------|
 | [OWASP Top 10 for LLM](https://owasp.org/www-project-top-10-for-llm-applications/) | Common LLM vulnerabilities |
 | [NIST AI Risk Management](https://csrc.nist.gov/publications/detail/sp/1270/final) | AI security framework |
-| [Prompt Injection Attacks](https://www.prompteng.org/prompt-injection.html) | Injection techniques |
+| [Prompt Injection Attacks](https://arxiv.org/abs/2402.06363) | Injection techniques |
 | [LangChain Security](https://python.langchain.com/docs/security/) | LangChain best practices |
 | [GDPR RAG Compliance](https://gdpr.eu/article-32-security-of-processing/) | Data protection requirements |
 
