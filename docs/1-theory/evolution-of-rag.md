@@ -153,7 +153,7 @@ Query ──► [Is retrieval needed?] ──► Yes ──► Retrieve ──�
 - Community summarization
 - Global knowledge synthesis
 
-> **Blog**: [GraphRAG: Unlocking LLM knowledge](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-knowledge/)
+> **Blog**: [GraphRAG: Unlocking LLM knowledge](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/)
 > **GitHub**: [microsoft/graphrag](https://github.com/microsoft/graphrag)
 
 ### Multimodal RAG (2025)
@@ -238,7 +238,7 @@ Query ──► [Is retrieval needed?] ──► Yes ──► Retrieve ──�
 | Resource | Description |
 |----------|-------------|
 | [Microsoft GraphRAG](https://github.com/microsoft/graphrag) | Official Microsoft GraphRAG implementation |
-| [GraphRAG Blog](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-knowledge/) | Microsoft Research blog post |
+| [GraphRAG Blog](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/) | Microsoft Research blog post |
 
 ### Tools & Frameworks
 

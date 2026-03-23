@@ -536,7 +536,7 @@ Practice implementing Knowledge Graph RAG with this notebook:
 | [Neo4j Graph Database](https://neo4j.com/docs/) | Neo4j documentation |
 | [LangChain Neo4j](https://python.langchain.com/docs/integrationsgraphs/neo4j_graph) | LangChain Neo4j integration |
 | [LlamaIndex Knowledge Graph](https://docs.llamaindex.ai/en/stable/module_ides/knowledge_graph/) | LlamaIndex KG guide |
-| [GraphRAG Microsoft](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-knowledge/) | Microsoft GraphRAG blog |
+| [GraphRAG Microsoft](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/) | Microsoft GraphRAG blog |
 
 ### Blog Posts & Tutorials
 

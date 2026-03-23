@@ -758,7 +758,7 @@ Briefly describe:"""
 | HyDE: Precise Zero-Shot Dense Retrieval | [arXiv:2212.10496](https://arxiv.org/abs/2212.10496) |
 | Self-RAG: Learning to Retrieve, Generate, and Critique | [arXiv:2310.11511](https://arxiv.org/abs/2310.11511) |
 | Corrective RAG | [arXiv:2401.15884](https://arxiv.org/abs/2401.15884) |
-| GraphRAG: From Local to Global | [Microsoft Research](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-knowledge/) |
+| GraphRAG: From Local to Global | [Microsoft Research](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/) |
 
 ### Implementations
 
