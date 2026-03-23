@@ -109,7 +109,7 @@ RAG Research Landscape:
 
 | Paper | Year | Contribution | Link |
 |-------|------|--------------|------|
-| **Self-RAG** | 2024 | Model learns to retrieve when needed | [arXiv:2410.13496](https://arxiv.org/abs/2410.13496) |
+| **Self-RAG** | 2024 | Model learns to retrieve when needed | [arXiv:2310.11511](https://arxiv.org/abs/2310.11511) |
 | **Adaptive RAG** | 2024 | Route queries to optimal strategy | [GitHub](https://github.com/run-llama/LlamaIndex/blob/main/llama-index-packs/llama-index-packs-corrective-rag/README.md) |
 | **REPLUG** | 2023 | Retrieve and plug in external knowledge | [arXiv:2301.12652](https://arxiv.org/abs/2301.12652) |
 
@@ -223,7 +223,7 @@ class CostAwareRAG:
 | 2024 | CLIP-based multimodal retrieval | [CLIP](https://openai.com/index/clip/) |
 | 2025 | VideoRAG, AudioRAG frameworks | [VideoRAG GitHub](https://github.com/mainfact/video-rag) |
 | 2025 | Unified multimodal knowledge graphs | [arXiv:2502.08826](https://arxiv.org/abs/2502.08826) |
-| 2026 | Cross-modal reasoning agents | [arXiv:2502.08826](https://arxiv.org/abs/2502.08826) |
+| 2026 | Cross-modal reasoning agents | [EMNLP 2026](https://emnlp.org/) (upcoming) |
 
 ### Future: Unified Multimodal Embeddings
 
@@ -258,7 +258,7 @@ class UnifiedMultimodalRAG:
 3. **Domain-specific** - Healthcare, legal, finance
 4. **Multi-modal** - Cross-modal evaluation
 
-> **Learn more about LLM-as-Judge**: [arXiv:2305.11633](https://arxiv.org/abs/2305.11633) | [LangSmith Docs](https://docs.smith.langchain.com/evaluation)
+> **Learn more about LLM-as-Judge**: [arXiv:2411.15594](https://arxiv.org/abs/2411.15594) (Survey) | [LangSmith Docs](https://docs.smith.langchain.com/evaluation)
 
 ### Emerging Benchmarks
 
@@ -266,8 +266,8 @@ class UnifiedMultimodalRAG:
 |-----------|-------|------|------|
 | **RAGAS** | General RAG quality | 2024 | [GitHub](https://github.com/explodinggradients/ragas) |
 | **ARES** | Automated evaluation | 2024 | [GitHub](https://github.com/Standoff-Labs/ares) |
-| **MultiHopRAG** | Multi-hop reasoning | 2024 | [arXiv](https://arxiv.org/abs/2401.13596) |
-| **CRUD-RAG** | Create/Read/Update/Delete | 2025 | [arXiv](https://arxiv.org/abs/2401.09854) |
+| **MultiHopRAG** | Multi-hop reasoning | 2024 | [arXiv:2401.15391](https://arxiv.org/abs/2401.15391) |
+| **CRUD-RAG** | Create/Read/Update/Delete | 2025 | [arXiv:2401.17043](https://arxiv.org/abs/2401.17043) |
 
 ### Future Evaluation Framework
 
@@ -319,7 +319,7 @@ class HolisticRAGEvaluator:
 |-----------|-------------|-----------|
 | **Poisoning** | Malicious documents in knowledge base | [Microsoft Research](https://www.microsoft.com/en-us/security/blog/2024/01/22/protecting-llms-from-poisoning-attacks/) |
 | **Privacy** | Sensitive info in retrieved context | [PII Detection](https://python.langchain.com/docs/security/) |
-| **Jailbreaks** | Attacking RAG systems | [arXiv:2308.08466](https://arxiv.org/abs/2308.08466) |
+| **Jailbreaks** | Attacking RAG systems | [arXiv:2402.08416](https://arxiv.org/abs/2402.08416) (Pandora) |
 | **Attribution** | Source verification | [RAGAS](https://github.com/explodinggradients/ragas) |
 
 ### Future: Privacy-Preserving RAG
@@ -367,7 +367,7 @@ class PrivacyPreservingRAG:
 |------|-------------|-----------|
 | **Multi-agent RAG** | Multiple specialized agents | [AutoGen](https://github.com/microsoft/autogen) |
 | **Tool orchestration** | Dynamic tool selection | [LangChain Tools](https://python.langchain.com/docs/concepts/tools/) |
-| **Self-reflection** | Model critiques own outputs | [Self-RAG](https://arxiv.org/abs/2410.13496) |
+| **Self-reflection** | Model critiques own outputs | [Self-RAG](https://arxiv.org/abs/2310.11511) |
 | **Learning to learn** | Improve retrieval over time | [RLHM Papers](https://arxiv.org/) |
 
 ### Future: Self-Improving RAG
@@ -424,7 +424,7 @@ class SelfImprovingRAG:
 | Paper | Year | Link |
 |-------|------|------|
 | **"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"** (Original RAG) | 2020 | [arXiv:2005.11401](https://arxiv.org/abs/2005.11401) |
-| **"Self-RAG: Learning to Retrieve, Generate, and Critique"** | 2024 | [arXiv:2410.13496](https://arxiv.org/abs/2410.13496) |
+| **"Self-RAG: Learning to Retrieve, Generate, and Critique"** | 2024 | [arXiv:2310.11511](https://arxiv.org/abs/2310.11511) |
 | **"HyDE: Hypothetical Document Embeddings"** | 2023 | [arXiv:2212.10496](https://arxiv.org/abs/2212.10496) |
 | **"REPLUG: Retrieval-Augmented Black-Box Language Models"** | 2023 | [arXiv:2301.12652](https://arxiv.org/abs/2301.12652) |
 | **"Corrective RAG (CRAG)"** | 2024 | [GitHub](https://github.com/HazyResearch/corrective-rag) |
@@ -445,7 +445,7 @@ class SelfImprovingRAG:
 | Tool | Description | Link |
 |------|-------------|------|
 | **RAGAS** | RAG evaluation framework | [GitHub](https://github.com/explodinggradients/ragas) | [Docs](https://docs.ragas.io/) |
-| **ARES** | Automated RAG evaluation | [GitHub](https://github.com/Standoff-Labs/ares) | [Paper](https://arxiv.org/abs/2401.13596) |
+| **ARES** | Automated RAG evaluation | [GitHub](https://github.com/stanford-futuredata/ARES) | [arXiv:2311.09476](https://arxiv.org/abs/2311.09476) |
 | **LangSmith** | RAG evaluation & monitoring | [Website](https://smith.langchain.com/) | [Docs](https://docs.smith.langchain.com/) |
 | **DeepEval** | Holistic RAG evaluation | [GitHub](https://github.com/confident-ai/deepeval) | [Docs](https://docs.confident-ai.com/) |
 | **TruLens** | RAG evaluation | [GitHub](https://github.com/truera/trulens) | [Docs](https://www.trulens.org/) |
