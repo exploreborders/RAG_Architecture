@@ -236,9 +236,9 @@ The result is AI systems that are **more reliable, trustworthy, and useful** for
 
 | Blog | Description |
 |------|-------------|
-| [Reducing Hallucinations with RAG](https://www.anyscale.com/blog/reducing-llm-hallucinations) | Practical RAG implementation |
-| [Building Trustworthy LLMs](https://www.pinecone.io/learn/building-trustworthy-llms-rag) | Source attribution strategies |
-| [RAG Cost-Benefit Analysis](https://weaviate.io/blog/rag-cost-benefit) | ROI of RAG systems |
+| [RAG Implementation Guide](https://anyscale.com/blog/fine-tuning-llms-for-longer-context-and-better-rag-systems) | Practical RAG implementation |
+| [Building Trustworthy RAG](https://haruiz.github.io/blog/improve-rag-systems-reliability-with-citations) | Source attribution strategies |
+| [RAG Cost-Benefit Analysis](https://www.stratagem-systems.com/blog/rag-implementation-cost-roi-analysis) | ROI of RAG systems |
 
 ### Official Documentation
 
