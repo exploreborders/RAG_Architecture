@@ -632,7 +632,7 @@ What's your priority?
 
 | Blog | Description |
 |------|-------------|
-| [Vector Database Comparison](https://www.pinecone.io/learn/vector-database-comparison) | DB selection guide |
+| [Vector DB Comparison Guide](https://crazyrouter.com/en/blog/vector-database-comparison-guide-ai-developers-2026) | Comprehensive comparison of top 5 vector databases |
 | [Weaviate Hybrid Search](https://weaviate.io/blog/hybrid-search-for-web-developers) | Hybrid search guide |
 | [Pinecone Serverless](https://www.pinecone.io/blog/serverless/) | Serverless architecture |
 
