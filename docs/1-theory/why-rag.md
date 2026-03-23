@@ -229,7 +229,7 @@ The result is AI systems that are **more reliable, trustworthy, and useful** for
 | Paper | Year | Focus |
 |-------|------|-------|
 | [A Systematic Literature Review of RAG](https://arxiv.org/abs/2508.06401) | 2025 | Meta-analysis showing 1.35x improvement |
-| [Hallucination Rates in LLMs](https://arxiv.org/abs/2309.15090) | 2023 | Hallucination measurement study |
+| [Quantifying Hallucination in LLMs](https://arxiv.org/abs/2309.05217) | 2023 | Hallucination measurement study |
 | [RAG Improvement Analysis](https://arxiv.org/abs/2405.07441) | 2024 | Quantifying RAG benefits |
 
 ### Blog Posts & Tutorials

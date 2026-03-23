@@ -442,9 +442,8 @@ def benchmark_embeddings(embeddings, test_pairs: list) -> dict:
 
 | Paper | Year | Focus |
 |-------|------|-------|
-| [Sentence Transformers](https://arxiv.org/abs/2203.05456) | 2022 | Semantic embedding models |
-| [BGE Embeddings](https://arxiv.org/abs/2309.07541) | 2023 | BGE model paper |
-| [OpenAI Embeddings](https://arxiv.org/abs/2310.05716) | 2023 | Embedding v3 |
+| [Sentence-BERT (SBERT)](https://arxiv.org/abs/1908.10084) | 2019 | Semantic embedding models |
+| [C-Pack: BGE Embeddings](https://arxiv.org/abs/2309.07597) | 2023 | BGE model paper |
 
 ### Official Documentation
 

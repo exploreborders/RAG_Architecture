@@ -525,9 +525,9 @@ Practice implementing Knowledge Graph RAG with this notebook:
 
 | Paper | Year | Focus |
 |-------|------|-------|
-| [From Local to Global: GraphRAG Approach](https://arxiv.org/abs/2404.14766) | 2024 | Microsoft's GraphRAG |
-| [Knowledge Graph-Enhanced RAG](https://arxiv.org/abs/2402.19463) | 2024 | KG-RAG techniques |
-| [Neo4j GraphRAG](https://arxiv.org/abs/2405.12621) | 2024 | Implementation study |
+| [From Local to Global: GraphRAG Approach](https://www.microsoft.com/en-us/research/publication/graphrag/) | 2024 | Microsoft's GraphRAG (Research Blog) |
+| [Graph Retrieval-Augmented Generation: A Survey](https://arxiv.org/abs/2408.08921) | 2024 | Comprehensive GraphRAG survey (327 citations) |
+| [GFM-RAG: Graph Foundation Model for Retrieval Augmented Generation](https://arxiv.org/abs/2502.01113) | 2025 | Graph foundation models for RAG |
 
 ### Official Documentation
 

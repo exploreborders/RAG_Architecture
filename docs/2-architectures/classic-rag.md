@@ -403,7 +403,7 @@ print(f"Context Precision: {context_precision.score}")
 | Paper | Year | Focus |
 |-------|------|-------|
 | [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) | 2020 | Original RAG paper |
-| [Dense Passage Retrieval](https://arxiv.org/abs/2004.09541) | 2020 | DPR for retrieval |
+| [Dense Passage Retrieval (EMNLP 2020)](https://aclanthology.org/2020.emnlp-main.550/) | 2020 | DPR for retrieval (no arXiv version) |
 
 ### Official Documentation
 
