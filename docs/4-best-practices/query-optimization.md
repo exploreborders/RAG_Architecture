@@ -738,7 +738,7 @@ What are your users asking?
 | Paper | Year | Focus |
 |-------|------|-------|
 | [HyDE: Hypothetical Document Embeddings](https://arxiv.org/abs/2212.10496) | 2022 | HyDE technique |
-| [Query Decomposition](https://arxiv.org/abs/2305.02593) | 2023 | Multi-query approaches |
+| [Query Decomposition for RAG](https://arxiv.org/abs/2510.18633) | 2025 | Multi-query approaches |
 
 ### Official Documentation
 

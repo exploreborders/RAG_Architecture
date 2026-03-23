@@ -128,7 +128,7 @@ Hypothetical Document:"""
 
 Train or prompt the model to decide when to retrieve and how to critique its own output.
 
-> **Paper**: [arXiv:2410.13496](https://arxiv.org/abs/2410.13496)
+> **Paper**: [arXiv:2310.11511](https://arxiv.org/abs/2310.11511)
 > **GitHub**: [AkariAsai/self-rag](https://github.com/AkariAsai/self-rag)
 
 ```python
@@ -756,7 +756,7 @@ Briefly describe:"""
 | Paper | Link |
 |-------|------|
 | HyDE: Precise Zero-Shot Dense Retrieval | [arXiv:2212.10496](https://arxiv.org/abs/2212.10496) |
-| Self-RAG: Learning to Retrieve, Generate, and Critique | [arXiv:2410.13496](https://arxiv.org/abs/2410.13496) |
+| Self-RAG: Learning to Retrieve, Generate, and Critique | [arXiv:2310.11511](https://arxiv.org/abs/2310.11511) |
 | Corrective RAG | [arXiv:2401.15884](https://arxiv.org/abs/2401.15884) |
 | GraphRAG: From Local to Global | [Microsoft Research](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-knowledge/) |
 

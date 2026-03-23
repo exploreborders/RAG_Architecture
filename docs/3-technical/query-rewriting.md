@@ -357,7 +357,7 @@ Strategy:"""
 | Paper | Year | Link |
 |-------|------|------|
 | HyDE: Hypothetical Document Embeddings | 2022 | [arXiv:2212.10496](https://arxiv.org/abs/2212.10496) |
-| Query Rewriting in RAG | - | [arXiv:2405.00054](https://arxiv.org/abs/2405.00054) |
+| Query Rewriting in RAG | 2024 | [arXiv:2504.12330](https://arxiv.org/abs/2504.12330) |
 
 ### Implementations & Tutorials
 

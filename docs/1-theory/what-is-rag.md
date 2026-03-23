@@ -173,7 +173,7 @@ print(result['result'])  # Print the answer
 | [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) | 2020 | Original RAG paper (Lewis et al.) |
 | [A Systematic Literature Review of RAG](https://arxiv.org/abs/2508.06401) | 2025 | Comprehensive RAG overview |
 | [Comprehensive RAG Survey](https://arxiv.org/abs/2506.00054) | 2025 | Architectures & enhancements |
-| [Self-RAG: Learning to Retrieve, Generate, and Critique](https://arxiv.org/abs/2410.13496) | 2024 | Adaptive retrieval |
+| [Self-RAG: Learning to Retrieve, Generate, and Critique](https://arxiv.org/abs/2310.11511) | 2024 | Adaptive retrieval |
 
 ### Official Documentation
 

@@ -610,8 +610,8 @@ print(f"Fragmentation: {metrics['fragmentation']:.1%}")
 
 | Paper | Year | Focus |
 |-------|------|-------|
-| [Chunking Strategies for RAG](https://arxiv.org/abs/2402.01323) | 2024 | Chunk optimization |
-| [Semantic Chunking](https://arxiv.org/abs/2406.11273) | 2024 | Semantic approaches |
+| [Advanced Chunking Strategies](https://arxiv.org/abs/2504.19754) | 2025 | Chunk optimization |
+| [Vision-Guided Chunking](https://arxiv.org/abs/2506.16035) | 2025 | Semantic approaches |
 
 ### Official Documentation
 

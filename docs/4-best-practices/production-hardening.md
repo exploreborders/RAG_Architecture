@@ -652,8 +652,8 @@ Use this checklist before production deployment:
 
 | Paper | Year | Focus |
 |-------|------|-------|
-| [RAG Security Analysis](https://arxiv.org/abs/2405.07352) | 2024 | Security considerations |
-| [Prompt Injection Attacks](https://arxiv.org/abs/2308.06332) | 2023 | Injection prevention |
+| [PoisonedRAG: Knowledge Corruption Attacks](https://arxiv.org/abs/2402.07867) | 2024 | RAG security & attacks |
+| [Prompt Injection Attacks](https://arxiv.org/abs/2306.05499) | 2023 | Injection prevention |
 
 ### Official Documentation
 

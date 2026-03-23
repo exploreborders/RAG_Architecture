@@ -553,9 +553,9 @@ Practice implementing Agentic RAG with this notebook:
 
 | Paper | Year | Focus |
 |-------|------|-------|
-| [Self-RAG: Learning to Retrieve, Generate, and Critique](https://arxiv.org/abs/2410.13496) | 2024 | Self-reflective RAG |
+| [Self-RAG: Learning to Retrieve, Generate, and Critique](https://arxiv.org/abs/2310.11511) | 2024 | Self-reflective RAG |
 | [Agentic RAG Survey](https://arxiv.org/abs/2501.09136) | 2025 | Agentic systems overview |
-| [Active Retrieval Augmented Generation](https://arxiv.org/abs/2403.08277) | 2024 | Proactive retrieval |
+| [Active Retrieval Augmented Generation](https://arxiv.org/abs/2305.06983) | 2023 | Proactive retrieval (FLARE) |
 
 ### Official Documentation
 

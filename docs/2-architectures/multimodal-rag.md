@@ -597,8 +597,8 @@ Practice RAG evaluation techniques with this notebook:
 |-------|------|-------|
 | [Multimodal RAG Survey](https://arxiv.org/abs/2502.08826) | 2025 | Beyond text RAG |
 | [CLIP: Learning Transferable Visual Models](https://arxiv.org/abs/2103.00020) | 2021 | Vision-language foundation |
-| [VideoRAG: VideoQA with RAG](https://arxiv.org/abs/2406.11833) | 2024 | Video retrieval |
-| [AudioRAG: Audio Understanding](https://arxiv.org/abs/2408.07856) | 2024 | Audio retrieval |
+| [VideoRAG: VideoQA with RAG](https://arxiv.org/abs/2502.01549) | 2025 | Video retrieval |
+| [WavRAG: Audio-Integrated RAG](https://arxiv.org/abs/2502.14727) | 2025 | Audio retrieval |
 
 ### Official Documentation
 

@@ -123,7 +123,7 @@ Modular RAG Components:
 - Generates reflection tokens
 - Self-critiques its outputs
 
-> **Paper**: [arXiv:2410.13496](https://arxiv.org/abs/2410.13496)
+> **Paper**: [arXiv:2310.11511](https://arxiv.org/abs/2310.11511)
 > **GitHub**: [https://github.com/AkariAsai/self-rag](https://github.com/AkariAsai/self-rag)
 
 ```
@@ -227,7 +227,7 @@ Query ──► [Is retrieval needed?] ──► Yes ──► Retrieve ──�
 | Paper | Year | Link |
 |-------|------|------|
 | Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al.) | 2020 | [arXiv:2005.11401](https://arxiv.org/abs/2005.11401) |
-| Self-RAG: Learning to Retrieve, Generate, and Critique | 2024 | [arXiv:2410.13496](https://arxiv.org/abs/2410.13496) |
+| Self-RAG: Learning to Retrieve, Generate, and Critique | 2024 | [arXiv:2310.11511](https://arxiv.org/abs/2310.11511) |
 | A Systematic Survey of RAG | 2025 | [arXiv:2508.06401](https://arxiv.org/abs/2508.06401) |
 | Comprehensive RAG Survey | 2025 | [arXiv:2506.00054](https://arxiv.org/abs/2506.00054) |
 | Agentic RAG Survey | 2025 | [arXiv:2501.09136](https://arxiv.org/abs/2501.09136) |
