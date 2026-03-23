@@ -223,7 +223,7 @@ class CostAwareRAG:
 | 2024 | CLIP-based multimodal retrieval | [CLIP](https://openai.com/index/clip/) |
 | 2025 | VideoRAG, AudioRAG frameworks | [VideoRAG GitHub](https://github.com/HKUDS/VideoRAG) |
 | 2025 | Unified multimodal knowledge graphs | [arXiv:2502.08826](https://arxiv.org/abs/2502.08826) |
-| 2026 | Cross-modal reasoning agents | [EMNLP 2026](https://emnlp.org/) (upcoming) |
+| 2026 | Cross-modal reasoning agents | [EMNLP 2026](https://emnlp.org/) (expected) |
 
 ### Future: Unified Multimodal Embeddings
 
@@ -265,7 +265,7 @@ class UnifiedMultimodalRAG:
 | Benchmark | Focus | Year | Link |
 |-----------|-------|------|------|
 | **RAGAS** | General RAG quality | 2024 | [GitHub](https://github.com/explodinggradients/ragas) |
-| **ARES** | Automated evaluation | 2024 | [GitHub](https://github.com/Standoff-Labs/ares) |
+| **ARES** | Automated evaluation | 2024 | [GitHub](https://github.com/stanford-futuredata/ARES) |
 | **MultiHopRAG** | Multi-hop reasoning | 2024 | [arXiv:2401.15391](https://arxiv.org/abs/2401.15391) |
 | **CRUD-RAG** | Create/Read/Update/Delete | 2025 | [arXiv:2401.17043](https://arxiv.org/abs/2401.17043) |
 
@@ -317,8 +317,8 @@ class HolisticRAGEvaluator:
 
 | Challenge | Description | Reference |
 |-----------|-------------|-----------|
-| **Poisoning** | Malicious documents in knowledge base | [Microsoft Research](https://www.microsoft.com/en-us/security/blog/2024/01/22/protecting-llms-from-poisoning-attacks/) |
-| **Privacy** | Sensitive info in retrieved context | [PII Detection](https://python.langchain.com/docs/security/) |
+| **Poisoning** | Malicious documents in knowledge base | [arXiv:2402.08416](https://arxiv.org/abs/2402.08416) (Pandora) |
+| **Privacy** | Sensitive info in retrieved context | [LangChain PII Handling](https://blog.langchain.com/handling-pii-data-in-langchain/) |
 | **Jailbreaks** | Attacking RAG systems | [arXiv:2402.08416](https://arxiv.org/abs/2402.08416) (Pandora) |
 | **Attribution** | Source verification | [RAGAS](https://github.com/explodinggradients/ragas) |
 
@@ -368,7 +368,7 @@ class PrivacyPreservingRAG:
 | **Multi-agent RAG** | Multiple specialized agents | [AutoGen](https://github.com/microsoft/autogen) |
 | **Tool orchestration** | Dynamic tool selection | [LangChain Tools](https://python.langchain.com/docs/concepts/tools/) |
 | **Self-reflection** | Model critiques own outputs | [Self-RAG](https://arxiv.org/abs/2310.11511) |
-| **Learning to learn** | Improve retrieval over time | [RLHM Papers](https://arxiv.org/) |
+| **Learning to learn** | Improve retrieval over time | [SimRAG: Self-Improving RAG](https://arxiv.org/abs/2410.17952) |
 
 ### Future: Self-Improving RAG
 
@@ -427,7 +427,7 @@ class SelfImprovingRAG:
 | **"Self-RAG: Learning to Retrieve, Generate, and Critique"** | 2024 | [arXiv:2310.11511](https://arxiv.org/abs/2310.11511) |
 | **"HyDE: Hypothetical Document Embeddings"** | 2023 | [arXiv:2212.10496](https://arxiv.org/abs/2212.10496) |
 | **"REPLUG: Retrieval-Augmented Black-Box Language Models"** | 2023 | [arXiv:2301.12652](https://arxiv.org/abs/2301.12652) |
-| **"Corrective RAG (CRAG)"** | 2024 | [GitHub](https://github.com/HazyResearch/corrective-rag) |
+| **"Corrective RAG (CRAG)"** | 2024 | [GitHub](https://github.com/HuskyInSalt/CRAG) |
 
 ### Key Implementations
 
@@ -477,11 +477,11 @@ class SelfImprovingRAG:
 | Model | Provider | Link |
 |-------|----------|------|
 | **text-embedding-3** | OpenAI | [API Docs](https://platform.openai.com/docs/guides/embeddings) |
-| **BGE** (BAAI General Embedding) | Open source | [GitHub](https://github.com/BAI/bge) | [Models](https://huggingface.co/BAAI) |
+| **BGE** (BAAI General Embedding) | Open source | [GitHub](https://github.com/FlagOpen/FlagEmbedding) | [Models](https://huggingface.co/BAAI) |
 | **nomic-embed-text** | Ollama/Nomic | [Website](https://nomic.ai/) | [Ollama](https://ollama.ai/) |
 | **Cohere Embed** | Cohere | [Website](https://cohere.com/) |
 | **Mistral Embed** | Mistral AI | [Website](https://mistral.ai/) |
-| **NV-Embed** | NVIDIA | [API](https://build.nvidia.com/nvidia/nv-embedqa-eu) |
+| **NV-Embed** | NVIDIA | [API](https://docs.api.nvidia.com/nim/reference/nvidia-nv-embed-v1) |
 
 ### LLM Providers
 
@@ -511,7 +511,7 @@ class SelfImprovingRAG:
 | **Adaptive Retrieval** | When to retrieve? | LLM-based estimation | Learned policies |
 | **Efficiency & Cost** | How to reduce cost? | Basic [caching](../4-best-practices/caching.md) | Budget-aware policies |
 | **Multi-Modal** | Cross-modal reasoning? | [CLIP](https://openai.com/index/clip/)-based | Unified embeddings |
-| **Evaluation** | How to measure quality? | [RAGAS](https://github.com/explodinggradients/ragas), [ARES](https://github.com/Standoff-Labs/ares) | Holistic metrics |
+| **Evaluation** | How to measure quality? | [RAGAS](https://github.com/explodinggradients/ragas), [ARES](https://github.com/stanford-futuredata/ARES) | Holistic metrics |
 | **Security & Privacy** | How to protect data? | PII detection | Privacy-preserving RAG |
 | **Agentic Systems** | Self-improving RAG? | Multi-agent | Learning from feedback |
 
@@ -523,7 +523,7 @@ class SelfImprovingRAG:
 |---------|--------------|-----|
 | **Ignoring research** | Using outdated approaches | Stay current with papers |
 | **Over-engineering** | Adding complexity without need | Start simple, add as needed |
-| **Skipping evaluation** | Can't measure improvement | Use [RAGAS](https://github.com/explodinggradients/ragas), [ARES](https://github.com/Standoff-Labs/ares) benchmarks |
+| **Skipping evaluation** | Can't measure improvement | Use [RAGAS](https://github.com/explodinggradients/ragas), [ARES](https://github.com/stanford-futuredata/ARES) benchmarks |
 | **Ignoring cost** | RAG can be expensive | Implement budget-aware policies |
 | **No monitoring** | Can't debug issues | Add observability early |
 
