@@ -221,7 +221,7 @@ class CostAwareRAG:
 | Year | Development | Reference |
 |------|-------------|-----------|
 | 2024 | CLIP-based multimodal retrieval | [CLIP](https://openai.com/index/clip/) |
-| 2025 | VideoRAG, AudioRAG frameworks | [VideoRAG GitHub](https://github.com/mainfact/video-rag) |
+| 2025 | VideoRAG, AudioRAG frameworks | [VideoRAG GitHub](https://github.com/HKUDS/VideoRAG) |
 | 2025 | Unified multimodal knowledge graphs | [arXiv:2502.08826](https://arxiv.org/abs/2502.08826) |
 | 2026 | Cross-modal reasoning agents | [EMNLP 2026](https://emnlp.org/) (upcoming) |
 
