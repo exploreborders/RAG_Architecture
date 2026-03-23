@@ -100,7 +100,7 @@ vectorstore = Chroma.from_documents(documents, embeddings)
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 llm = ChatOpenAI(model="gpt-4o")
-embeddings = OpenAIEmbedding(model="text-embedding-3-small")
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 vectorstore = Chroma.from_documents(documents, embeddings)
 ```
 
