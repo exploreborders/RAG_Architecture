@@ -731,4 +731,36 @@ What are your users asking?
 
 ---
 
+## References
+
+### Academic Papers
+
+| Paper | Year | Focus |
+|-------|------|-------|
+| [HyDE: Hypothetical Document Embeddings](https://arxiv.org/abs/2212.10496) | 2022 | HyDE technique |
+| [Query Decomposition](https://arxiv.org/abs/2305.02593) | 2023 | Multi-query approaches |
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [LangChain HyDE](https://python.langchain.com/docs/retrievers/hyde) | HyDE implementation |
+| [LlamaIndex Query Engine](https://docs.llamaindex.ai/en/stable/module_ides/query_engine/) | Query engine guide |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [Advanced Query Optimization](https://weaviate.io/blog/query-optimization) | Techniques |
+| [HyDE Tutorial](https://zilliz.com/learn/hyde-rag) | Implementation |
+| [Query Rewriting Guide](https://blog.gopenai.com/query-rewriting) | Rewriting strategies |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [texttron/hyde](https://github.com/texttron/hyde) | HyDE implementation |
+
+---
+
 *Next: [Production Deployment Guide](./production-deployment.md)*

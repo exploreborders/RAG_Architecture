@@ -164,4 +164,40 @@ print(result['result'])  # Print the answer
 
 ---
 
+## References
+
+### Academic Papers
+
+| Paper | Year | Focus |
+|-------|------|-------|
+| [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) | 2020 | Original RAG paper (Lewis et al.) |
+| [A Systematic Literature Review of RAG](https://arxiv.org/abs/2508.06401) | 2025 | Comprehensive RAG overview |
+| [Comprehensive RAG Survey](https://arxiv.org/abs/2506.00054) | 2025 | Architectures & enhancements |
+| [Self-RAG: Learning to Retrieve, Generate, and Critique](https://arxiv.org/abs/2410.13496) | 2024 | Adaptive retrieval |
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [LangChain RAG Documentation](https://python.langchain.com/docs/tutorials/rag/) | Official LangChain RAG guide |
+| [LlamaIndex RAG Documentation](https://docs.llamaindex.ai/en/stable/understanding/rag/) | LlamaIndex RAG guide |
+| [LangGraph](https://langchain-ai.github.io/langgraph/) | Agentic RAG orchestration |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [Advanced RAG Techniques - Weaviate](https://weaviate.io/blog/advanced-rag) | Comprehensive RAG techniques |
+| [RAG vs Fine-tuning - Anyscale](https://www.anyscale.com/blog/rag-vs-fine-tuning) | When to use RAG vs fine-tuning |
+| [Building Production RAG - Pinecone](https://www.pinecone.io/learn/series/rag/) | Production RAG patterns |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [microsoft/graphrag](https://github.com/microsoft/graphrag) | Microsoft's GraphRAG implementation |
+| [LangChain](https://github.com/langchain-ai/langchain) | LangChain framework |
+
+---
+
 *See also: [Evolution of RAG](evolution-of-rag.md)*

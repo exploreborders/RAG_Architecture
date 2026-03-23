@@ -519,4 +519,41 @@ Practice implementing Knowledge Graph RAG with this notebook:
 
 ---
 
+## References
+
+### Academic Papers
+
+| Paper | Year | Focus |
+|-------|------|-------|
+| [From Local to Global: GraphRAG Approach](https://arxiv.org/abs/2404.14766) | 2024 | Microsoft's GraphRAG |
+| [Knowledge Graph-Enhanced RAG](https://arxiv.org/abs/2402.19463) | 2024 | KG-RAG techniques |
+| [Neo4j GraphRAG](https://arxiv.org/abs/2405.12621) | 2024 | Implementation study |
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [Neo4j Graph Database](https://neo4j.com/docs/) | Neo4j documentation |
+| [LangChain Neo4j](https://python.langchain.com/docs/integrationsgraphs/neo4j_graph) | LangChain Neo4j integration |
+| [LlamaIndex Knowledge Graph](https://docs.llamaindex.ai/en/stable/module_ides/knowledge_graph/) | LlamaIndex KG guide |
+| [GraphRAG Microsoft](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-knowledge/) | Microsoft GraphRAG blog |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [Neo4j Advanced RAG](https://neo4j.com/blog/genai/advanced-rag-techniques/) | 15 advanced techniques |
+| [Building Knowledge Graphs](https://towardsdatascience.com/building-knowledge-graphs-a-technical-deep-dive-ddc2dc76e79c) | KG construction guide |
+| [GraphRAG vs Vector RAG](https://www.pinecone.io/learn/graph-rag-vs-vector-rag) | Comparison guide |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [microsoft/graphrag](https://github.com/microsoft/graphrag) | Microsoft's GraphRAG |
+| [neo4j-graphrag](https://github.com/neo4j/graphrag) | Neo4j GraphRAG package |
+| [LangChain Graph Transformers](https://github.com/langchain-ai/langchain/tree/master/libs/langchain-experimental) | LLM graph extraction |
+
+---
+
 *Next: [Agentic RAG](../2-architectures/agentic-rag/)*

@@ -615,4 +615,35 @@ What's your priority?
 
 ---
 
+## References
+
+### Official Documentation
+
+| Database | Documentation |
+|----------|---------------|
+| [Chroma](https://docs.trychroma.com/) | ChromaDB docs |
+| [Pinecone](https://docs.pinecone.io/) | Pinecone docs |
+| [Qdrant](https://qdrant.tech/documentation/) | Qdrant docs |
+| [Weaviate](https://weaviate.io/developers/weaviate) | Weaviate docs |
+| [Milvus](https://milvus.io/docs) | Milvus docs |
+| [pgvector](https://github.com/pgvector/pgvector) | pgvector GitHub |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [Vector Database Comparison](https://www.pinecone.io/learn/vector-database-comparison) | DB selection guide |
+| [Weaviate Hybrid Search](https://weaviate.io/blog/hybrid-search) | Hybrid search guide |
+| [Pinecone Serverless](https://www.pinecone.io/learn/serverless) | Serverless architecture |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [chroma](https://github.com/chroma-core/chroma) | ChromaDB |
+| [milvus](https://github.com/milvus-io/milvus) | Milvus |
+| [qdrant](https://github.com/qdrant/qdrant) | Qdrant |
+
+---
+
 *Next: [Production Deployment](../4-best-practices/production-deployment.md)*

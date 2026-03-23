@@ -588,4 +588,30 @@ class CacheMetrics:
 
 ---
 
+## References
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [Redis Cache](https://redis.io/docs/) | Redis documentation |
+| [LangChain Cache](https://python.langchain.com/docs/modules/cache/) | LangChain caching |
+| [LlamaIndex Cache](https://docs.llamaindex.ai/en/stable/module_ides/caching/) | LlamaIndex caching |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [RAG Caching Strategies](https://www.pinecone.io/learn/rag-caching) | Caching patterns |
+| [Redis for RAG](https://redis.io/blog/redis-for-rag) | Redis implementation |
+| [Semantic Caching](https://blog.langchain.dev/semantic-caching/) | LangChain blog |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [LangChain cache](https://github.com/langchain-ai/langchain/tree/master/libs/langchain-core/langchain_core/caches) | Cache implementations |
+
+---
+
 *Next: [Cost Optimization](cost-optimization.md)*

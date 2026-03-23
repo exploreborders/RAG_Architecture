@@ -892,6 +892,35 @@ Before deploying to production, ensure you have:
 
 ---
 
+## References
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [FastAPI](https://fastapi.tiangolo.com/) | API framework docs |
+| [Docker](https://docs.docker.com/) | Container docs |
+| [Kubernetes](https://kubernetes.io/docs/) | K8s docs |
+| [AWS ECS](https://docs.aws.amazon.com/ecs/) | AWS container service |
+| [GCP Cloud Run](https://cloud.google.com/run/docs) | GCP serverless |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [RAG Production Best Practices](https://www.pinecone.io/learn/production-rag) | Deployment patterns |
+| [Docker Compose for RAG](https://blog.langchain.dev/docker-rag/) | Containerization |
+| [Kubernetes RAG Deployment](https://kubernetes.io/blog/rag-deployment) | K8s patterns |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [Docker](https://github.com/docker/cli) | Docker CLI |
+| [Awesome RAG](https://github.com/arcetec/awesome-rag) | RAG resources |
+
+---
+
 *[Previous: Common Mistakes to Avoid] • [Next: Security Considerations](security-considerations.md)*
 
 ---

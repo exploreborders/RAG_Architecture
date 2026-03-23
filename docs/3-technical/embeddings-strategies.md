@@ -436,4 +436,39 @@ def benchmark_embeddings(embeddings, test_pairs: list) -> dict:
 
 ---
 
+## References
+
+### Academic Papers
+
+| Paper | Year | Focus |
+|-------|------|-------|
+| [Sentence Transformers](https://arxiv.org/abs/2203.05456) | 2022 | Semantic embedding models |
+| [BGE Embeddings](https://arxiv.org/abs/2309.07541) | 2023 | BGE model paper |
+| [OpenAI Embeddings](https://arxiv.org/abs/2310.05716) | 2023 | Embedding v3 |
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings) | OpenAI embedding docs |
+| [Sentence Transformers](https://sbert.net/) | SBERT documentation |
+| [HuggingFace Transformers](https://huggingface.co/docs/transformers/index) | HF transformers |
+| [BGE Model Cards](https://huggingface.co/BAAI) | BAAI models |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [Embedding Model Comparison](https://www.pinecone.io/learn/embedding-models/) | Model selection guide |
+| [BGE Embeddings Tutorial](https://huggingface.co/blog/BAAI) | BGE usage guide |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [BAAI/bge-embeddings](https://github.com/BAI/bge-base-en) | BGE models |
+| [sentence-transformers](https://github.com/UKPLab/sentence-transformers) | SBERT library |
+
+---
+
 *Next: [Retrieval Systems](retrieval-systems.md)*

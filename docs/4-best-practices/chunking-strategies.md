@@ -604,4 +604,37 @@ print(f"Fragmentation: {metrics['fragmentation']:.1%}")
 
 ---
 
+## References
+
+### Academic Papers
+
+| Paper | Year | Focus |
+|-------|------|-------|
+| [Chunking Strategies for RAG](https://arxiv.org/abs/2402.01323) | 2024 | Chunk optimization |
+| [Semantic Chunking](https://arxiv.org/abs/2406.11273) | 2024 | Semantic approaches |
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [LangChain Text Splitters](https://python.langchain.com/docs/modules/data_connection/text_splitters/) | Official splitters |
+| [LlamaIndex Node Parser](https://docs.llamaindex.ai/en/stable/module_ides/node_parsers/) | Node parsing |
+| [spaCy](https://spacy.io/) | NLP library |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [Chunking Strategies Deep Dive](https://www.pinecone.io/learn/chunking-strategies) | Implementation guide |
+| [Neo4j Chunking Guide](https://neo4j.com/blog/genai/chunking-strategies/) | Comparison |
+| [Semantic Chunking Tutorial](https://towardsdatascience.com/semantic-chunking) | Techniques |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [LangChain Splitters](https://github.com/langchain-ai/langchain/tree/master/libs/langchain-text-splitters) | Text splitting |
+
+---
+
 *Next: [Query Optimization](./query-optimization.md)*

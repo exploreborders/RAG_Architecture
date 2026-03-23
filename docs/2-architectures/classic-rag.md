@@ -396,6 +396,40 @@ print(f"Context Precision: {context_precision.score}")
 
 ---
 
+## References
+
+### Academic Papers
+
+| Paper | Year | Focus |
+|-------|------|-------|
+| [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) | 2020 | Original RAG paper |
+| [Dense Passage Retrieval](https://arxiv.org/abs/2004.09541) | 2020 | DPR for retrieval |
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [LangChain RetrievalQA](https://python.langchain.com/docs/modules/chains/) | QA chain documentation |
+| [LangChain Chroma](https://python.langchain.com/docs/integrations/vectorstores/chroma) | Chroma integration |
+| [LlamaIndex VectorStoreIndex](https://docs.llamaindex.ai/en/stable/api/core/index/) | LlamaIndex index guide |
+| [Ollama](https://github.com/ollama/ollama) | Local LLM execution |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [LangChain RAG Tutorial](https://python.langchain.com/docs/tutorials/rag/) | Official LangChain tutorial |
+| [Building RAG with LlamaIndex](https://docs.llamaindex.ai/en/stable/getting_started/quickstart/) | LlamaIndex quickstart |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [LangChain](https://github.com/langchain-ai/langchain) | LangChain framework |
+| [Ollama](https://github.com/ollama/ollama) | Local LLM runtime |
+
+---
+
 ## Try It Yourself
 
 Practice implementing Classic RAG with this notebook:

@@ -1490,4 +1490,31 @@ What's your bottleneck?
 
 ---
 
+## References
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [Kubernetes](https://kubernetes.io/docs/) | K8s documentation |
+| [Docker](https://docs.docker.com/) | Docker docs |
+| [Pinecone Scaling](https://docs.pinecone.io/guides/manage-and-scale/scaling) | Pinecone scaling |
+| [Qdrant Clustering](https://qdrant.tech/documentation/concepts/collections/) | Qdrant scaling |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [RAG at Scale](https://www.pinecone.io/learn/rag-at-scale) | Enterprise patterns |
+| [Horizontal Scaling RAG](https://weaviate.io/blog/scaling-rag) | Multi-node RAG |
+| [Vector DB Scaling](https://blog.milvus.io/scaling-vector-databases) | Milvus scaling |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [kubernetes/examples](https://github.com/kubernetes/examples) | K8s examples |
+
+---
+
 *Next: [Cost Optimization](cost-optimization.md)*

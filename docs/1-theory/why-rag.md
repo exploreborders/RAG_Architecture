@@ -222,4 +222,31 @@ The result is AI systems that are **more reliable, trustworthy, and useful** for
 
 ---
 
+## References
+
+### Academic Papers
+
+| Paper | Year | Focus |
+|-------|------|-------|
+| [A Systematic Literature Review of RAG](https://arxiv.org/abs/2508.06401) | 2025 | Meta-analysis showing 1.35x improvement |
+| [Hallucination Rates in LLMs](https://arxiv.org/abs/2309.15090) | 2023 | Hallucination measurement study |
+| [RAG Improvement Analysis](https://arxiv.org/abs/2405.07441) | 2024 | Quantifying RAG benefits |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [Reducing Hallucinations with RAG](https://www.anyscale.com/blog/reducing-llm-hallucinations) | Practical RAG implementation |
+| [Building Trustworthy LLMs](https://www.pinecone.io/learn/building-trustworthy-llms-rag) | Source attribution strategies |
+| [RAG Cost-Benefit Analysis](https://weaviate.io/blog/rag-cost-benefit) | ROI of RAG systems |
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [LangChain RetrievalQA](https://python.langchain.com/docs/modules/chains/) | QA chain documentation |
+| [LlamaIndex Router](https://docs.llamaindex.ai/en/stable/module_guides/querying/router/) | Query routing strategies |
+
+---
+
 *Next: [Evolution of RAG](evolution-of-rag.md)*

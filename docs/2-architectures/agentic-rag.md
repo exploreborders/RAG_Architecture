@@ -547,4 +547,41 @@ Practice implementing Agentic RAG with this notebook:
 
 ---
 
+## References
+
+### Academic Papers
+
+| Paper | Year | Focus |
+|-------|------|-------|
+| [Self-RAG: Learning to Retrieve, Generate, and Critique](https://arxiv.org/abs/2410.13496) | 2024 | Self-reflective RAG |
+| [Agentic RAG Survey](https://arxiv.org/abs/2501.09136) | 2025 | Agentic systems overview |
+| [Active Retrieval Augmented Generation](https://arxiv.org/abs/2403.08277) | 2024 | Proactive retrieval |
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) | Official LangGraph guide |
+| [AutoGen Microsoft](https://microsoft.github.io/autogen/) | Microsoft multi-agent framework |
+| [LangChain Agents](https://python.langchain.com/docs/modules/agents/) | Agent documentation |
+| [LlamaIndex Agents](https://docs.llamaindex.ai/en/stable/module_guides/agents/) | LlamaIndex agents |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [Building Agentic RAG with LangGraph](https://blog.langchain.dev/agentic-rag/) | LangChain blog |
+| [AutoGen for RAG](https://microsoft.github.io/autogen/0.2/docs/topics/llm_weather/) | Multi-agent RAG |
+| [Agentic RAG Patterns](https://www.pinecone.io/learn/agentic-rag) | Architecture patterns |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [microsoft/autogen](https://github.com/microsoft/autogen) | Microsoft AutoGen |
+| [AkariAsai/self-rag](https://github.com/AkariAsai/self-rag) | Self-RAG implementation |
+| [LangGraph](https://github.com/langchain-ai/langgraph) | LangGraph framework |
+
+---
+
 *Next: [Multimodal RAG](../2-architectures/multimodal-rag/)*

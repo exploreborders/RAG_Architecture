@@ -646,4 +646,31 @@ Use this checklist before production deployment:
 
 ---
 
+## References
+
+### Academic Papers
+
+| Paper | Year | Focus |
+|-------|------|-------|
+| [RAG Security Analysis](https://arxiv.org/abs/2405.07352) | 2024 | Security considerations |
+| [Prompt Injection Attacks](https://arxiv.org/abs/2308.06332) | 2023 | Injection prevention |
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [OWASP Top 10](https://owasp.org/www-project-top-ten/) | Web security |
+| [FastAPI Security](https://fastapi.tiangolo.com/tutorial/security/) | API security |
+| [LangChain Security](https://python.langchain.com/docs/security/) | Framework security |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [RAG Security Best Practices](https://www.pinecone.io/learn/rag-security) | Security patterns |
+| [Securing RAG Pipelines](https://weaviate.io/blog/security-rag) | Implementation |
+| [Rate Limiting Guide](https://cloud.google.com/architecture/rate-limiting) | API protection |
+
+---
+
 *Last updated: March 2026*

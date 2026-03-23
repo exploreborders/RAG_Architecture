@@ -589,4 +589,40 @@ Practice RAG evaluation techniques with this notebook:
 
 ---
 
+## References
+
+### Academic Papers
+
+| Paper | Year | Focus |
+|-------|------|-------|
+| [Multimodal RAG Survey](https://arxiv.org/abs/2502.08826) | 2025 | Beyond text RAG |
+| [CLIP: Learning Transferable Visual Models](https://arxiv.org/abs/2103.00020) | 2021 | Vision-language foundation |
+| [VideoRAG: VideoQA with RAG](https://arxiv.org/abs/2406.11833) | 2024 | Video retrieval |
+| [AudioRAG: Audio Understanding](https://arxiv.org/abs/2408.07856) | 2024 | Audio retrieval |
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [LangChain Multimodal](https://python.langchain.com/docs/multimodal/) | Multimodal guides |
+| [LlamaIndex Multimodal](https://docs.llamaindex.ai/en/stable/module_ides/multi_modal/) | LlamaIndex multimodal |
+| [Ollama Vision Models](https://github.com/ollama/ollama) | Vision model support |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [Multimodal RAG Architecture](https://www.pinecone.io/learn/multimodal-rag) | Implementation patterns |
+| [Building Video RAG](https://weaviate.io/blog/video-rag) | Video retrieval |
+| [Cross-modal Retrieval](https://medium.com/@rossashman/cross-modal-retrieval) | Multi-format search |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [llava](https://github.com/haotian-liu/LLaVA) | Large language and vision assistant |
+| [multimodalrag](https://github.com/ollama/ollama) | Ollama vision models |
+
+---
+
 *Next: [Advanced Patterns](./advanced-patterns.md)*

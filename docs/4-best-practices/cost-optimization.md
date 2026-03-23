@@ -406,4 +406,32 @@ See [Providers](../3-technical/providers.md) for setup instructions.
 
 ---
 
+## References
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [OpenAI Pricing](https://openai.com/pricing) | LLM pricing |
+| [Ollama](https://github.com/ollama/ollama) | Local LLM runtime |
+| [LangChain Cache](https://python.langchain.com/docs/modules/cache/) | Caching docs |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [RAG Cost Optimization](https://www.pinecone.io/learn/rag-cost-optimization) | Cost reduction |
+| [Token Optimization](https://blog.langchain.dev/token-optimization/) | Reduce usage |
+| [Budget-Aware RAG](https://weaviate.io/blog/budget-aware-rag) | Policies |
+
+### Tools
+
+| Tool | Description |
+|------|-------------|
+| [LangSmith](https://smith.langchain.com/) | Cost monitoring |
+| [PromptLayer](https://promptlayer.com/) | Prompt management |
+| [Weave](https://wandb.ai/weave) | Tracing & costs |
+
+---
+
 *Next: [Scaling Patterns](scaling-patterns.md)*
