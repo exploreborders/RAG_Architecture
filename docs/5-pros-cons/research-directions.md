@@ -92,6 +92,11 @@ RAG Research Landscape:
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
+> **For practical implementations of these concepts, see:**
+> - **Caching & Token optimization**: [Cost Optimization](../4-best-practices/cost-optimization.md), [Caching](../4-best-practices/caching.md)
+> - **Security & Privacy**: [Security Considerations](../4-best-practices/security-considerations.md)
+> - **Observability**: [Observability](../4-best-practices/observability.md)
+
 ## 1. Adaptive Retrieval
 
 ### Key Questions
@@ -102,11 +107,11 @@ RAG Research Landscape:
 
 ### Notable Papers
 
-| Paper | Contribution |
-|-------|--------------|
-| **Self-RAG** (2024) | Model learns to retrieve when needed |
-| **Adaptive RAG** | Route queries to optimal strategy |
-| **REPLUG** | Retrieve and plug in external knowledge |
+| Paper | Year | Contribution | Link |
+|-------|------|--------------|------|
+| **Self-RAG** | 2024 | Model learns to retrieve when needed | [arXiv:2410.13496](https://arxiv.org/abs/2410.13496) |
+| **Adaptive RAG** | 2024 | Route queries to optimal strategy | [GitHub](https://github.com/run-llama/LlamaIndex/blob/main/llama-index-packs/llama-index-packs-corrective-rag/README.md) |
+| **REPLUG** | 2023 | Retrieve and plug in external knowledge | [arXiv:2301.12652](https://arxiv.org/abs/2301.12652) |
 
 ### Research Directions
 
@@ -151,12 +156,12 @@ Probability:"""
 
 ### Research Areas
 
-| Area | Description |
-|------|-------------|
-| **Budget-aware policies** | Limit retrieval based on cost constraints |
-| **Smart caching** | Cache frequent queries and results |
-| **Token optimization** | Minimize context while maximizing relevance |
-| **Early stopping** | Stop retrieval when sufficient |
+| Area | Description | See Also |
+|------|-------------|----------|
+| **Budget-aware policies** | Limit retrieval based on cost constraints | [Cost Optimization](../4-best-practices/cost-optimization.md) |
+| **Smart caching** | Cache frequent queries and results | [Caching](../4-best-practices/caching.md) |
+| **Token optimization** | Minimize context while maximizing relevance | [Chunking Strategies](../4-best-practices/chunking-strategies.md) |
+| **Early stopping** | Stop retrieval when sufficient | [Query Optimization](../4-best-practices/query-optimization.md) |
 
 ### Techniques
 
@@ -213,12 +218,12 @@ class CostAwareRAG:
 
 ### Research Progress
 
-| Year | Development |
-|------|-------------|
-| 2024 | CLIP-based multimodal retrieval |
-| 2025 | VideoRAG, AudioRAG frameworks |
-| 2025 | Unified multimodal knowledge graphs |
-| 2026 | Cross-modal reasoning agents |
+| Year | Development | Reference |
+|------|-------------|-----------|
+| 2024 | CLIP-based multimodal retrieval | [CLIP](https://openai.com/index/clip/) |
+| 2025 | VideoRAG, AudioRAG frameworks | [VideoRAG GitHub](https://github.com/mainfact/video-rag) |
+| 2025 | Unified multimodal knowledge graphs | [arXiv:2502.08826](https://arxiv.org/abs/2502.08826) |
+| 2026 | Cross-modal reasoning agents | [arXiv:2502.08826](https://arxiv.org/abs/2502.08826) |
 
 ### Future: Unified Multimodal Embeddings
 
@@ -253,14 +258,16 @@ class UnifiedMultimodalRAG:
 3. **Domain-specific** - Healthcare, legal, finance
 4. **Multi-modal** - Cross-modal evaluation
 
+> **Learn more about LLM-as-Judge**: [arXiv:2305.11633](https://arxiv.org/abs/2305.11633) | [LangSmith Docs](https://docs.smith.langchain.com/evaluation)
+
 ### Emerging Benchmarks
 
-| Benchmark | Focus | Year |
-|-----------|-------|------|
-| **RAGAS** | General RAG quality | 2024 |
-| **ARES** | Automated evaluation | 2024 |
-| **MultiHopRAG** | Multi-hop reasoning | 2024 |
-| **CRUD-RAG** | Create/Read/Update/Delete | 2025 |
+| Benchmark | Focus | Year | Link |
+|-----------|-------|------|------|
+| **RAGAS** | General RAG quality | 2024 | [GitHub](https://github.com/explodinggradients/ragas) |
+| **ARES** | Automated evaluation | 2024 | [GitHub](https://github.com/Standoff-Labs/ares) |
+| **MultiHopRAG** | Multi-hop reasoning | 2024 | [arXiv](https://arxiv.org/abs/2401.13596) |
+| **CRUD-RAG** | Create/Read/Update/Delete | 2025 | [arXiv](https://arxiv.org/abs/2401.09854) |
 
 ### Future Evaluation Framework
 
@@ -308,12 +315,12 @@ class HolisticRAGEvaluator:
 
 ### Research Challenges
 
-| Challenge | Description |
-|-----------|-------------|
-| **Poisoning** | Malicious documents in knowledge base |
-| **Privacy** | Sensitive info in retrieved context |
-| **Jailbreaks** | Attacking RAG systems |
-| **Attribution** | Source verification |
+| Challenge | Description | Reference |
+|-----------|-------------|-----------|
+| **Poisoning** | Malicious documents in knowledge base | [Microsoft Research](https://www.microsoft.com/en-us/security/blog/2024/01/22/protecting-llms-from-poisoning-attacks/) |
+| **Privacy** | Sensitive info in retrieved context | [PII Detection](https://python.langchain.com/docs/security/) |
+| **Jailbreaks** | Attacking RAG systems | [arXiv:2308.08466](https://arxiv.org/abs/2308.08466) |
+| **Attribution** | Source verification | [RAGAS](https://github.com/explodinggradients/ragas) |
 
 ### Future: Privacy-Preserving RAG
 
@@ -356,12 +363,12 @@ class PrivacyPreservingRAG:
 
 ### Research Directions
 
-| Area | Description |
-|------|-------------|
-| **Multi-agent RAG** | Multiple specialized agents |
-| **Tool orchestration** | Dynamic tool selection |
-| **Self-reflection** | Model critiques own outputs |
-| **Learning to learn** | Improve retrieval over time |
+| Area | Description | Reference |
+|------|-------------|-----------|
+| **Multi-agent RAG** | Multiple specialized agents | [AutoGen](https://github.com/microsoft/autogen) |
+| **Tool orchestration** | Dynamic tool selection | [LangChain Tools](https://python.langchain.com/docs/concepts/tools/) |
+| **Self-reflection** | Model critiques own outputs | [Self-RAG](https://arxiv.org/abs/2410.13496) |
+| **Learning to learn** | Improve retrieval over time | [RLHM Papers](https://arxiv.org/) |
 
 ### Future: Self-Improving RAG
 
@@ -502,9 +509,9 @@ class SelfImprovingRAG:
 | Research Area | Key Question | Current State | Future Direction |
 |---------------|--------------|---------------|------------------|
 | **Adaptive Retrieval** | When to retrieve? | LLM-based estimation | Learned policies |
-| **Efficiency & Cost** | How to reduce cost? | Basic caching | Budget-aware policies |
-| **Multi-Modal** | Cross-modal reasoning? | CLIP-based | Unified embeddings |
-| **Evaluation** | How to measure quality? | RAGAS, ARES | Holistic metrics |
+| **Efficiency & Cost** | How to reduce cost? | Basic [caching](../4-best-practices/caching.md) | Budget-aware policies |
+| **Multi-Modal** | Cross-modal reasoning? | [CLIP](https://openai.com/index/clip/)-based | Unified embeddings |
+| **Evaluation** | How to measure quality? | [RAGAS](https://github.com/explodinggradients/ragas), [ARES](https://github.com/Standoff-Labs/ares) | Holistic metrics |
 | **Security & Privacy** | How to protect data? | PII detection | Privacy-preserving RAG |
 | **Agentic Systems** | Self-improving RAG? | Multi-agent | Learning from feedback |
 
@@ -516,54 +523,11 @@ class SelfImprovingRAG:
 |---------|--------------|-----|
 | **Ignoring research** | Using outdated approaches | Stay current with papers |
 | **Over-engineering** | Adding complexity without need | Start simple, add as needed |
-| **Skipping evaluation** | Can't measure improvement | Use RAGAS, ARES benchmarks |
+| **Skipping evaluation** | Can't measure improvement | Use [RAGAS](https://github.com/explodinggradients/ragas), [ARES](https://github.com/Standoff-Labs/ares) benchmarks |
 | **Ignoring cost** | RAG can be expensive | Implement budget-aware policies |
 | **No monitoring** | Can't debug issues | Add observability early |
 
 ---
-
-## References
-
-### Survey Papers
-
-| Paper | Year | Focus | Link |
-|-------|------|-------|------|
-| A Systematic Literature Review of RAG | 2025 | Comprehensive overview | [arXiv](https://arxiv.org/abs/2508.06401) |
-| Agentic RAG: A Survey | 2025 | Agentic systems | [arXiv](https://arxiv.org/abs/2501.09136) |
-| Comprehensive RAG Survey | 2025 | Architectures & enhancements | [arXiv](https://arxiv.org/abs/2506.00054) |
-| Multimodal RAG Survey | 2025 | Beyond text | [arXiv](https://arxiv.org/abs/2502.08826) |
-| Self-RAG | 2024 | Adaptive retrieval | [arXiv](https://arxiv.org/abs/2410.13496) |
-| REPLUG | 2024 | External knowledge | [arXiv](https://arxiv.org/abs/2301.12652) |
-
-### Key Implementations
-
-| Framework | Description | Link |
-|-----------|-------------|------|
-| LangChain/LangGraph | Production frameworks | [GitHub](https://github.com/langchain-ai/langchain) |
-| LlamaIndex | Data indexing | [GitHub](https://github.com/run-llama/llama_index) |
-| AutoGen | Multi-agent systems | [GitHub](https://github.com/microsoft/autogen) |
-| Microsoft GraphRAG | Knowledge graph RAG | [GitHub](https://github.com/microsoft/graphrag) |
-
-### Evaluation Tools
-
-| Tool | Purpose | Link |
-|------|---------|------|
-| RAGAS | General RAG quality | [GitHub](https://github.com/explodinggradients/ragas) |
-| ARES | Automated evaluation | [GitHub](https://github.com/Standoff-Labs/ares) |
-| LangSmith | RAG evaluation & monitoring | [Website](https://smith.langchain.com/) |
-| DeepEval | Holistic RAG evaluation | [GitHub](https://github.com/confident-ai/deepeval) |
-
-### Emerging Tools
-
-| Tool | Purpose | Link |
-|------|---------|------|
-| PromptLayer | Prompt management | [Website](https://promptlayer.com/) |
-| Weights & Biases | Experiment tracking | [Website](https://wandb.ai/) |
-| Neptune | MLOps for RAG | [Website](https://neptune.ai/) |
-
----
-
-*Next: [Comparison Matrix](comparison-matrix.md)*
 
 ---
 
