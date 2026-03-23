@@ -783,7 +783,7 @@ Briefly describe:"""
 
 Practice implementing advanced retrieval techniques with this notebook:
 
-- [Advanced Retrieval Techniques Notebook](../notebooks/06-advanced-retrieval-techniques.ipynb)
+- [Advanced Retrieval Techniques Notebook](https://github.com/exploreborders/RAG_Architecture/blob/main/docs/notebooks/06-advanced-retrieval-techniques.ipynb)
 
 ---
 
