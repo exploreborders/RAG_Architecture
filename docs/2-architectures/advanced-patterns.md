@@ -787,4 +787,4 @@ Practice implementing advanced retrieval techniques with this notebook:
 
 ---
 
-*Next: [Vector Databases Guide](./vector-databases.md)*
+*Next: [Vector Databases Guide](../3-technical/vector-databases.md)*
