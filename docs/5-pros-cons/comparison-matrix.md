@@ -88,7 +88,7 @@ Quick Reference:
 
 | Query Type              | Recommended Architecture |
 |-------------------------|--------------------------|
-| Simple Q&A              | Classic RAG             |
+| Simple Q&A              | Classic RAG              |
 | Product recommendations | KG-RAG                   |
 | Research summaries      | Agentic RAG              |
 | Media search            | Multimodal RAG           |
@@ -967,22 +967,53 @@ Answer:"""
 ## Migration Path
 
 ```
-Starting with Classic RAG? Here's how to evolve:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Classic RAG
-     │
-     │ Add relationships needed?
-     ▼
-KG-RAG ◄───────────────┐
-     │                 │
-     │                 │ Complex workflows?
-     ▼                 │
-Agentic RAG ◄──────────┘
-     │
-     │ Need rich media?
-     ▼
-Multimodal RAG
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     RAG Architecture Evolution Path                         │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   START HERE                                                                │
+│       │                                                                     │
+│       ▼                                                                     │
+│  ┌──────────────┐                                                           │
+│  │ Classic RAG  │                                                           │
+│  │  (Hours)     │                                                           │
+│  └──────┬───────┘                                                           │
+│         │                                                                   │
+│         │ Need relationships?                                               │
+│         │                                                                   │
+│         │                                                                   │
+│         ▼                                                                   │
+│  ┌──────────────┐                                                           │
+│  │   KG-RAG     │ ◄────────────────────────────────────┐                    │
+│  │  (Days)      │  Add complex │                       │                    │
+│  └──────┬───────┘  workflows?  │                       │                    │
+│         │                      │                       │                    │
+│         │                      │                       │                    │
+│         │                      No                     Yes                   │
+│         │                      │                       │                    │
+│         ▼                      ▼                       ▼                    │
+│  ┌──────────────┐       ┌──────────────┐        ┌──────────────┐            │
+│  │  Keep KG-RAG │       │ Agentic RAG  │        │ Agentic RAG  │            │
+│  │    only      │       │   (Days)     │        │   + KG-RAG   │            │
+│  └──────────────┘       └──────┬───────┘        └──────┬───────┘            │
+│                                │                       │                    │
+│                                │ Need rich media?      │                    │
+│                                │                       │                    │
+│                                │                       │                    │
+│                                ▼                       │                    │
+│                         ┌──────────────┐               │                    │
+│                         │ Multimodal   │  ◄────────────┘                    │
+│                         │    RAG       │                                    │
+│                         └──────────────┘                                    │
+│                                                                             │
+│   EVOLUTION OPTIONS:                                                        │
+│   ─────────────────                                                         │
+│   Classic → KG-RAG → Agentic → Multimodal  (Full evolution)                 │
+│   Classic → KG-RAG                         (Add relationships)              │
+│   Classic → Agentic                        (Add complex workflows)          │
+│   Classic → Multimodal                     (Add media support)              │
+│   Classic                                  (Stay simple)                    │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
