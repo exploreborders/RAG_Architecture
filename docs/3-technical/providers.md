@@ -467,6 +467,26 @@ client = OpenAI()
 # Usage will show your current usage
 ```
 
+## References
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [Ollama](https://github.com/ollama/ollama) | Ollama GitHub & documentation |
+| [OpenAI API](https://platform.openai.com/docs/) | OpenAI API documentation |
+| [Anthropic Claude](https://docs.anthropic.com/) | Claude API documentation |
+| [Groq](https://console.groq.com/docs/) | Groq API documentation |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [Ollama Setup Guide](https://github.com/ollama/ollama) | Ollama installation guide |
+| [LLM Provider Comparison](https://platform.openai.com/docs/models) | Model comparison |
+
 ---
 
-*Related: [Embedding Strategies](embeddings-strategies.md) • [Cost Optimization](../4-best-practices/cost-optimization.md)*
+*Previous: [Reranking](reranking.md)*
+
+*Next: [Evaluation Metrics](evaluation-metrics.md)*

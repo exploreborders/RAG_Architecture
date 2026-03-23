@@ -352,29 +352,37 @@ Strategy:"""
 
 ## References
 
-### Papers & Research
+### Academic Papers
 
-| Paper | Year | Link |
-|-------|------|------|
-| HyDE: Hypothetical Document Embeddings | 2022 | [arXiv:2212.10496](https://arxiv.org/abs/2212.10496) |
-| Query Rewriting in RAG | 2024 | [arXiv:2504.12330](https://arxiv.org/abs/2504.12330) |
+| Paper | Year | Focus |
+|-------|------|-------|
+| [HyDE: Hypothetical Document Embeddings](https://arxiv.org/abs/2212.10496) | 2022 | Hypothetical document approach |
+| [Query Rewriting in RAG](https://arxiv.org/abs/2504.12330) | 2024 | Query rewriting techniques |
 
-### Implementations & Tutorials
+### Official Documentation
 
 | Resource | Description |
 |----------|-------------|
 | [HyDE GitHub](https://github.com/texttron/hyde) | Official HyDE implementation |
-| [Query Rewriting - DEV Community](https://dev.to/rogiia/build-an-advanced-rag-app-query-rewriting-h3p) | Practical tutorial |
-| [Query Rewriting - Shekhar Gulati](https://shekhargulati.com/2024/07/17/query-rewriting-in-rag-applications/) | LLM-based rewriting guide |
+| [LangChain Query Rewriting](https://python.langchain.com/docs/modules/query_transformation/) | Query transformation docs |
 
-### Blog Posts
+### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [Azure AI Query Rewriting](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/raising-the-bar-for-rag-excellence-query-rewriting-and-new-semantic-ranker/4302729) | Microsoft's generative query rewriting |
-| [Weaviate Advanced RAG](https://weaviate.io/blog/advanced-rag) | Query rewriting in context |
-| [Part 5: Advanced RAG - Query Rewriting and HyDE](https://blog.gopenai.com/part-5-advanced-rag-techniques-llm-based-query-rewriting-and-hyde-dbcadb2f20d1) | Combined techniques |
+| [Query Rewriting - DEV Community](https://dev.to/rogiia/build-an-advanced-rag-app-query-rewriting-h3p) | Practical tutorial |
+| [Azure AI Query Rewriting](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/raising-the-bar-for-rag-excellence-query-rewriting-and-new-semantic-ranker/4302729) | Microsoft's approach |
+| [Advanced RAG - Query Rewriting](https://blog.gopenai.com/part-5-advanced-rag-techniques-llm-based-query-rewriting-and-hyde-dbcadb2f20d1) | Combined techniques |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [HyDE](https://github.com/texttron/hyde) | Official HyDE implementation |
+| [RAG Techniques](https://github.com/NirDiamant/RAG_Techniques) | Comprehensive collection |
 
 ---
+
+*Previous: [Embeddings Strategies](embeddings-strategies.md)*
 
 *Next: [Reranking](reranking.md)*

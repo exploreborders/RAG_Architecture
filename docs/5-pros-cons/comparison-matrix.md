@@ -1043,33 +1043,32 @@ Answer:"""
 
 ## References
 
-### Survey Papers
+### Academic Papers
 
 | Paper | Year | Focus |
 |-------|------|-------|
-| A Systematic Literature Review of RAG | 2025 | Comprehensive overview |
-| Agentic RAG: A Survey | 2025 | Agentic systems |
-| Comprehensive RAG Survey | 2025 | Architectures & enhancements |
-| Multimodal RAG Survey | 2025 | Beyond text |
+| [A Systematic Literature Review of RAG](https://arxiv.org/abs/2508.06401) | 2025 | Comprehensive overview |
+| [Agentic RAG: A Survey](https://arxiv.org/abs/2501.09136) | 2025 | Agentic systems |
+| [Comprehensive RAG Survey](https://arxiv.org/abs/2506.00054) | 2025 | Architectures & enhancements |
+| [Multimodal RAG Survey](https://arxiv.org/abs/2502.08826) | 2025 | Beyond text |
 
-### Key Implementations
+### Official Documentation
 
-- **LangChain/LangGraph** - Production frameworks
-- **LlamaIndex** - Data indexing
-- **Microsoft GraphRAG** - Knowledge graph RAG
+| Resource | Description |
+|----------|-------------|
+| [LangGraph](https://langchain-ai.github.io/langgraph/) | Production frameworks |
+| [LlamaIndex](https://www.llamaindex.ai/) | Data indexing |
+| [Microsoft GraphRAG](https://github.com/microsoft/graphrag) | Knowledge graph RAG |
 
-### Evaluation Tools
+### Blog Posts & Tutorials
 
-| Tool | Purpose |
-|------|---------|
-| RAGAS | General RAG quality |
-| ARES | Automated evaluation |
-| LangSmith | RAG evaluation & monitoring |
+| Blog | Description |
+|------|-------------|
+| [RAGAS](https://github.com/explodinggradients/ragas) | RAG evaluation |
+| [ARES](https://github.com/stanford-futuredata/ARES) | Automated evaluation |
 
 ---
+
+*Previous: [Research Directions](research-directions.md)*
 
 *Next: [Evaluation Metrics](../3-technical/evaluation-metrics.md)*
-
----
-
-*For security considerations, see [Security Considerations](../4-best-practices/security-considerations.md). For production hardening, see [Production Hardening Guide](../4-best-practices/production-hardening.md).*

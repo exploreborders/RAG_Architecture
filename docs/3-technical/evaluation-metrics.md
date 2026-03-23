@@ -451,11 +451,31 @@ class RAGBenchmark:
 | **End-to-End** | RAGAS Score | Overall system performance |
 | **End-to-End** | LLM-as-Judge | Flexible, semantic evaluation |
 
-## Related Topics
+## References
 
-- [Observability](../4-best-practices/observability.md) - Monitor and debug your RAG system
-- [Production Deployment](../4-best-practices/production-deployment.md) - Deploy with monitoring
+### Academic Papers
+
+| Paper | Year | Focus |
+|-------|------|-------|
+| [RAGAS: Evaluation Framework](https://arxiv.org/abs/2309.15296) | 2023 | RAG evaluation metrics |
+
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [RAGAS](https://github.com/explodinggradients/ragas) | RAG evaluation framework |
+| [TruLens](https://truera.com/trulens/) | RAG evaluation |
+| [ARES](https://github.com/stanford-futuredata/ARES) | Automated evaluation |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [RAG Evaluation](https://www.pinecone.io/learn/rag-evaluation) | Evaluation guide |
+| [LLM-as-Judge](https://docs.wandb.ai/guides/reports/using-reports) | Judge-based evaluation |
 
 ---
 
-*Next: [Best Practices - Chunking Strategies](../4-best-practices/chunking-strategies.md)*
+*Previous: [Providers](providers.md)*
+
+*Next: [Chunking Strategies](../4-best-practices/chunking-strategies.md)*

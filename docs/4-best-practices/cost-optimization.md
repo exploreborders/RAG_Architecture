@@ -408,6 +408,12 @@ See [Providers](../3-technical/providers.md) for setup instructions.
 
 ## References
 
+### Academic Papers
+
+| Paper | Year | Focus |
+|-------|------|-------|
+| [RAG Cost Optimization](https://arxiv.org/abs/2405.07441) | 2024 | Cost-effective RAG |
+
 ### Official Documentation
 
 | Resource | Description |
@@ -424,14 +430,16 @@ See [Providers](../3-technical/providers.md) for setup instructions.
 | [Token Optimization](https://blog.langchain.dev/token-optimization/) | Reduce usage |
 | [Budget-Aware RAG](https://weaviate.io/blog/budget-aware-rag) | Policies |
 
-### Tools
+### GitHub Repositories
 
-| Tool | Description |
+| Repo | Description |
 |------|-------------|
 | [LangSmith](https://smith.langchain.com/) | Cost monitoring |
 | [PromptLayer](https://promptlayer.com/) | Prompt management |
 | [Weave](https://wandb.ai/weave) | Tracing & costs |
 
 ---
+
+*Previous: [Query Optimization](query-optimization.md)*
 
 *Next: [Scaling Patterns](scaling-patterns.md)*

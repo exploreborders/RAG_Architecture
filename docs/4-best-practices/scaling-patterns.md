@@ -1517,4 +1517,6 @@ What's your bottleneck?
 
 ---
 
+*Previous: [Observability](observability.md)*
+
 *Next: [Cost Optimization](cost-optimization.md)*

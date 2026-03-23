@@ -1897,18 +1897,31 @@ What security measure should you implement first?
 
 ## References
 
+### Academic Papers
+
+| Paper | Year | Focus |
+|-------|------|-------|
+| [Prompt Injection Attacks](https://arxiv.org/abs/2402.06363) | 2024 | Injection techniques |
+| [PoisonedRAG: Knowledge Corruption](https://arxiv.org/abs/2402.07867) | 2024 | RAG poisoning |
+
+### Official Documentation
+
 | Resource | Description |
 |----------|-------------|
-| [OWASP Top 10 for LLM](https://owasp.org/www-project-top-10-for-llm-applications/) | Common LLM vulnerabilities |
+| [OWASP Top 10 for LLM](https://owasp.org/www-project-top-10-for-llm-applications/) | Common vulnerabilities |
 | [NIST AI Risk Management](https://csrc.nist.gov/publications/detail/sp/1270/final) | AI security framework |
-| [Prompt Injection Attacks](https://arxiv.org/abs/2402.06363) | Injection techniques |
-| [LangChain Security](https://python.langchain.com/docs/security/) | LangChain best practices |
-| [GDPR RAG Compliance](https://gdpr.eu/article-32-security-of-processing/) | Data protection requirements |
+| [LangChain Security](https://python.langchain.com/docs/security/) | Framework security |
+| [GDPR Compliance](https://gdpr.eu/article-32-security-of-processing/) | Data protection |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [RAG Security Best Practices](https://www.pinecone.io/learn/rag-security) | Security patterns |
+| [Securing RAG Pipelines](https://weaviate.io/blog/security-rag) | Implementation guide |
 
 ---
 
-*Next: [Cost Optimization](cost-optimization.md)*
+*Previous: [Observability](observability.md)*
 
----
-
-*For deployment patterns, see [Production Deployment](production-deployment.md). For production hardening, see [Production Hardening Guide](production-hardening.md).*
+*Next: [Caching](caching.md)*

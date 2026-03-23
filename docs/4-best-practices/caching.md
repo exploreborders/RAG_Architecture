@@ -614,4 +614,6 @@ class CacheMetrics:
 
 ---
 
+*Previous: [Security Considerations](security-considerations.md)*
+
 *Next: [Cost Optimization](cost-optimization.md)*

@@ -646,4 +646,6 @@ What's your priority?
 
 ---
 
+*Previous: [Advanced Patterns](../2-architectures/advanced-patterns.md)*
+
 *Next: [Production Deployment](../4-best-practices/production-deployment.md)*

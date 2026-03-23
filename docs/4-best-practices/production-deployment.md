@@ -917,12 +917,10 @@ Before deploying to production, ensure you have:
 | Repo | Description |
 |------|-------------|
 | [Docker](https://github.com/docker/cli) | Docker CLI |
-| [Awesome RAG](https://github.com/Danielskry/Awesome-RAG) | RAG resources |
+| [Awesome RAG](https://github.com/liunian-Jay/Awesome-RAG) | RAG resources |
 
 ---
 
-*[Previous: Common Mistakes to Avoid] • [Next: Security Considerations](security-considerations.md)*
+*Previous: [Query Optimization](../3-technical/query-optimization.md)*
 
----
-
-*For production hardening details, see [Production Hardening Guide](production-hardening.md)*
+*Next: [Security Considerations](security-considerations.md)*

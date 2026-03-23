@@ -343,35 +343,36 @@ class RerankingPipeline:
 
 ## References
 
-### Papers & Research
+### Academic Papers
 
-| Paper | Description |
-|-------|-------------|
-| [Cross-Encoders - Sentence Transformers](https://sbert.net/examples/cross_encoder/training/rerankers/README.html) | Official documentation |
-| [Training Reranker Models](https://huggingface.co/blog/train-reranker) | HuggingFace guide |
+| Paper | Year | Focus |
+|-------|------|-------|
+| [Cross-Encoders for Information Retrieval](https://arxiv.org/abs/1904.02095) | 2019 | Cross-encoder architecture |
 
-### Implementations
+### Official Documentation
 
 | Resource | Description |
 |----------|-------------|
+| [Cross-Encoders - Sentence Transformers](https://sbert.net/examples/cross_encoder/training/rerankers/README.html) | Official documentation |
 | [LangChain Cross Encoders](https://python.langchain.com/docs/integrations/cross_encoders/) | LangChain integration |
-| [Sentence Transformers Reranking](https://www.sbert.net/examples/applications/retrieve_rerank/Retrieve_rerank.ipynb) | Official notebook |
 
-### Tutorials
+### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
 | [The Art of RAG: Reranking](https://medium.com/@rossashman/the-art-of-rag-part-3-reranking-with-cross-encoders-688a16b64669) | Cross-encoder tutorial |
 | [Reranking with Cohere](https://txt.cohere.com/rerank/) | Cohere reranking guide |
-| [Mastering Reranking in RAG](https://medium.com/@abheshith7/mastering-reranking-in-rag-from-basic-retrieval-to-advanced-methods-db297530361a) | Comprehensive guide |
+| [Training Reranker Models](https://huggingface.co/blog/train-reranker) | HuggingFace guide |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [sentence-transformers](https://github.com/UKPLab/sentence-transformers) | SBERT library |
+| [Cohere](https://github.com/cohere-ai/cohere-python) | Cohere SDK |
 
 ---
 
-## Related Topics
-
-- [Evaluation Metrics](evaluation-metrics.md) - Measure reranking effectiveness
-- [Retrieval Systems](retrieval-systems.md) - Other retrieval techniques
-
----
+*Previous: [Query Rewriting](query-rewriting.md)*
 
 *Next: [Sentence Window Retrieval](sentence-window-retrieval.md)*

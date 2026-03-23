@@ -222,31 +222,39 @@ Query ──► [Is retrieval needed?] ──► Yes ──► Retrieve ──�
 
 ## References
 
-### Core RAG Papers
+### Academic Papers
 
-| Paper | Year | Link |
-|-------|------|------|
-| Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al.) | 2020 | [arXiv:2005.11401](https://arxiv.org/abs/2005.11401) |
-| Self-RAG: Learning to Retrieve, Generate, and Critique | 2024 | [arXiv:2310.11511](https://arxiv.org/abs/2310.11511) |
-| A Systematic Survey of RAG | 2025 | [arXiv:2508.06401](https://arxiv.org/abs/2508.06401) |
-| Comprehensive RAG Survey | 2025 | [arXiv:2506.00054](https://arxiv.org/abs/2506.00054) |
-| Agentic RAG Survey | 2025 | [arXiv:2501.09136](https://arxiv.org/abs/2501.09136) |
-| Multimodal RAG Survey | 2025 | [arXiv:2502.08826](https://arxiv.org/abs/2502.08826) |
+| Paper | Year | Focus |
+|-------|------|-------|
+| [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) | 2020 | Original RAG paper |
+| [Self-RAG: Learning to Retrieve, Generate, and Critique](https://arxiv.org/abs/2310.11511) | 2024 | Self-reflective RAG |
+| [A Systematic Survey of RAG](https://arxiv.org/abs/2508.06401) | 2025 | Comprehensive overview |
+| [Comprehensive RAG Survey](https://arxiv.org/abs/2506.00054) | 2025 | Architectures & enhancements |
+| [Agentic RAG Survey](https://arxiv.org/abs/2501.09136) | 2025 | Agentic systems |
+| [Multimodal RAG Survey](https://arxiv.org/abs/2502.08826) | 2025 | Beyond text |
 
-### GraphRAG & Knowledge Graph RAG
+### Official Documentation
 
 | Resource | Description |
 |----------|-------------|
-| [Microsoft GraphRAG](https://github.com/microsoft/graphrag) | Official Microsoft GraphRAG implementation |
-| [GraphRAG Blog](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/) | Microsoft Research blog post |
-
-### Tools & Frameworks
-
-| Tool | Description |
-|------|-------------|
 | [LangGraph](https://langchain-ai.github.io/langgraph/) | Agentic RAG orchestration |
-| [AutoGen](https://microsoft.github.io/autogen/) | Microsoft multi-agent framework |
+| [AutoGen](https://microsoft.github.io/autogen/) | Multi-agent framework |
 | [LlamaIndex](https://www.llamaindex.ai/) | RAG-focused data framework |
+
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [GraphRAG: From Local to Global](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/) | Microsoft Research blog |
+| [Advanced RAG Techniques](https://weaviate.io/blog/advanced-rag) | Implementation patterns |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [Microsoft GraphRAG](https://github.com/microsoft/graphrag) | Official GraphRAG implementation |
+| [LangGraph](https://github.com/langchain-ai/langgraph) | Agentic RAG framework |
+| [LlamaIndex](https://github.com/run-llama/llama_index) | Data indexing |
 
 ---
 

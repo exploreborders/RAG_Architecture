@@ -395,20 +395,22 @@ Answer:""")
 
 ## References
 
-### Implementations
+### Official Documentation
 
 | Resource | Description |
 |----------|-------------|
-| [LangChain ParentDocumentRetriever](https://python.langchain.com/docs/modules/data_connection/retrievers/parent_document_retriever) | Official LangChain implementation |
+| [LangChain ParentDocumentRetriever](https://python.langchain.com/docs/modules/data_connection/retrievers/parent_document_retriever) | Parent document retriever |
 | [LlamaIndex Sentence Window](https://docs.llamaindex.ai/en/latest/examples/node_postprocessor/sentence_windowing/) | LlamaIndex implementation |
 
-### Tutorials & Blogs
+### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [Weaviate Advanced RAG](https://weaviate.io/blog/advanced-rag) | Includes sentence window techniques |
-| [Neo4j Advanced RAG](https://neo4j.com/blog/genai/advanced-rag-techniques/) | Chunking strategies comparison |
+| [Weaviate Advanced RAG](https://weaviate.io/blog/advanced-rag) | Sentence window techniques |
+| [Neo4j Advanced RAG](https://neo4j.com/blog/genai/advanced-rag-techniques/) | Chunking strategies |
 
 ---
+
+*Previous: [Reranking](reranking.md)*
 
 *Next: [Embeddings Strategies](embeddings-strategies.md)*

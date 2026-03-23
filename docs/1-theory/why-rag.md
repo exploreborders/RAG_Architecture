@@ -232,6 +232,13 @@ The result is AI systems that are **more reliable, trustworthy, and useful** for
 | [Quantifying Hallucination in LLMs](https://arxiv.org/abs/2309.05217) | 2023 | Hallucination measurement study |
 | [RAG Improvement Analysis](https://arxiv.org/abs/2405.07441) | 2024 | Quantifying RAG benefits |
 
+### Official Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [LangChain RetrievalQA](https://python.langchain.com/docs/modules/chains/) | QA chain documentation |
+| [LlamaIndex Router](https://docs.llamaindex.ai/en/stable/module_guides/querying/router/) | Query routing strategies |
+
 ### Blog Posts & Tutorials
 
 | Blog | Description |
@@ -239,13 +246,6 @@ The result is AI systems that are **more reliable, trustworthy, and useful** for
 | [RAG Implementation Guide](https://anyscale.com/blog/fine-tuning-llms-for-longer-context-and-better-rag-systems) | Practical RAG implementation |
 | [Building Trustworthy RAG](https://haruiz.github.io/blog/improve-rag-systems-reliability-with-citations) | Source attribution strategies |
 | [RAG Cost-Benefit Analysis](https://www.stratagem-systems.com/blog/rag-implementation-cost-roi-analysis) | ROI of RAG systems |
-
-### Official Documentation
-
-| Resource | Description |
-|----------|-------------|
-| [LangChain RetrievalQA](https://python.langchain.com/docs/modules/chains/) | QA chain documentation |
-| [LlamaIndex Router](https://docs.llamaindex.ai/en/stable/module_guides/querying/router/) | Query routing strategies |
 
 ---
 

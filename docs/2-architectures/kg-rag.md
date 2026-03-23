@@ -556,4 +556,6 @@ Practice implementing Knowledge Graph RAG with this notebook:
 
 ---
 
-*Next: [Agentic RAG](../2-architectures/agentic-rag.md)*
+*Previous: [Classic RAG](classic-rag.md)*
+
+*Next: [Agentic RAG](agentic-rag.md)*

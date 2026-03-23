@@ -635,28 +635,25 @@ client.create_run(
 
 ## References
 
-### Langfuse
+### Official Documentation
 
 | Resource | Description |
 |----------|-------------|
-| [Langfuse Docs](https://langfuse.com/docs) | Official documentation |
-| [RAG Observability](https://langfuse.com/blog/2025-10-28-rag-observability-and-evals) | RAG-specific guide |
-| [Langfuse + LangChain](https://python.langchain.com/docs/integrations/providers/langfuse/) | LangChain integration |
-
-### OpenTelemetry
-
-| Resource | Description |
-|----------|-------------|
-| [OpenTelemetry Docs](https://opentelemetry.io/docs/) | Official documentation |
-| [OTel Python](https://opentelemetry.io/docs/instrumentation/python/) | Python SDK |
-
-### Monitoring
-
-| Resource | Description |
-|----------|-------------|
+| [Langfuse](https://langfuse.com/docs) | RAG observability |
+| [OpenTelemetry](https://opentelemetry.io/docs/) | Tracing standard |
 | [Prometheus](https://prometheus.io/docs/) | Metrics collection |
 | [Grafana](https://grafana.com/docs/) | Dashboards |
 
+### Blog Posts & Tutorials
+
+| Blog | Description |
+|------|-------------|
+| [RAG Observability](https://langfuse.com/blog/2025-10-28-rag-observability-and-evals) | RAG-specific guide |
+| [Langfuse + LangChain](https://python.langchain.com/docs/integrations/providers/langfuse/) | LangChain integration |
+| [OTel Python](https://opentelemetry.io/docs/instrumentation/python/) | Python SDK |
+
 ---
+
+*Previous: [Production Hardening](production-hardening.md)*
 
 *Next: [Security Considerations](security-considerations.md)*

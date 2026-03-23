@@ -673,4 +673,6 @@ Use this checklist before production deployment:
 
 ---
 
-*Last updated: March 2026*
+*Previous: [Production Deployment](production-deployment.md)*
+
+*Next: [Observability](observability.md)*

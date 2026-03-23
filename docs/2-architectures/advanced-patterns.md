@@ -751,40 +751,41 @@ Briefly describe:"""
 
 ## References
 
-### Core Papers
+### Academic Papers
 
-| Paper | Link |
-|-------|------|
-| HyDE: Precise Zero-Shot Dense Retrieval | [arXiv:2212.10496](https://arxiv.org/abs/2212.10496) |
-| Self-RAG: Learning to Retrieve, Generate, and Critique | [arXiv:2310.11511](https://arxiv.org/abs/2310.11511) |
-| Corrective RAG | [arXiv:2401.15884](https://arxiv.org/abs/2401.15884) |
-| GraphRAG: From Local to Global | [Microsoft Research](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/) |
+| Paper | Year | Focus |
+|-------|------|-------|
+| [HyDE: Precise Zero-Shot Dense Retrieval](https://arxiv.org/abs/2212.10496) | 2022 | Hypothetical document embeddings |
+| [Self-RAG: Learning to Retrieve, Generate, and Critique](https://arxiv.org/abs/2310.11511) | 2024 | Self-reflective RAG |
+| [Corrective RAG](https://arxiv.org/abs/2401.15884) | 2024 | Error detection and correction |
+| [GraphRAG: From Local to Global](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/) | 2024 | Knowledge graph RAG |
 
-### Implementations
+### Official Documentation
 
 | Resource | Description |
 |----------|-------------|
-| [HyDE GitHub](https://github.com/texttron/hyde) | Official HyDE implementation |
-| [Self-RAG GitHub](https://github.com/AkariAsai/self-rag) | Self-RAG implementation |
-| [Microsoft GraphRAG](https://github.com/microsoft/graphrag) | Microsoft GraphRAG |
-| [RAG Techniques Collection](https://github.com/NirDiamant/RAG_Techniques) | Comprehensive RAG techniques |
+| [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) | Agentic RAG orchestration |
+| [Weaviate Advanced RAG](https://weaviate.io/blog/advanced-rag) | Comprehensive RAG techniques |
+| [Neo4j Advanced RAG](https://neo4j.com/blog/genai/advanced-rag-techniques/) | Graph-based techniques |
 
-### Tutorials & Blogs
+### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [Advanced RAG Techniques - Weaviate](https://weaviate.io/blog/advanced-rag) | Comprehensive RAG techniques guide |
-| [Neo4j Advanced RAG](https://neo4j.com/blog/genai/advanced-rag-techniques/) | 15 advanced RAG techniques |
-| [HyDE Tutorial - Zilliz](https://zilliz.com/learn/improve-rag-and-information-retrieval-with-hyde-hypothetical-document-embeddings) | HyDE explanation |
+| [HyDE Tutorial - Zilliz](https://zilliz.com/learn/improve-rag-and-information-retrieval-with-hyde-hypothetical-document-embeddings) | HyDE implementation guide |
+| [Advanced RAG Techniques - Weaviate](https://weaviate.io/blog/advanced-rag) | Pattern implementations |
+
+### GitHub Repositories
+
+| Repo | Description |
+|------|-------------|
+| [HyDE](https://github.com/texttron/hyde) | Official HyDE implementation |
+| [Self-RAG](https://github.com/AkariAsai/self-rag) | Self-RAG implementation |
+| [Microsoft GraphRAG](https://github.com/microsoft/graphrag) | Graph-based RAG |
+| [RAG Techniques](https://github.com/NirDiamant/RAG_Techniques) | Comprehensive RAG collection |
 
 ---
 
-## Try It Yourself
-
-Practice implementing advanced retrieval techniques with this notebook:
-
-- [Advanced Retrieval Techniques Notebook](https://github.com/exploreborders/RAG_Architecture/blob/main/notebooks/06-advanced-retrieval-techniques.ipynb)
-
----
+*Previous: [Multimodal RAG](./multimodal-rag.md)*
 
 *Next: [Vector Databases Guide](../3-technical/vector-databases.md)*
