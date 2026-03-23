@@ -917,7 +917,7 @@ Before deploying to production, ensure you have:
 | Repo | Description |
 |------|-------------|
 | [Docker](https://github.com/docker/cli) | Docker CLI |
-| [Awesome RAG](https://github.com/arcetec/awesome-rag) | RAG resources |
+| [Awesome RAG](https://github.com/liunian-Jay/Awesome-RAG) | RAG resources |
 
 ---
 
