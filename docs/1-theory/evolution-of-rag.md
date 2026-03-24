@@ -274,7 +274,6 @@ Query ──► [Is retrieval needed?] ──► Yes ──► Retrieve ──�
 
 | Paper | Year | Contribution |
 |-------|------|--------------|
-| [Self-RAG](https://arxiv.org/abs/2310.11511) | 2024 | Self-reflective retrieval |
 | [Corrective RAG](https://arxiv.org/abs/2401.15884) | 2024 | Error detection/correction |
 | [Agentic RAG Survey](https://arxiv.org/abs/2501.09136) | 2025 | Agentic systems overview |
 | [Comprehensive RAG Survey](https://arxiv.org/abs/2506.00054) | 2025 | All RAG architectures |
