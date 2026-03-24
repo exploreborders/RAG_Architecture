@@ -82,7 +82,7 @@ Query ──► Dense Retriever ──► Top-K Docs ──► Generator
 
 | Year | Innovation | Description |
 |------|------------|-------------|
-| 2021 | DPR Improvements | Better dense retrievers |
+| 2020 | DPR Improvements | Better dense retrievers |
 | 2021 | BM25 + Dense | Hybrid search emergence (keyword + embedding) |
 | 2022 | In-context RAG | Few-shot learning with retrieval |
 | 2022 | Atlas | Fine-tuned retriever + generator |
@@ -99,9 +99,8 @@ Combining keyword and semantic search:
 | Paper | Year | Contribution |
 |-------|------|--------------|
 | [ColBERT](https://arxiv.org/abs/2007.00814) | 2020 | Late interaction retrieval |
-| [ANCE](https://arxiv.org/abs/2010.10781) | 2020 | Approximate nearest neighbor training |
-| [RocketQA](https://arxiv.org/abs/2110.07731) | 2021 | Cross-encoder distillation |
-| [DPR](https://arxiv.org/abs/2004.04906) | 2020 | Dense Passage Retrieval (improved) |
+| [ANCE](https://arxiv.org/abs/2007.00808) | 2020 | Approximate nearest neighbor training |
+| [RocketQA](https://arxiv.org/abs/2010.08191) | 2020 | Cross-encoder distillation |
 | [Atlas](https://arxiv.org/abs/2208.03565) | 2022 | Fine-tuned retriever+generator |
 
 ### Technical Innovations
