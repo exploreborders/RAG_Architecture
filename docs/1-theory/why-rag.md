@@ -177,7 +177,7 @@ According to a 2025 systematic review and meta-analysis:
 
 ## When RAG Is Essential
 
-RAG becomes critical when:
+RAG is essential for:
 
 ### High Stakes Applications
 - Medical diagnosis support
