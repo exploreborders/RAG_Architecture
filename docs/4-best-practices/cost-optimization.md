@@ -412,7 +412,7 @@ See [Providers](../3-technical/providers.md) for setup instructions.
 
 | Paper | Year | Focus |
 |-------|------|-------|
-| [RAG Cost Optimization](https://arxiv.org/abs/2405.07441) | 2024 | Cost-effective RAG |
+| [CARROT: Cost-Constrained RAG](https://arxiv.org/abs/2411.00744) | 2024 | Cost-constrained retrieval |
 
 ### Official Documentation
 
@@ -420,23 +420,21 @@ See [Providers](../3-technical/providers.md) for setup instructions.
 |----------|-------------|
 | [OpenAI Pricing](https://openai.com/pricing) | LLM pricing |
 | [Ollama](https://github.com/ollama/ollama) | Local LLM runtime |
-| [LangChain Cache](https://python.langchain.com/docs/modules/cache/) | Caching docs |
+| [RAG Caching Guide](https://towardsdatascience.com/beyond-prompt-caching-5-more-things-you-should-cache-in-rag-pipelines/) | Caching docs |
 
 ### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [RAG Cost Optimization](https://www.pinecone.io/learn/rag-cost-optimization) | Cost reduction |
-| [Token Optimization](https://blog.langchain.dev/token-optimization/) | Reduce usage |
-| [Budget-Aware RAG](https://weaviate.io/blog/budget-aware-rag) | Policies |
+| [RAG Cost Optimization](https://zenvanriel.com/ai-engineer-blog/rag-cost-optimization-strategies/) | Cost reduction |
+| [RAG Caching](https://medium.com/@vasanthancomrads/rag-caching-layers-for-cost-and-speed-c3f479e271e5) | Caching layers |
 
 ### GitHub Repositories
 
 | Repo | Description |
 |------|-------------|
-| [LangSmith](https://smith.langchain.com/) | Cost monitoring |
-| [PromptLayer](https://promptlayer.com/) | Prompt management |
-| [Weave](https://wandb.ai/weave) | Tracing & costs |
+| [LLM-Cost-Guardian](https://github.com/ogulcanaydogan/LLM-Cost-Guardian) | Multi-provider cost tracking |
+| [AgentCost](https://github.com/agentcostin/agentcost) | AI spending optimization |
 
 ---
 
