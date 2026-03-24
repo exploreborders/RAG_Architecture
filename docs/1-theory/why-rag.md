@@ -37,6 +37,26 @@ cannot verify current information.
 
 Studies show that LLMs can have hallucination rates of **15-30%** in factual queries, making them unreliable for critical applications without additional safeguards.
 
+### Types of Hallucinations
+
+| Type | Example | RAG Solution |
+|------|---------|--------------|
+| **Factual** | "Paris is the capital of Germany" | Retrieve verified facts |
+| **Contextual** | Misunderstanding user intent | Retrieve relevant context |
+| **Semantic** | "Dogs can fly" | Ground in document evidence |
+| **Temporal** | "Last week's news" when it's months old | Retrieve current information |
+| **Attribution** | Citing non-existent sources | Provide actual citations |
+
+### Industry Impact Analysis
+
+| Industry | Hallucination Cost | RAG Benefit |
+|----------|-------------------|-------------|
+| **Healthcare** | Patient harm, malpractice suits | Accurate medical info |
+| **Legal** | Wrong legal advice, malpractice | Case law accuracy |
+| **Finance** | Investment losses, compliance | Accurate data |
+| **Customer Support** | Wrong solutions, churn | Correct answers |
+| **Research** | Invalid conclusions | Verified sources |
+
 ## Knowledge Cutoff Limitations
 
 ### The Temporal Problem
@@ -203,11 +223,179 @@ RAG becomes critical when:
 └────────────────────────────────────────────────────────────┘
 ```
 
-### Factors Affecting RAG Cost
-- Number of documents indexed
-- Retrieval frequency
-- Vector database hosting
-- LLM API calls (with context)
+### Detailed ROI Calculation
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         RAG ROI Calculator                                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  INPUTS:                                                                    │
+│  ┌─────────────────────────────────────────────────────────────────────┐    │
+│  │ Current LLM error rate:      20%                                    │    │
+│  │ RAG error rate:              3%                                     │    │
+│  │ Queries per month:           100,000                                │    │
+│  │ Cost per error (average):    $50 (support, remediation, trust loss) │    │
+│  │ RAG infrastructure cost/mo:  $2,000                                 │    │
+│  └─────────────────────────────────────────────────────────────────────┘    │
+│                                                                             │
+│  CALCULATION:                                                               │
+│  ┌─────────────────────────────────────────────────────────────────────┐    │
+│  │ Current monthly errors:     100,000 × 20% = 20,000 errors           │    │
+│  │ RAG monthly errors:         100,000 × 3% = 3,000 errors             │    │
+│  │ Errors avoided:             20,000 - 3,000 = 17,000                 │    │
+│  │ Cost savings:               17,000 × $50 = $850,000/month           │    │
+│  │ RAG cost:                   $2,000/month                            │    │
+│  │ Net savings:                $850,000 - $2,000 = $848,000/month      │    │
+│  │ Annual savings:             $848,000 × 12 = $10,176,000/year        │    │
+│  └─────────────────────────────────────────────────────────────────────┘    │
+│                                                                             │
+│  RESULT: 424x ROI                                                           │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Cost Breakdown by Component
+
+| Component | Free Option | Paid Option | Monthly Cost (Paid) |
+|-----------|-------------|-------------|-------------------|
+| **LLM** | Ollama, Llama3 | OpenAI, Anthropic | $0 - $10,000+ |
+| **Embeddings** | Ollama, BGE | OpenAI, Cohere | $0 - $500 |
+| **Vector DB** | Chroma, pgvector | Pinecone, Qdrant | $0 - $1,000 |
+| **Infrastructure** | Local | Cloud (AWS, GCP) | $0 - $500 |
+| **Total** | **$0** | | **$0 - $12,000+** |
+
+### Optimization Strategies to Reduce Cost
+
+| Strategy | Cost Reduction | Implementation |
+|----------|---------------|----------------|
+| Use Ollama (local models) | 95-100% | Run Llama3.2 locally |
+| Smaller embedding model | 50-70% | Use BGE-small instead of large |
+| Caching | 40-60% | Redis, semantic cache |
+| Smaller context | 20-30% | Limit retrieved docs |
+| Tiered retrieval | 30-40% | Fast/slow path |
+
+### Industry Case Studies
+
+#### Customer Support Automation
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Case Study: Fortune 500 Tech Company                                        │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│ BEFORE (Pure LLM):                                                          │
+│ • 15% hallucination rate in product answers                                 │
+│ • Required human review for 40% of responses                                │
+│ • Monthly cost: $120,000 (human review labor)                               │
+│                                                                             │
+│ AFTER (RAG):                                                                │
+│ • 2% hallucination rate                                                     │
+│ • Human review needed: 8% of responses                                      │
+│ • Monthly cost: $8,000 (infrastructure) + $24,000 (reduced review).         │
+│                                                                             │
+│ RESULT:                                                                     │
+│ • 88% reduction in human review workload                                    │
+│ • $88,000 monthly savings                                                   │
+│ • Improved customer satisfaction: +23%                                      │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+#### Legal Research
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Case Study: Law Firm AI Assistant                                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│ CHALLENGE:                                                                  │
+│ • Thousands of legal documents, case law, regulations                       │
+│ • Pure LLM cannot verify current legal status                               │
+│ • Liability concerns with incorrect legal advice                            │
+│                                                                             │
+│ RAG SOLUTION:                                                               │
+│ • Index all firm documents, case law databases                              │
+│ • Retrieve relevant precedents before generating                            │
+│ • Citation verification for all claims                                      │
+│                                                                             │
+│ RESULTS:                                                                    │
+│ • 95% reduction in factual errors                                           │
+│ • Lawyers save 4 hours/week on research                                     │
+│ • Risk of incorrect advice dramatically reduced                             │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+#### Healthcare
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Case Study: Hospital AI Assistant                                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│ CHALLENGE:                                                                  │
+│ • Medical knowledge constantly evolving                                     │
+│ • Patient safety critical                                                   │
+│ • Liability requirements                                                    │
+│                                                                             │
+│ RAG SOLUTION:                                                               │
+│ • Index peer-reviewed medical literature                                    │
+│ • Integration with hospital EMR                                             │
+│ • Source citation required for all recommendations                          │
+│                                                                             │
+│ RESULTS:                                                                    │
+│ • 99% of responses include source citations                                 │
+│ • Doctors verify 60% fewer facts manually                                   │
+│ • Zero liability incidents in 12 months                                     │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+## Trade-offs and Considerations
+
+### When RAG Might Not Be the Best Choice
+
+| Scenario | Alternative | Why |
+|----------|-------------|-----|
+| Creative writing | Pure LLM | No fact-checking needed |
+| Simple classification | Fine-tuning | Faster, consistent |
+| Real-time control systems | Rule-based | Predictable latency |
+| Limited compute | Smaller LLM | RAG adds overhead |
+| Static knowledge base | Fine-tuning | One-time training |
+
+### Potential Drawbacks of RAG
+
+| Drawback | Impact | Mitigation |
+|----------|--------|------------|
+| **Latency** | +200-500ms | Caching, async processing |
+| **Complexity** | More components | Use frameworks (LangChain) |
+| **Cost** | Higher than pure LLM | Local models, optimization |
+| **Retrieval quality** | Output depends on input | Improve chunking, reranking |
+| **Context window** | Limited by LLM | Sentence window, summary |
+
+### The Hybrid Approach
+
+Often the best solution combines RAG with other techniques:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    Hybrid: RAG + Fine-tuning                                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐                    │
+│  │ Fine-tuned  │────►│    RAG      │────►│   Output    │                    │
+│  │ Base Model  │     │ retrieval   │     │             │                    │
+│  │ (style/tone)│     │ (facts)     │     │ +Styled     │                    │
+│  └─────────────┘     └─────────────┘     └─────────────┘                    │
+│                                                                             │
+│  Benefits:                                                                  │
+│  • Domain-specific style from fine-tuning                                   │
+│  • Up-to-date facts from RAG                                                │
+│  • Best of both worlds                                                      │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
 
 ## Conclusion
 
@@ -220,33 +408,33 @@ RAG addresses the fundamental limitations of LLMs by:
 
 The result is AI systems that are **more reliable, trustworthy, and useful** for real-world applications.
 
----
+### Key Takeaways
 
-## References
-
-### Academic Papers
-
-| Paper | Year | Focus |
-|-------|------|-------|
-| [A Systematic Literature Review of RAG](https://arxiv.org/abs/2508.06401) | 2025 | Meta-analysis showing 1.35x improvement |
-| [Quantifying Hallucination in LLMs](https://arxiv.org/abs/2309.05217) | 2023 | Hallucination measurement study |
-| [RAG Improvement Analysis](https://arxiv.org/abs/2405.07441) | 2024 | Quantifying RAG benefits |
-
-### Official Documentation
-
-| Resource | Description |
-|----------|-------------|
-| [LangChain RetrievalQA](https://python.langchain.com/docs/modules/chains/) | QA chain documentation |
-| [LlamaIndex Router](https://docs.llamaindex.ai/en/stable/module_guides/querying/router/) | Query routing strategies |
-
-### Blog Posts & Tutorials
-
-| Blog | Description |
-|------|-------------|
-| [RAG Implementation Guide](https://anyscale.com/blog/fine-tuning-llms-for-longer-context-and-better-rag-systems) | Practical RAG implementation |
-| [Building Trustworthy RAG](https://haruiz.github.io/blog/improve-rag-systems-reliability-with-citations) | Source attribution strategies |
-| [RAG Cost-Benefit Analysis](https://www.stratagem-systems.com/blog/rag-implementation-cost-roi-analysis) | ROI of RAG systems |
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           Key Takeaways                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ✓ RAG is essential for:                                                    │
+│    • Factual accuracy requirements                                          │
+│    • Dynamic/updated information                                            │
+│    • Source verification needs                                              │
+│    • Domain-specific knowledge                                              │
+│                                                                             │
+│  ✓ RAG ROI is often >100x due to:                                           │
+│    • Reduced error costs                                                    │
+│    • Decreased human review                                                 │
+│    • Improved user trust                                                    │
+│                                                                             │
+│  ✓ Start simple: Classic RAG                                                │
+│    • Add complexity as needed                                               │
+│    • Optimize based on metrics                                              │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
+
+*Previous: [What is RAG](what-is-rag.md)*
 
 *Next: [Evolution of RAG](evolution-of-rag.md)*

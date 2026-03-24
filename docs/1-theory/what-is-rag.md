@@ -81,34 +81,315 @@ This learning resource covers multiple RAG architectures:
    - Self-RAG, HyDE, Corrective RAG, GraphRAG
    - Research-focused implementations
 
+### Detailed RAG Type Comparison
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        RAG Architecture Comparison                          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  Classic RAG                    Agentic RAG                                 │
+│  ┌─────────┐                    ┌─────────┐                                 │
+│  │  Query  │                    │  Query  │                                 │
+│  └────┬────┘                    └────┬────┘                                 │
+│       │                              │                                      │
+│       ▼                              ▼                                      │
+│  ┌─────────┐                   ┌───────────┐                                │
+│  │Retrieve │                   │  Agent    │                                │
+│  │  Once   │                   │  Planner  │                                │
+│  └────┬────┘                   └─────┬─────┘                                │
+│       │                              │                                      │
+│       ▼                              ▼                                      │
+│  ┌─────────┐                   ┌───────────┐  ┌─────────┐                   │
+│  │Generate │                   │  Tool     │◄─┤Retrieve │                   │
+│  │  Once   │                   │  Selector │  │Multiple │                   │
+│  └─────────┘                   └───────────┘  └────┬────┘                   │
+│                                                    │                        │
+│                                                    ▼                        │
+│                                               ┌─────────┐                   │
+│                                               │ Evaluate│                   │
+│                                               │  Result │                   │
+│                                               └────┬────┘                   │
+│                                                    │                        │
+│                                                    ▼                        │
+│                                               ┌─────────┐                   │
+│                                               │ Generate│                   │
+│                                               │  Final  │                   │
+│                                               └─────────┘                   │
+│                                                                             │
+│  KG-RAG                         Multimodal RAG                              │
+│  ┌─────────┐                    ┌─────────┐                                 │
+│  │  Query  │                    │  Query  │                                 │
+│  └────┬────┘                    └────┬────┘                                 │
+│       │                              │                                      │
+│       ▼                              ▼                                      │
+│  ┌─────────┐                  ┌───────────┐                                 │
+│  │ Query   │                  │  Modality │                                 │
+│  │  KG     │                  │  Detector │                                 │
+│  └────┬────┘                  └─────┬─────┘                                 │
+│       │                             │                                       │
+│       ▼                             ▼                                       │
+│  ┌─────────┐                  ┌───────────┐                                 │
+│  │ Traverse│                  │ Retrieve  │                                 │
+│  │ Graph   │                  │  by Type  │                                 │
+│  └────┬────┘                  └─────┬─────┘                                 │
+│       │                             │                                       │
+│       ▼                             ▼                                       │
+│  ┌──────────┐                 ┌───────────┐                                 │
+│  │ Generate │                 │ Generate  │                                 │
+│  │ w/Context│                 │  Response │                                 │
+│  └──────────┘                 └───────────┘                                 │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### When to Use Each Type
+
+| Type | Complexity | Latency | Best For | Avoid When |
+|------|------------|---------|----------|------------|
+| **Classic RAG** | Low | Fast | Simple Q&A, chatbots | Complex multi-hop queries |
+| **KG-RAG** | Medium | Medium | Relationships, reasoning | Simple document search |
+| **Agentic RAG** | High | Variable | Complex workflows | Simple, fast responses needed |
+| **Multimodal RAG** | High | Medium-High | Media analysis | Text-only use cases |
+| **Advanced RAG** | Medium | Medium | Specialized needs | Basic Q&A |
+
 ## Key Components
 
 ### 1. Document Processing
-- Loading documents from various sources
-- Text extraction (PDF, HTML, Markdown)
-- Metadata extraction
+
+The first step is loading and processing documents from various sources:
+
+| Source Type | Tools | Challenges |
+|-------------|-------|------------|
+| PDFs | PyPDF, LangChain loaders | Layout preservation, tables |
+| Web pages | BeautifulSoup, Scrapy | Dynamic content, JavaScript |
+| Databases | SQL connectors | Schema mapping |
+| APIs | Custom connectors | Rate limits, pagination |
+| File systems | LangChain loaders | Large files, encoding |
+
+```python
+# Document Loading Example
+from langchain_community.document_loaders import (
+    PyPDFLoader, TextLoader, WebBaseLoader, 
+    Docx2txtLoader, ArxivLoader
+)
+
+# Load different document types
+pdf_loader = PyPDFLoader("document.pdf")
+web_loader = WebBaseLoader("https://example.com/docs")
+
+# Process documents
+pdf_docs = pdf_loader.load()
+web_docs = web_loader.load()
+```
 
 ### 2. Text Chunking
-- Splitting documents into manageable pieces
-- Various strategies: fixed size, semantic, recursive
+
+Splitting documents into manageable pieces for embedding:
+
+| Strategy | Description | Pros | Cons |
+|----------|-------------|------|------|
+| **Fixed Size** | Character/word count | Simple, fast | May break context |
+| **Recursive** | Hierarchical separators | Preserves paragraphs | Complex tuning |
+| **Semantic** | NLP-based splitting | Meaningful chunks | Slower |
+| **Sentence** | Sentence boundaries | Natural splits | Variable sizes |
+
+```python
+# Chunking Strategies
+from langchain_text_splitters import (
+    RecursiveCharacterTextSplitter,
+    TokenTextSplitter,
+    SentenceTransformersRemoteTokenizer
+)
+
+# Recursive - recommended for most cases
+recursive_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200,
+    separators=["\n\n", "\n", ". ", " ", ""]
+)
+
+# Token-based - good for LLMs
+token_splitter = TokenTextSplitter(
+    chunk_size=500,
+    chunk_overlap=50
+)
+
+chunks = recursive_splitter.split_documents(documents)
+```
 
 ### 3. Embedding Generation
-- Converting text chunks into vector representations
-- Models: OpenAI, Cohere, sentence-transformers, BGE
+
+Converting text into vector representations:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Embedding Process                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   "RAG combines retrieval with generation"                  │
+│           │                                                 │
+│           ▼                                                 │
+│   ┌───────────────┐     ┌─────────────────────────────┐     │
+│   │ Text Input    │ ──► │  Embedding Model            │     │
+│   │ (tokenized)   │     │  • OpenAI text-embedding-3  │     │
+│   └───────────────┘     │  • Cohere embed-multilingual│     │
+│                         │  • BGE-base-en              │     │
+│                         │  • Ollama nomic-embed-text  │     │
+│                         └──────────────┬──────────────┘     │
+│                                        │                    │
+│                                        ▼                    │
+│                         ┌─────────────────────────────┐     │
+│                         │  Dense Vector [0.1, -0.3,   │     │
+│                         │          0.5, 0.8, ...]     │     │
+│                         └─────────────────────────────┘     │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+| Model | Dimensions | API | Quality | Cost |
+|-------|------------|-----|---------|------|
+| OpenAI text-embedding-3-small | 1536 | ✅ | High | Low |
+| OpenAI text-embedding-3-large | 3072 | ✅ | Highest | Medium |
+| Cohere embed-multilingual | 1024 | ✅ | High | Medium |
+| BGE-base-en | 768 | ❌ (local) | High | Free |
+| Nomic embed-text | 768 | ❌ (local) | Good | Free |
 
 ### 4. Vector Database
-- Storing and indexing embeddings
-- Options: Pinecone, Weaviate, Chroma, Milvus, pgvector
+
+Storing and indexing embeddings for fast retrieval:
+
+| Database | Type | Cloud | Open Source | Best For |
+|----------|------|-------|-------------|----------|
+| **Pinecone** | Managed | ✅ | ❌ | Enterprise, managed |
+| **Weaviate** | Managed/Self-hosted | ✅ | ✅ | Features, flexibility |
+| **Chroma** | Local/Server | ❌ | ✅ | Prototyping, small scale |
+| **Milvus** | Self-hosted | ✅ | ✅ | Large-scale, enterprise |
+| **Qdrant** | Self-hosted | ✅ | ✅ | Performance, self-hosted |
+| **pgvector** | Extension | ✅ | ✅ | Existing Postgres users |
+
+```python
+# Vector Store Examples
+from langchain_community.vectorstores import Chroma, Pinecone, Weaviate
+from langchain_ollama import OllamaEmbeddings
+
+# Local (free) - Chroma with Ollama
+embeddings = OllamaEmbeddings(model="nomic-embed-text")
+vectorstore = Chroma.from_documents(
+    documents=chunks,
+    embedding=embeddings
+)
+
+# Cloud - Pinecone
+from pinecone import Pinecone
+pc = Pinecone(api_key="...")
+index = pc.Index("rag-index")
+vectorstore = Pinecone.from_documents(..., embedding=OpenAIEmbeddings())
+```
 
 ### 5. Retrieval Strategies
-- Semantic search (dense retrieval)
-- Keyword search (BM25)
-- Hybrid search
+
+How to find the most relevant documents:
+
+| Strategy | How It Works | Best For |
+|----------|--------------|----------|
+| **Semantic (Dense)** | Vector similarity search | Conceptual queries |
+| **Keyword (BM25)** | Term frequency ranking | Exact matches, codes |
+| **Hybrid** | Combines both | Mixed queries |
+| **Multi-query** | Multiple search variations | Ambiguous queries |
+| **Reranking** | Second-stage scoring | Precision-critical |
+
+```python
+# Retrieval Strategy Examples
+
+# 1. Simple semantic search
+retriever = vectorstore.as_retriever(
+    search_type="similarity",
+    search_kwargs={"k": 4}
+)
+
+# 2. Hybrid search (semantic + keyword)
+from langchain.retrievers import EnsembleRetriever
+from langchain_community.retrievers import BM25Retriever
+
+bm25_retriever = BM25Retriever.from_texts(texts)
+ensemble = EnsembleRetriever(
+    retrievers=[semantic_retriever, bm25_retriever],
+    weights=[0.7, 0.3]
+)
+
+# 3. Retrieval with reranking
+from langchain_community.cross_encoders import CrossEncoder
+reranker = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
+```
 
 ### 6. Generation
-- LLM integration
-- Prompt engineering
-- Context window management
+
+Combining retrieved context with LLM generation:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                   Generation Pipeline                       │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   ┌──────────────┐    ┌──────────────────────────────┐      │
+│   │ User Query   │    │ Retrieved Documents (top-k)  │      │
+│   └──────┬───────┘    └──────────────────────────────┘      │
+│          │                         │                        │
+│          │    ┌────────────────────┴────────────────────┐   │
+│          │    │         Context Assembly                │   │
+│          │    │  "Based on these documents:             │   │
+│          │    │   [Doc 1]: ...                          │   │
+│          │    │   [Doc 2]: ...                          │   │
+│          │    │                                         │   │
+│          │    │   Question: {query}"                    │   │
+│          │    └────────────────────┬────────────────────┘   │
+│          │                         │                        │
+│          │                         ▼                        │
+│          │              ┌─────────────────────┐             │
+│          └─────────────►│        LLM          │             │
+│                         │  (GPT-4, Claude,    │             │
+│                         │   Llama, etc.)      │             │
+│                         └──────────┬──────────┘             │
+│                                    │                        │
+│                                    ▼                        │
+│                         ┌─────────────────────┐             │
+│                         │  Generated Response │             │
+│                         │  + Citations        │             │
+│                         └─────────────────────┘             │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+```python
+# Generation with LangChain
+from langchain_core.prompts import PromptTemplate
+from langchain.chains import RetrievalQA
+from langchain_ollama import ChatOllama
+
+# Define prompt template
+prompt = PromptTemplate.from_template("""Use the following context 
+to answer the question. If you don't know, say so.
+
+Context:
+{context}
+
+Question: {question}
+
+Answer:""")
+
+# Create QA chain
+qa_chain = RetrievalQA.from_chain_type(
+    llm=ChatOllama(model="llama3.2"),
+    chain_type="stuff",  # stuff, map_reduce, refine
+    retriever=retriever,
+    return_source_documents=True
+)
+
+# Execute
+result = qa_chain.invoke("What is RAG?")
+print(result["result"])
+```
 
 ## When to Use RAG
 
@@ -125,6 +406,91 @@ RAG may not be needed when:
 - General conversation without specific knowledge requirements
 - Creative writing tasks
 - Tasks where training data is sufficient
+
+## RAG vs Alternatives
+
+### Comparison with Fine-tuning
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    RAG vs Fine-tuning vs Pure LLM                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  Pure LLM                    RAG                          Fine-tuning       │
+│  ┌─────────┐               ┌─────────┐                   ┌─────────┐        │
+│  │ Fast    │               │ Medium  │                   │ Slow    │        │
+│  │ Training│               │ Latency │                   │ Training│        │
+│  └────┬────┘               └────┬────┘                   └────┬────┘        │
+│       │                         │                             │             │
+│       ▼                         ▼                             ▼             │
+│  ┌─────────┐               ┌─────────┐                   ┌─────────┐        │
+│  │ Static  │               │ Dynamic │                   │ Static  │        │
+│  │ Knowl-  │               │ Knowl-  │                   │ Knowl-  │        │
+│  │ edge    │               │ edge    │                   │ edge    │        │
+│  │         │               │ (live)  │                   │         │        │
+│  └────┬────┘               └────┬────┘                   └────┬────┘        │
+│       │                         │                             │             │
+│       ▼                         ▼                             ▼             │
+│  ┌─────────┐               ┌─────────┐                   ┌─────────┐        │
+│  │ High    │               │ Low     │                   │ Medium  │        │
+│  │ Hallu-  │               │ Hallu-  │                   │ Hallu-  │        │
+│  │ cination│               │ cination│                   │ cination│        │
+│  └─────────┘               └─────────┘                   └─────────┘        │
+│                                                                             │
+│  Best for:                 Best for:                      Best for:         │
+│  • General chat            • Dynamic data                 • Specific style  │
+│  • Creative writing        • Domain knowledge             • Task-specific   │
+│  • Common knowledge        • Up-to-date info              • Repeated tasks  │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Decision Framework
+
+```
+What is your primary need?
+        │
+        ▼
+┌───────────────────────────┐
+│ Need dynamic/updated data?│──Yes──► RAG recommended
+└────────────┬──────────────┘
+             │No
+             ▼
+┌───────────────────────────┐
+│ Need specific domain      │──Yes──► Consider RAG vs Fine-tune
+│ expertise?                │        (RAG: general domain, Fine-tune: 
+└────────────┬──────────────┘             specific patterns)
+             │No
+             ▼
+┌───────────────────────────┐
+│ Need consistent style/    │──Yes──► Fine-tuning
+│ tone?                     │
+└────────────┬──────────────┘
+             │No
+             ▼
+        Pure LLM likely sufficient
+```
+
+### When to Combine RAG + Fine-tuning
+
+| Scenario | Approach |
+|----------|----------|
+| Domain-specific Q&A + specific style | Fine-tune base model + RAG |
+| Evolving knowledge + unique terminology | Fine-tune embeddings + RAG |
+| Complex reasoning + up-to-date data | Fine-tune reasoning model + RAG |
+
+## Quick Decision Guide
+
+| Your Situation | Recommendation |
+|---------------|----------------|
+| FAQ chatbot | Classic RAG |
+| Code assistant | RAG + code-specific chunking |
+| Research tool | Agentic RAG |
+| Medical/legal research | KG-RAG |
+| Media analysis | Multimodal RAG |
+| Customer support | Agentic RAG |
+| Internal docs | Classic RAG |
+| Scientific literature | KG-RAG |
 
 ## Quick Example
 
@@ -164,40 +530,6 @@ print(result['result'])  # Print the answer
 
 ---
 
-## References
+*Previous: [Evolution of RAG](evolution-of-rag.md)*
 
-### Academic Papers
-
-| Paper | Year | Focus |
-|-------|------|-------|
-| [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) | 2020 | Original RAG paper (Lewis et al.) |
-| [A Systematic Literature Review of RAG](https://arxiv.org/abs/2508.06401) | 2025 | Comprehensive RAG overview |
-| [Comprehensive RAG Survey](https://arxiv.org/abs/2506.00054) | 2025 | Architectures & enhancements |
-| [Self-RAG: Learning to Retrieve, Generate, and Critique](https://arxiv.org/abs/2310.11511) | 2024 | Adaptive retrieval |
-
-### Official Documentation
-
-| Resource | Description |
-|----------|-------------|
-| [LangChain RAG Documentation](https://python.langchain.com/docs/tutorials/rag/) | Official LangChain RAG guide |
-| [LlamaIndex RAG Documentation](https://docs.llamaindex.ai/en/stable/understanding/rag/) | LlamaIndex RAG guide |
-| [LangGraph](https://langchain-ai.github.io/langgraph/) | Agentic RAG orchestration |
-
-### Blog Posts & Tutorials
-
-| Blog | Description |
-|------|-------------|
-| [Advanced RAG Techniques - Weaviate](https://weaviate.io/blog/advanced-rag) | Comprehensive RAG techniques |
-| [RAG vs Fine-tuning - Anyscale](https://www.anyscale.com/blog/rag-vs-fine-tuning) | When to use RAG vs fine-tuning |
-| [Building Production RAG - Pinecone](https://www.pinecone.io/learn/series/rag/) | Production RAG patterns |
-
-### GitHub Repositories
-
-| Repo | Description |
-|------|-------------|
-| [microsoft/graphrag](https://github.com/microsoft/graphrag) | Microsoft's GraphRAG implementation |
-| [LangChain](https://github.com/langchain-ai/langchain) | LangChain framework |
-
----
-
-*See also: [Evolution of RAG](evolution-of-rag.md)*
+*Next: [Why RAG](why-rag.md)*
