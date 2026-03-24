@@ -457,22 +457,22 @@ class RAGBenchmark:
 
 | Paper | Year | Focus |
 |-------|------|-------|
-| [RAGAS: Evaluation Framework](https://arxiv.org/abs/2309.15296) | 2023 | RAG evaluation metrics |
+| [RAGAS: Evaluation Framework](https://arxiv.org/abs/2309.15217) | 2023 | RAG evaluation metrics |
 
 ### Official Documentation
 
 | Resource | Description |
 |----------|-------------|
-| [RAGAS](https://github.com/explodinggradients/ragas) | RAG evaluation framework |
-| [TruLens](https://truera.com/trulens/) | RAG evaluation |
+| [RAGAS](https://github.com/vibrantlabsai/ragas) | RAG evaluation framework |
+| [TruLens](https://trulens.org/) | RAG evaluation |
 | [ARES](https://github.com/stanford-futuredata/ARES) | Automated evaluation |
 
 ### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [RAG Evaluation](https://www.pinecone.io/learn/rag-evaluation) | Evaluation guide |
-| [LLM-as-Judge](https://docs.wandb.ai/guides/reports/using-reports) | Judge-based evaluation |
+| [RAG Evaluation Guide](https://medium.com/@abhijeet.06793/the-ultimate-guide-to-rag-evaluation-metrics-2026-7dbf41da701b) | Evaluation guide |
+| [LLM-as-Judge Guide](https://safjan.com/ragas-mlflow-rag-evaluation-tutorial/) | Judge-based evaluation |
 
 ---
 
