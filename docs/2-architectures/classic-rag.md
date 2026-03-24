@@ -434,7 +434,7 @@ print(f"Context Precision: {context_precision.score}")
 
 Practice implementing Classic RAG with this notebook:
 
-- [Classic RAG Implementation Notebook](../notebooks/01-classic-rag-implementation.ipynb)
+- [Classic RAG Implementation Notebook](../../notebooks/01-classic-rag-implementation.ipynb)
 
 ---
 

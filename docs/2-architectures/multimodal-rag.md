@@ -585,7 +585,7 @@ def image_to_text_search(query_image: str, text_docs: list) -> list:
 
 Practice RAG evaluation techniques with this notebook:
 
-- [Evaluation Workshop Notebook](../notebooks/04-evaluation-workshop.ipynb)
+- [Evaluation Workshop Notebook](../../notebooks/04-evaluation-workshop.ipynb)
 
 ---
 

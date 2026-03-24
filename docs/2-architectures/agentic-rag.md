@@ -475,7 +475,7 @@ class CostOptimizedAgent:
 
 Practice implementing Agentic RAG with this notebook:
 
-- [Agentic RAG Implementation Notebook](../notebooks/03-agentic-rag-implementation.ipynb)
+- [Agentic RAG Implementation Notebook](../../notebooks/03-agentic-rag-implementation.ipynb)
 
 ---
 
@@ -495,16 +495,16 @@ Practice implementing Agentic RAG with this notebook:
 |----------|-------------|
 | [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) | Official LangGraph guide |
 | [AutoGen Microsoft](https://microsoft.github.io/autogen/) | Microsoft multi-agent framework |
-| [LangChain Agents](https://python.langchain.com/docs/modules/agents/) | Agent documentation |
-| [LlamaIndex Agents](https://docs.llamaindex.ai/en/stable/module_guides/agents/) | LlamaIndex agents |
+| [LangChain Agents](https://docs.langchain.com/oss/python/langchain/agents) | Agent documentation |
+| [LlamaIndex Agents](https://developers.llamaindex.ai/python/framework/understanding/agent) | LlamaIndex agents |
 
 ### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [Building Agentic RAG with LangGraph](https://blog.langchain.dev/agentic-rag/) | LangChain blog |
-| [AutoGen for RAG](https://microsoft.github.io/autogen/0.2/docs/topics/llm_weather/) | Multi-agent RAG |
-| [Agentic RAG Patterns](https://www.pinecone.io/learn/agentic-rag) | Architecture patterns |
+| [Building Agentic RAG with LangGraph](https://blog.langchain.com/beyond-rag-implementing-agent-search-with-langgraph-for-smarter-knowledge-retrieval/) | LangChain blog |
+| [AutoGen RAG Documentation](https://microsoft.github.io/autogen/docs/topics/retrieval_augmentation/) | Multi-agent RAG |
+| [Agentic RAG Patterns](https://www.pinecone.io/learn/pinecone-assistant/) | Architecture patterns |
 
 ### GitHub Repositories
 
