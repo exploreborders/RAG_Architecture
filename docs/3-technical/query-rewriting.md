@@ -357,28 +357,26 @@ Strategy:"""
 | Paper | Year | Focus |
 |-------|------|-------|
 | [HyDE: Hypothetical Document Embeddings](https://arxiv.org/abs/2212.10496) | 2022 | Hypothetical document approach |
-| [Query Rewriting in RAG](https://arxiv.org/abs/2504.12330) | 2024 | Query rewriting techniques |
+| [RaFe: Query Rewriting for RAG](https://arxiv.org/abs/2405.14431) | 2024 | Query rewriting with ranking feedback |
 
 ### Official Documentation
 
 | Resource | Description |
 |----------|-------------|
 | [HyDE GitHub](https://github.com/texttron/hyde) | Official HyDE implementation |
-| [LangChain Query Rewriting](https://python.langchain.com/docs/modules/query_transformation/) | Query transformation docs |
+| [LangChain Query Rewriting](https://python.langchain.com/docs/integrations/retrievers/re_phrase) | Query transformation docs |
 
 ### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [Query Rewriting - DEV Community](https://dev.to/rogiia/build-an-advanced-rag-app-query-rewriting-h3p) | Practical tutorial |
 | [Azure AI Query Rewriting](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/raising-the-bar-for-rag-excellence-query-rewriting-and-new-semantic-ranker/4302729) | Microsoft's approach |
-| [Advanced RAG - Query Rewriting](https://blog.gopenai.com/part-5-advanced-rag-techniques-llm-based-query-rewriting-and-hyde-dbcadb2f20d1) | Combined techniques |
+| [Query Rewriting Tutorial](https://terros.io/en/blog/rag-guide-complet-2025) | Practical RAG guide |
 
 ### GitHub Repositories
 
 | Repo | Description |
 |------|-------------|
-| [HyDE](https://github.com/texttron/hyde) | Official HyDE implementation |
 | [RAG Techniques](https://github.com/NirDiamant/RAG_Techniques) | Comprehensive collection |
 
 ---
