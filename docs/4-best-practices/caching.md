@@ -595,22 +595,22 @@ class CacheMetrics:
 | Resource | Description |
 |----------|-------------|
 | [Redis Cache](https://redis.io/docs/) | Redis documentation |
-| [LangChain Cache](https://python.langchain.com/docs/modules/cache/) | LangChain caching |
-| [LlamaIndex Cache](https://docs.llamaindex.ai/en/stable/module_ides/caching/) | LlamaIndex caching |
+| [LlamaIndex Cache](https://markaicode.com/llamaindex-caching-strategies-document-retrieval/) | LlamaIndex caching |
 
 ### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [RAG Caching Strategies](https://www.pinecone.io/learn/rag-caching) | Caching patterns |
-| [Redis for RAG](https://redis.io/blog/redis-for-rag) | Redis implementation |
-| [Semantic Caching](https://blog.langchain.dev/semantic-caching/) | LangChain blog |
+| [RAG Caching Strategies](https://towardsdatascience.com/beyond-prompt-caching-5-more-things-you-should-cache-in-rag-pipelines/) | Caching patterns |
+| [Redis for RAG](https://redis.io/docs/latest/develop/get-started/rag) | Redis implementation |
+| [LangChain Caching Guide](https://medium.com/@jickpatel611/10-langchain-caching-layers-that-actually-stick-5e498e920096) | LangChain caching guide |
 
 ### GitHub Repositories
 
 | Repo | Description |
 |------|-------------|
-| [LangChain cache](https://github.com/langchain-ai/langchain/tree/master/libs/langchain-core/langchain_core/caches) | Cache implementations |
+| [langchain-redis](https://github.com/langchain-ai/langchain-redis) | LangChain Redis integration |
+| [LangChain Apps with Redis](https://github.com/redis-developer/langchain-apps-with-redis) | Semantic caching examples |
 
 ---
 
