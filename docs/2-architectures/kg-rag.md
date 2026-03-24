@@ -525,7 +525,7 @@ Practice implementing Knowledge Graph RAG with this notebook:
 
 | Paper | Year | Focus |
 |-------|------|-------|
-| [From Local to Global: GraphRAG Approach](https://www.microsoft.com/en-us/research/publication/graphrag/) | 2024 | Microsoft's GraphRAG (Research Blog) |
+| [GraphRAG: From Local to Global](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/) | 2024 | Microsoft's GraphRAG |
 | [Graph Retrieval-Augmented Generation: A Survey](https://arxiv.org/abs/2408.08921) | 2024 | Comprehensive GraphRAG survey (327 citations) |
 | [GFM-RAG: Graph Foundation Model for Retrieval Augmented Generation](https://arxiv.org/abs/2502.01113) | 2025 | Graph foundation models for RAG |
 
@@ -534,8 +534,8 @@ Practice implementing Knowledge Graph RAG with this notebook:
 | Resource | Description |
 |----------|-------------|
 | [Neo4j Graph Database](https://neo4j.com/docs/) | Neo4j documentation |
-| [LangChain Neo4j](https://python.langchain.com/docs/integrationsgraphs/neo4j_graph) | LangChain Neo4j integration |
-| [LlamaIndex Knowledge Graph](https://docs.llamaindex.ai/en/stable/module_ides/knowledge_graph/) | LlamaIndex KG guide |
+| [LangChain Neo4j](https://python.langchain.com/docs/integrations/providers/neo4j/) | LangChain Neo4j integration |
+| [LlamaIndex Knowledge Graph](https://docs.llamaindex.ai/) | LlamaIndex documentation |
 | [GraphRAG Microsoft](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/) | Microsoft GraphRAG blog |
 
 ### Blog Posts & Tutorials
@@ -543,16 +543,16 @@ Practice implementing Knowledge Graph RAG with this notebook:
 | Blog | Description |
 |------|-------------|
 | [Neo4j Advanced RAG](https://neo4j.com/blog/genai/advanced-rag-techniques/) | 15 advanced techniques |
-| [Building Knowledge Graphs](https://towardsdatascience.com/building-knowledge-graphs-a-technical-deep-dive-ddc2dc76e79c) | KG construction guide |
-| [GraphRAG vs Vector RAG](https://www.pinecone.io/learn/graph-rag-vs-vector-rag) | Comparison guide |
+| [Building Knowledge Graphs](https://medium.com/data-science/building-knowledge-graphs-with-llm-graph-transformer-a91045c49b59) | LangChain KG construction |
+| [GraphRAG vs Vector RAG](https://www.pinecone.io/learn/vectors-and-graphs-better-together/) | Comparison guide |
 
 ### GitHub Repositories
 
 | Repo | Description |
 |------|-------------|
 | [microsoft/graphrag](https://github.com/microsoft/graphrag) | Microsoft's GraphRAG |
-| [neo4j-graphrag](https://github.com/neo4j/graphrag) | Neo4j GraphRAG package |
-| [LangChain Graph Transformers](https://github.com/langchain-ai/langchain/tree/master/libs/langchain-experimental) | LLM graph extraction |
+| [neo4j-graphrag-python](https://github.com/neo4j/neo4j-graphrag-python) | Neo4j GraphRAG package |
+| [LangChain Graph Transformers](https://github.com/langchain-ai/langchain-experimental) | LLM graph extraction |
 
 ---
 
