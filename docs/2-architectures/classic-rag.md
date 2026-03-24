@@ -409,9 +409,9 @@ print(f"Context Precision: {context_precision.score}")
 
 | Resource | Description |
 |----------|-------------|
-| [LangChain RetrievalQA](https://python.langchain.com/docs/modules/chains/) | QA chain documentation |
+| [LangChain RAG Tutorial](https://python.langchain.com/docs/tutorials/rag/) | Official RAG tutorial |
 | [LangChain Chroma](https://python.langchain.com/docs/integrations/vectorstores/chroma) | Chroma integration |
-| [LlamaIndex VectorStoreIndex](https://docs.llamaindex.ai/en/stable/api/core/index/) | LlamaIndex index guide |
+| [LlamaIndex](https://docs.llamaindex.ai/) | LlamaIndex documentation |
 | [Ollama](https://github.com/ollama/ollama) | Local LLM execution |
 
 ### Blog Posts & Tutorials
@@ -419,7 +419,7 @@ print(f"Context Precision: {context_precision.score}")
 | Blog | Description |
 |------|-------------|
 | [LangChain RAG Tutorial](https://python.langchain.com/docs/tutorials/rag/) | Official LangChain tutorial |
-| [Building RAG with LlamaIndex](https://docs.llamaindex.ai/en/stable/getting_started/quickstart/) | LlamaIndex quickstart |
+| [Building RAG with LlamaIndex](https://developers.llamaindex.ai/python/framework/understanding/rag/) | LlamaIndex quickstart |
 
 ### GitHub Repositories
 
