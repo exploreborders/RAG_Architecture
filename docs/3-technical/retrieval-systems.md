@@ -524,15 +524,14 @@ def evaluate_retrieval(retriever, test_cases: list) -> dict:
 
 | Blog | Description |
 |------|-------------|
-| [Advanced RAG Techniques - Weaviate](https://weaviate.io/blog/advanced-rag) | Hybrid search patterns |
-| [Reranking with Cross-Encoders](https://medium.com/@rossashman/the-art-of-rag-part-3-reranking-with-cross-encoders-688a16b64669) | Tutorial on reranking |
-| [Neo4j Advanced RAG](https://neo4j.com/blog/genai/advanced-rag-techniques/) | Advanced techniques |
+| [Advanced RAG Techniques - Neo4j](https://neo4j.com/blog/genai/advanced-rag-techniques/) | Advanced RAG patterns |
+| [Reranking Tutorial](https://docs.bswen.com/blog/2026-02-25-langchain-reranker-implementation) | Tutorial on reranking |
 
 ### GitHub Repositories
 
 | Repo | Description |
 |------|-------------|
-| [sentence-transformers](https://github.com/UKPLab/sentence-transformers) | SBERT library |
+| [sentence-transformers](https://github.com/huggingface/sentence-transformers) | SBERT library |
 | [Cohere Rerank](https://cohere.com/rerank) | Commercial reranking |
 
 ---
