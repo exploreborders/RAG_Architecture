@@ -177,16 +177,6 @@ class HybridSearch:
 
 *2023 marked the shift from linear pipelines to modular, composable architectures.*
 
-### Key Innovations
-
-| Technique | Description | Paper |
-|-----------|-------------|-------|
-| **Query Rewriting** | Improve query before retrieval | [2023] |
-| **Reranking** | Two-stage scoring | [ColBERTv2](https://arxiv.org/abs/2112.01488) |
-| **Chunking Strategies** | Optimize context windows | [2023] |
-| **Self-Ask** | LLM asks follow-up questions | [Self-Ask](https://arxiv.org/abs/2210.05050) |
-| **Active RAG** | Decide when to retrieve | [Active RAG](https://arxiv.org/abs/2305.10794) |
-
 ### Modular Architecture
 
 ```
