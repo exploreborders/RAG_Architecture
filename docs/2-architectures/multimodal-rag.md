@@ -604,25 +604,26 @@ Practice RAG evaluation techniques with this notebook:
 
 | Resource | Description |
 |----------|-------------|
-| [LangChain Multimodal](https://python.langchain.com/docs/multimodal/) | Multimodal guides |
-| [LlamaIndex Multimodal](https://docs.llamaindex.ai/en/stable/module_ides/multi_modal/) | LlamaIndex multimodal |
-| [Ollama Vision Models](https://github.com/ollama/ollama) | Vision model support |
+| [LangChain Multimodal RAG](https://redis.io/blog/explore-the-new-multimodal-rag-template-from-langchain-and-redis/) | Multimodal RAG template |
+| [LLaVA GitHub](https://github.com/haotian-liu/LLaVA) | Large language and vision assistant |
+| [Ollama Llama 3.2 Vision](https://ollama.com/library/llama3.2-vision) | Vision model release notes |
 
 ### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [Multimodal RAG Architecture](https://www.pinecone.io/learn/multimodal-rag) | Implementation patterns |
-| [Building Video RAG](https://weaviate.io/blog/video-rag) | Video retrieval |
-| [Cross-modal Retrieval](https://medium.com/@rossashman/cross-modal-retrieval) | Multi-format search |
+| [Multimodal RAG Architecture](https://medium.com/aingineer/a-complete-guide-to-implementing-multi-modal-rag-269d4d29e953) | Implementation patterns |
+| [Video RAG with LanceDB](https://medium.com/@reshma-a/multimodal-rag-with-lancedb-bridgetower-pixtral-process-store-retrieve-videos-3774b828e19a) | Video retrieval tutorial |
+| [Cross-modal Retrieval with CLIP](https://medium.com/@safalsingh76/building-multimodal-rag-systems-with-elasticsearch-cf0b97089695) | Multi-format search |
 
 ### GitHub Repositories
 
 | Repo | Description |
 |------|-------------|
-| [llava](https://github.com/haotian-liu/LLaVA) | Large language and vision assistant |
-| [multimodalrag](https://github.com/ollama/ollama) | Ollama vision models |
+| [LLaVA](https://github.com/haotian-liu/LLaVA) | Large language and vision assistant |
 
 ---
 
-*Next: [Advanced Patterns](./advanced-patterns.md)*
+*Previous: [Agentic RAG](agentic-rag.md)*
+
+*Next: [Advanced Patterns](advanced-patterns.md)*
