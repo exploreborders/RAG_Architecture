@@ -347,20 +347,20 @@ class RerankingPipeline:
 
 | Paper | Year | Focus |
 |-------|------|-------|
-| [Cross-Encoders for Information Retrieval](https://arxiv.org/abs/1904.02095) | 2019 | Cross-encoder architecture |
+| [In Defense of Cross-Encoders](https://arxiv.org/abs/2212.06121) | 2022 | Cross-encoder architecture |
 
 ### Official Documentation
 
 | Resource | Description |
 |----------|-------------|
 | [Cross-Encoders - Sentence Transformers](https://sbert.net/examples/cross_encoder/training/rerankers/README.html) | Official documentation |
-| [LangChain Cross Encoders](https://python.langchain.com/docs/integrations/cross_encoders/) | LangChain integration |
+| [LangChain Cross Encoders](https://reference.langchain.com/python/langchain-classic/retrievers/document_compressors/cross_encoder_rerank/CrossEncoderReranker) | LangChain integration |
 
 ### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [The Art of RAG: Reranking](https://medium.com/@rossashman/the-art-of-rag-part-3-reranking-with-cross-encoders-688a16b64669) | Cross-encoder tutorial |
+| [Reranking Tutorial](https://docs.bswen.com/blog/2026-02-25-langchain-reranker-implementation) | Cross-encoder tutorial |
 | [Reranking with Cohere](https://txt.cohere.com/rerank/) | Cohere reranking guide |
 | [Training Reranker Models](https://huggingface.co/blog/train-reranker) | HuggingFace guide |
 
@@ -368,7 +368,7 @@ class RerankingPipeline:
 
 | Repo | Description |
 |------|-------------|
-| [sentence-transformers](https://github.com/UKPLab/sentence-transformers) | SBERT library |
+| [sentence-transformers](https://github.com/huggingface/sentence-transformers) | SBERT library |
 | [Cohere](https://github.com/cohere-ai/cohere-python) | Cohere SDK |
 
 ---
