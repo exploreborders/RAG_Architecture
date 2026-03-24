@@ -127,7 +127,7 @@ Combining keyword and semantic search:
 │                                                                             │
 │  4. Hybrid Search                                                           │
 │  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━              │
-│  BM25 + Dense = keyword precision + semantic depth                         │
+│  BM25 + Dense = keyword precision + semantic depth                          │
 │  → Best of both worlds                                                      │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -224,8 +224,8 @@ class HybridSearch:
 | Paper | Year | Contribution |
 |-------|------|--------------|
 | [HyDE](https://arxiv.org/abs/2212.10496) | 2022/23 | Hypothetical document embeddings |
-| [Self-Ask](https://arxiv.org/abs/2210.05050) | 2022/23 | LLM asks follow-up questions |
-| [Active RAG](https://arxiv.org/abs/2305.10794) | 2023 | Active retrieval decision |
+| [Self-Ask](https://arxiv.org/abs/2210.03350) | 2022/23 | LLM asks follow-up questions |
+| [Active RAG (FLARE)](https://arxiv.org/abs/2305.06983) | 2023 | Active retrieval decision |
 | [Chain-of-Note](https://arxiv.org/abs/2311.09210) | 2023 | Reading notes for retrieval |
 
 ## 2024-2025: Agentic & Advanced RAG
