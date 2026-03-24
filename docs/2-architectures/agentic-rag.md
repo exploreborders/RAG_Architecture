@@ -400,73 +400,7 @@ result = agent.invoke({
 })
 ```
 
-## Self-RAG Pattern
-
-```python
-"""
-Self-RAG: Model reflects on its own retrieval
-"""
-
-from langchain_core.runnables import RunnablePassthrough
-from langchain_core.output_parsers import CommaSeparatedListOutputParser
-
-class SelfRAGChain:
-    """Self-Reflective RAG Chain."""
-    
-    def __init__(self, llm, retriever):
-        self.llm = llm
-        self.retriever = retriever
-    
-    def run(self, question: str) -> str:
-        # Step 1: Decide if retrieval is needed
-        if_need_retrieval = self.llm.invoke(
-            f"""Question: {question}
-            
-Should we retrieve additional context? Answer yes or no."""
-        )
-        
-        if "yes" in if_need_retrieval.lower():
-            # Step 2: Retrieve
-            docs = self.retriever.invoke(question)
-            context = "\n\n".join([doc.page_content for doc in docs])
-        else:
-            context = ""
-        
-        # Step 3: Generate initial response
-        initial_response = self.llm.invoke(
-            f"""Context: {context}
-
-Question: {question}
-
-Provide your answer."""
-        )
-        
-        # Step 4: Reflect on response
-        reflection = self.llm.invoke(
-            f"""Original question: {question}
-Your answer: {initial_response}
-
-Does this answer the question fully? What is missing?
-Be critical."""
-        )
-        
-        # Step 5: Refine if needed
-        if "missing" in reflection.lower() or "incomplete" in reflection.lower():
-            more_docs = self.retriever.invoke(reflection)
-            more_context = context + "\n\n" + "\n\n".join([doc.page_content for doc in more_docs])
-            
-            final_response = self.llm.invoke(
-                f"""Context: {more_context}
-
-Question: {question}
-
-Provide a refined answer."""
-            )
-        else:
-            final_response = initial_response
-        
-        return final_response
-```
+> **Note**: For detailed Self-RAG implementation, see [Advanced RAG Patterns](./advanced-patterns.md#2-self-rag).
 
 ## Pros and Cons
 
@@ -584,4 +518,6 @@ Practice implementing Agentic RAG with this notebook:
 
 ---
 
-*Next: [Multimodal RAG](../2-architectures/multimodal-rag.md)*
+*Previous: [Knowledge Graph RAG](kg-rag.md)*
+
+*Next: [Multimodal RAG](multimodal-rag.md)*
