@@ -617,8 +617,8 @@ print(f"Fragmentation: {metrics['fragmentation']:.1%}")
 
 | Resource | Description |
 |----------|-------------|
-| [LangChain Text Splitters](https://python.langchain.com/docs/modules/data_connection/text_splitters/) | Official splitters |
-| [LlamaIndex Node Parser](https://docs.llamaindex.ai/en/stable/module_ides/node_parsers/) | Node parsing |
+| [LangChain Text Splitters](https://reference.langchain.com/python/langchain-text-splitters/langchain_text_splitters/) | Official splitters |
+| [LlamaIndex Node Parser](https://docs.llamaindex.ai/en/stable/module_guides/loading/node_parsers/modules/) | Node parsing |
 | [spaCy](https://spacy.io/) | NLP library |
 
 ### Blog Posts & Tutorials
@@ -626,14 +626,14 @@ print(f"Fragmentation: {metrics['fragmentation']:.1%}")
 | Blog | Description |
 |------|-------------|
 | [Chunking Strategies Deep Dive](https://www.pinecone.io/learn/chunking-strategies) | Implementation guide |
-| [Neo4j Chunking Guide](https://neo4j.com/blog/genai/chunking-strategies/) | Comparison |
+| [Neo4j RAG Chunking](https://neo4j.com/blog/genai/advanced-rag-techniques/) | Comparison |
 | [Semantic Chunking Tutorial](https://towardsdatascience.com/semantic-chunking) | Techniques |
 
 ### GitHub Repositories
 
 | Repo | Description |
 |------|-------------|
-| [LangChain Splitters](https://github.com/langchain-ai/langchain/tree/master/libs/langchain-text-splitters) | Text splitting |
+| [LangChain Text Splitters](https://github.com/langchain-ai/langchain/tree/master/libs/text-splitters) | Text splitting |
 
 ---
 
