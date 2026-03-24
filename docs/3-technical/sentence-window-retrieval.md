@@ -399,8 +399,8 @@ Answer:""")
 
 | Resource | Description |
 |----------|-------------|
-| [LangChain ParentDocumentRetriever](https://python.langchain.com/docs/modules/data_connection/retrievers/parent_document_retriever) | Parent document retriever |
-| [LlamaIndex Sentence Window](https://docs.llamaindex.ai/en/latest/examples/node_postprocessor/sentence_windowing/) | LlamaIndex implementation |
+| [LangChain ParentDocumentRetriever](https://reintech.io/blog/implement-parent-child-document-retrieval-rag-systems) | Parent document retriever |
+| [LlamaIndex Sentence Window](https://www.trulens.org/cookbook/frameworks/llamaindex/llama_index_sentencewindow/) | LlamaIndex implementation |
 
 ### Blog Posts & Tutorials
 
