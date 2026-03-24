@@ -71,7 +71,7 @@ Query ──► Dense Retriever ──► Top-K Docs ──► Generator
 | Paper | Contribution |
 |-------|-------------|
 | [RAG](https://arxiv.org/abs/2005.11401) | Original RAG architecture |
-| [DPR](https://arxiv.org/abs/2004.09541) | Dense Passage Retrieval |
+| [DPR](https://arxiv.org/abs/2004.04906) | Dense Passage Retrieval |
 | [BART](https://arxiv.org/abs/1910.13461) | Seq2seq denoising autoencoder |
 
 ## 2021-2022: Advanced Retrieval
@@ -98,10 +98,10 @@ Combining keyword and semantic search:
 
 | Paper | Year | Contribution |
 |-------|------|--------------|
-| [ColBERT](https://arxiv.org.org/2004.09541) | 2020 | Late interaction retrieval |
+| [ColBERT](https://arxiv.org/abs/2007.00814) | 2020 | Late interaction retrieval |
 | [ANCE](https://arxiv.org/abs/2010.10781) | 2020 | Approximate nearest neighbor training |
 | [RocketQA](https://arxiv.org/abs/2110.07731) | 2021 | Cross-encoder distillation |
-| [DPR](https://arxiv.org/abs/2004.09541) | 2020 | Dense Passage Retrieval (improved) |
+| [DPR](https://arxiv.org/abs/2004.04906) | 2020 | Dense Passage Retrieval (improved) |
 | [Atlas](https://arxiv.org/abs/2208.03565) | 2022 | Fine-tuned retriever+generator |
 
 ### Technical Innovations
@@ -173,44 +173,6 @@ class HybridSearch:
 ```
 
 > **Summary (2021-2022)**: The focus shifted from basic retrieval to combining multiple search methods. Hybrid search emerged as a best practice, and researchers began exploring fine-tuned models specifically for retrieval tasks.
-
-## 2023: Modular RAG
-
-*As RAG matured, the community moved from a linear pipeline to a modular, composable architecture.*
-
-### Paradigm Shift
-
-RAG evolved from linear pipeline to **modular architecture**:
-
-```
-Modular RAG Components:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-┌─────────────┐   ┌─────────────┐   ┌─────────────┐
-│  Input      │──►│  Retrieval  │──►│   Router    │
-│  Processing │   │  Module     │   │   Module    │
-└─────────────┘   └─────────────┘   └─────────────┘
-                                           │
-                   ┌─────────────┐         │
-                   │   Fusion    │◄────────┤
-                   │   Module    │         │
-                   └─────────────┘   ┌─────────────┐
-                          │          │   Memory    │
-                          ▼          │   Module    │
-                   ┌─────────────┐   └─────────────┘
-                   │  Generator  │
-                   │  Module     │
-                   └─────────────┘
-```
-
-### Key Innovations (2023)
-
-1. **Query Rewriting**: Improve query quality before retrieval
-2. **Reranking**: Improve retrieved result quality using a second-stage scorer
-3. **Chunking Strategies**: Optimize context windows
-4. **Multi-vector**: Store multiple representations
-
-> **Summary (2023)**: RAG became modular and composable. Query rewriting, reranking, and intelligent chunking became standard techniques. Developers could now mix and match components based on their use case.
 
 ## 2023: Modular RAG Revolution
 
@@ -445,16 +407,6 @@ class AgenticRAG:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Research Trends
-
-| Trend                  | Description                            |
-|------------------------|----------------------------------------|
-| **Adaptive Retrieval** | When to retrieve, how much to retrieve |
-| **Cost-Aware**         | Balance quality vs. computational cost |
-| **Privacy-Preserving** | Secure retrieval in sensitive domains  |
-| **Multi-modal**        | Unified understanding across formats   |
-| **Agentic Control**    | Autonomous pipeline management         |
-
 ## Future Directions
 
 ### Emerging Patterns
@@ -529,17 +481,6 @@ class AgenticRAG:
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
-
-### Key Research Trends
-
-| Trend | Description | Timeline |
-|-------|-------------|----------|
-| **Agentic Control** | Autonomous pipeline management | 2024-2025 |
-| **Multimodal** | Unified understanding across formats | 2025 |
-| **Privacy-Preserving** | Secure retrieval in sensitive domains | 2025-2026 |
-| **Cost-Aware** | Balance quality vs. computational cost | 2024-2025 |
-| **Adaptive Retrieval** | When/how much to retrieve | 2024-2025 |
-| **Real-time** | Streaming knowledge updates | 2026+ |
 
 ### What This Means for Practitioners
 
