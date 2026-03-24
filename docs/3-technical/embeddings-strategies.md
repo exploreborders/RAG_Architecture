@@ -36,7 +36,7 @@ Similar texts → Similar vectors → Near each other in vector space
 ### Prerequisites
 
 ```bash
-# Install Ollama: https://ollama.ai
+# Install Ollama: https://ollama.com
 ollama pull nomic-embed-text
 ```
 
@@ -458,15 +458,14 @@ def benchmark_embeddings(embeddings, test_pairs: list) -> dict:
 
 | Blog | Description |
 |------|-------------|
-| [Embedding Model Comparison](https://www.pinecone.io/learn/embedding-models/) | Model selection guide |
-| [BGE Embeddings Tutorial](https://huggingface.co/blog/BAAI) | BGE usage guide |
+| [Top 5 Embedding Models for RAG](https://www.kdnuggets.com/top-5-embedding-models-for-your-rag-pipeline) | Model selection guide |
 
 ### GitHub Repositories
 
 | Repo | Description |
 |------|-------------|
-| [BAAI/bge-embeddings](https://github.com/BAI/bge-base-en) | BGE models |
-| [sentence-transformers](https://github.com/UKPLab/sentence-transformers) | SBERT library |
+| [FlagEmbedding](https://github.com/FlagOpen/FlagEmbedding) | BGE models |
+| [sentence-transformers](https://github.com/huggingface/sentence-transformers) | SBERT library |
 
 ---
 
