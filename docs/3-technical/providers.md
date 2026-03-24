@@ -310,7 +310,7 @@ class RAGProvider:
 
 ```python
 # Using Ollama (local, free, privacy-friendly) - DEFAULT
-# First, install Ollama: https://ollama.ai
+# First, install Ollama: https://ollama.com
 # Then run: ollama pull llama3.2
 # And: ollama pull nomic-embed-text
 
@@ -385,10 +385,10 @@ print(rag_production.query("What is RAG?")["answer"])
 brew install ollama
 
 # Linux
-curl -fsSL https://ollama.ai/install.sh | sh
+curl -fsSL https://ollama.com/install.sh | sh
 
 # Windows
-# Download from https://ollama.ai
+# Download from https://ollama.com
 ```
 
 ### Pull Required Models
@@ -475,15 +475,14 @@ client = OpenAI()
 |----------|-------------|
 | [Ollama](https://github.com/ollama/ollama) | Ollama GitHub & documentation |
 | [OpenAI API](https://platform.openai.com/docs/) | OpenAI API documentation |
-| [Anthropic Claude](https://docs.anthropic.com/) | Claude API documentation |
+| [Anthropic Claude](https://platform.claude.com/docs/en/home) | Claude API documentation |
 | [Groq](https://console.groq.com/docs/) | Groq API documentation |
 
 ### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [Ollama Setup Guide](https://github.com/ollama/ollama) | Ollama installation guide |
-| [LLM Provider Comparison](https://platform.openai.com/docs/models) | Model comparison |
+| [Ollama Blog](https://ollama.com/blog) | Official Ollama blog |
 
 ---
 
