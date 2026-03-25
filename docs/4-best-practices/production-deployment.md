@@ -921,6 +921,6 @@ Before deploying to production, ensure you have:
 
 ---
 
-*Previous: [Query Rewriting](../3-technical/query-rewriting.md)*
+*Previous: [Query Optimization](query-optimization.md)*
 
 *Next: [Security Considerations](security-considerations.md)*
