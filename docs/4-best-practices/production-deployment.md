@@ -908,9 +908,9 @@ Before deploying to production, ensure you have:
 
 | Blog | Description |
 |------|-------------|
-| [RAG Production Best Practices](https://www.pinecone.io/learn/production-rag) | Deployment patterns |
-| [Docker Compose for RAG](https://blog.langchain.dev/docker-rag/) | Containerization |
-| [Kubernetes RAG Deployment](https://kubernetes.io/blog/rag-deployment) | K8s patterns |
+| [Production RAG Architecture](https://medium.com/@spjosyula2005/the-production-rag-architecture-a-complete-guide-to-building-enterprise-grade-65d24292fcea) | Deployment patterns |
+| [Production RAG Guide](https://regolo.ai/production-ready-rag-on-open-models-chunking-retrieval-reranking-evaluation/) | Containerization |
+| [LlamaIndex Deployment](https://ragaboutit.com/the-llamaindex-deployment-playbook-building-production-rag-in-30-days/) | K8s patterns |
 
 ### GitHub Repositories
 
@@ -921,6 +921,6 @@ Before deploying to production, ensure you have:
 
 ---
 
-*Previous: [Query Optimization](../3-technical/query-optimization.md)*
+*Previous: [Query Rewriting](../3-technical/query-rewriting.md)*
 
 *Next: [Security Considerations](security-considerations.md)*
