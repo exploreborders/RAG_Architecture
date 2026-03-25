@@ -744,16 +744,16 @@ What are your users asking?
 
 | Resource | Description |
 |----------|-------------|
-| [LangChain HyDE](https://python.langchain.com/docs/retrievers/hyde) | HyDE implementation |
-| [LlamaIndex Query Engine](https://docs.llamaindex.ai/en/stable/module_ides/query_engine/) | Query engine guide |
+| [LangChain HyDE](https://docs.langchain.com/oss/javascript/integrations/retrievers/hyde) | HyDE implementation |
+| [LlamaIndex Query Engine](https://realpython.com/llamaindex-examples/) | Query engine guide |
 
 ### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [Advanced Query Optimization](https://weaviate.io/blog/query-optimization) | Techniques |
-| [HyDE Tutorial](https://zilliz.com/learn/hyde-rag) | Implementation |
-| [Query Rewriting Guide](https://blog.gopenai.com/query-rewriting) | Rewriting strategies |
+| [Advanced Query Optimization](https://neo4j.com/blog/genai/advanced-rag-techniques/) | Techniques |
+| [HyDE Tutorial](https://plainenglish.io/blog/101-hypothetical-document-embeddings-the-simple-trick-that-makes-rag-retrieval-actually-work-hyde) | Implementation |
+| [Query Rewriting Guide](https://terros.io/en/blog/rag-guide-complet-2025) | Rewriting strategies |
 
 ### GitHub Repositories
 
