@@ -1908,17 +1908,17 @@ What security measure should you implement first?
 
 | Resource | Description |
 |----------|-------------|
-| [OWASP Top 10 for LLM](https://owasp.org/www-project-top-10-for-llm-applications/) | Common vulnerabilities |
-| [NIST AI Risk Management](https://csrc.nist.gov/publications/detail/sp/1270/final) | AI security framework |
-| [LangChain Security](https://python.langchain.com/docs/security/) | Framework security |
+| [OWASP Top 10 for LLM](https://genai.owasp.org/llm-top-10/) | Common vulnerabilities |
+| [NIST AI RMF](https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf) | AI security framework |
+| [LangChain Security Guide](https://langchain-tutorials.github.io/langchain-security-privacy-2026/) | Framework security |
 | [GDPR Compliance](https://gdpr.eu/article-32-security-of-processing/) | Data protection |
 
 ### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [RAG Security Best Practices](https://www.pinecone.io/learn/rag-security) | Security patterns |
-| [Securing RAG Pipelines](https://weaviate.io/blog/security-rag) | Implementation guide |
+| [RAG Security Best Practices](https://www.kiteworks.com/cybersecurity-risk-management/rag-pipeline-security-best-practices/) | Security patterns |
+| [Securing RAG Pipelines](https://promptguardrails.com/blog/rag-security-complete-guide-vector-databases) | Implementation guide |
 
 ---
 
