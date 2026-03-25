@@ -6,38 +6,54 @@ A comprehensive learning resource for understanding Retrieval-Augmented Generati
 
 This repository is organized into multiple learning paths suitable for different expertise levels:
 
-### Beginner - Getting Started
-- [What is RAG?](docs/1-theory/what-is-rag.md)
-- [Why RAG?](docs/1-theory/why-rag.md)
-- [Classic RAG Implementation](docs/2-architectures/classic-rag.md)
+### 1-Theory - Foundational Concepts
+- [What is RAG?](docs/1-theory/what-is-rag.md) - Core concepts and fundamentals
+- [Why RAG?](docs/1-theory/why-rag.md) - Benefits and use cases
+- [Evolution of RAG](docs/1-theory/evolution-of-rag.md) - Historical development
 
-### Intermediate - Applied RAG
-- [Knowledge Graph RAG](docs/2-architectures/kg-rag.md)
-- [Agentic RAG](docs/2-architectures/agentic-rag.md)
-- [Technical Deep Dives](docs/3-technical/)
-  - [Query Rewriting](docs/3-technical/query-rewriting.md)
-  - [Reranking](docs/3-technical/reranking.md)
-  - [Sentence Window Retrieval](docs/3-technical/sentence-window-retrieval.md)
-- [Best Practices](docs/4-best-practices/)
-  - [Production Deployment](docs/4-best-practices/production-deployment.md)
-  - [Production Hardening](docs/4-best-practices/production-hardening.md)
-  - [Observability](docs/4-best-practices/observability.md)
-  - [Caching](docs/4-best-practices/caching.md)
+### 2-Architectures - Implementation Patterns
+- [Classic RAG](docs/2-architectures/classic-rag.md) - Basic retrieve-then-generate
+- [Knowledge Graph RAG](docs/2-architectures/kg-rag.md) - Graph-enhanced retrieval
+- [Agentic RAG](docs/2-architectures/agentic-rag.md) - Autonomous agent workflows
+- [Multimodal RAG](docs/2-architectures/multimodal-rag.md) - Images, video, audio
+- [Advanced Patterns](docs/2-architectures/advanced-patterns.md) - State-of-the-art techniques
 
-### Advanced - Research Topics
-- [Multimodal RAG](docs/2-architectures/multimodal-rag.md)
-- [Advanced Patterns](docs/2-architectures/advanced-patterns.md)
-- [Research Directions](docs/5-pros-cons/research-directions.md)
+### 3-Technical - Deep Dives
+- [Embeddings Strategies](docs/3-technical/embeddings-strategies.md) - Vector representations
+- [Vector Databases](docs/3-technical/vector-databases.md) - Storage and retrieval
+- [Retrieval Systems](docs/3-technical/retrieval-systems.md) - Search optimization
+- [Reranking](docs/3-technical/reranking.md) - Result refinement
+- [Query Rewriting](docs/3-technical/query-rewriting.md) - Query enhancement
+- [Sentence Window Retrieval](docs/3-technical/sentence-window-retrieval.md) - Context preservation
+- [Evaluation Metrics](docs/3-technical/evaluation-metrics.md) - Performance measurement
+- [Providers](docs/3-technical/providers.md) - LLM & embedding providers
+
+### 4-Best-Practices - Production Ready
+- [Chunking Strategies](docs/4-best-practices/chunking-strategies.md) - Document splitting
+- [Query Optimization](docs/4-best-practices/query-optimization.md) - Performance tuning
+- [Production Deployment](docs/4-best-practices/production-deployment.md) - Going live
+- [Production Hardening](docs/4-best-practices/production-hardening.md) - Reliability
+- [Observability](docs/4-best-practices/observability.md) - Monitoring & tracing
+- [Security Considerations](docs/4-best-practices/security-considerations.md) - Protection
+- [Caching](docs/4-best-practices/caching.md) - Speed optimization
+- [Cost Optimization](docs/4-best-practices/cost-optimization.md) - Budget management
+- [Scaling Patterns](docs/4-best-practices/scaling-patterns.md) - Growth strategies
+
+### 5-Pros-Cons - Analysis
+- [Research Directions](docs/5-pros-cons/research-directions.md) - Future trends
+- [Comparison Matrix](docs/5-pros-cons/comparison-matrix.md) - Architecture trade-offs
 
 ## 📖 Content Overview
 
-| Section | Description |
-|---------|-------------|
-| [Theory](docs/1-theory/) | Foundational concepts, evolution, and theory behind RAG |
-| [Architectures](docs/2-architectures/) | Deep dives into Classic RAG, KG-RAG, Agentic RAG, Multimodal RAG |
-| [Technical](docs/3-technical/) | Embeddings, vector databases, retrieval systems, reranking, query rewriting, evaluation, providers |
-| [Best Practices](docs/4-best-practices/) | Production-ready patterns, optimization, scaling, security, observability, caching |
-| [Comparison](docs/5-pros-cons/) | Pros/cons matrix, use case recommendations |
+| Section | Description | Files |
+|---------|-------------|-------|
+| [Theory](docs/1-theory/) | Foundational concepts, evolution, and theory behind RAG | 3 |
+| [Architectures](docs/2-architectures/) | Classic RAG, KG-RAG, Agentic RAG, Multimodal RAG | 5 |
+| [Technical](docs/3-technical/) | Embeddings, vector databases, retrieval, reranking, evaluation | 8 |
+| [Best Practices](docs/4-best-practices/) | Production patterns, optimization, scaling, security | 9 |
+| [Pros/Cons](docs/5-pros-cons/) | Comparisons and research | 2 |
+
+**Total: 27 documentation files**
 
 ## 🧑‍💻 Interactive Notebooks
 
@@ -60,7 +76,7 @@ This repository is organized into multiple learning paths suitable for different
    ```
 
 2. **Install Ollama** (recommended for local/privacy-friendly usage):
-   - Download from: https://ollama.ai
+   - Download from: https://ollama.com
    - Run: `ollama pull llama3.2`
    - Run: `ollama pull nomic-embed-text`
 
@@ -109,32 +125,56 @@ vectorstore = Chroma.from_documents(documents, embeddings)
 ```
 RAG_Architecture/
 ├── docs/
-│   ├── 1-theory/            # Foundational RAG concepts
-│   ├── 2-architectures/      # RAG architecture patterns
-│   ├── 3-technical/         # Technical deep dives
-│   │   ├── query-rewriting.md
+│   ├── 1-theory/                    # Foundational RAG concepts
+│   │   ├── what-is-rag.md
+│   │   ├── why-rag.md
+│   │   └── evolution-of-rag.md
+│   ├── 2-architectures/             # RAG architecture patterns
+│   │   ├── classic-rag.md
+│   │   ├── kg-rag.md
+│   │   ├── agentic-rag.md
+│   │   ├── multimodal-rag.md
+│   │   └── advanced-patterns.md
+│   ├── 3-technical/                 # Technical deep dives
+│   │   ├── embeddings-strategies.md
+│   │   ├── vector-databases.md
+│   │   ├── retrieval-systems.md
 │   │   ├── reranking.md
+│   │   ├── query-rewriting.md
 │   │   ├── sentence-window-retrieval.md
-│   │   └── ...
-│   ├── 4-best-practices/   # Production best practices
+│   │   ├── evaluation-metrics.md
+│   │   └── providers.md
+│   ├── 4-best-practices/            # Production best practices
+│   │   ├── chunking-strategies.md
+│   │   ├── query-optimization.md
+│   │   ├── production-deployment.md
+│   │   ├── production-hardening.md
 │   │   ├── observability.md
+│   │   ├── security-considerations.md
 │   │   ├── caching.md
-│   │   └── ...
-│   ├── 5-pros-cons/         # Comparisons and research
-│   └── _technical/          # Provider implementations
-│       └── providers.py     # RAGProvider class
-├── notebooks/                # Interactive Jupyter notebooks
+│   │   ├── cost-optimization.md
+│   │   └── scaling-patterns.md
+│   ├── 5-pros-cons/                 # Comparisons and research
+│   │   ├── research-directions.md
+│   │   └── comparison-matrix.md
+│   └── _technical/                  # Provider implementations
+│       └── providers.py              # RAGProvider class
+├── notebooks/                        # Interactive Jupyter notebooks
 │   ├── 01-classic-rag-implementation.ipynb
-│   ├── 06-advanced-retrieval-techniques.ipynb
-│   └── ...
-├── requirements.txt         # Python dependencies
+│   ├── 02-kg-rag-implementation.ipynb
+│   ├── 03-agentic-rag-implementation.ipynb
+│   ├── 04-evaluation-workshop.ipynb
+│   ├── 05-production-deployment.ipynb
+│   └── 06-advanced-retrieval-techniques.ipynb
+├── requirements.txt                  # Python dependencies
+├── CONTRIBUTING.md                   # Contribution guidelines
 └── README.md
 ```
 
 ## 🔄 Architecture Comparison
 
 | Feature | Classic RAG | KG-RAG | Agentic RAG | Multimodal RAG |
-|---------|-------------|--------|-------------|----------------|
+|---------|-------------|--------|-------------|---------------|
 | **Complexity** | Low | Medium | High | High |
 | **Use Case** | Q&A, Docs | Relationships | Complex workflows | Video/Audio/Images |
 | **Latency** | Low | Medium | Variable | Medium-High |
