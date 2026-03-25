@@ -661,15 +661,15 @@ Use this checklist before production deployment:
 |----------|-------------|
 | [OWASP Top 10](https://owasp.org/www-project-top-ten/) | Web security |
 | [FastAPI Security](https://fastapi.tiangolo.com/tutorial/security/) | API security |
-| [LangChain Security](https://python.langchain.com/docs/security/) | Framework security |
+| [LangChain Security Guide](https://langchain-tutorials.github.io/langchain-security-privacy-2026/) | Framework security |
 
 ### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [RAG Security Best Practices](https://www.pinecone.io/learn/rag-security) | Security patterns |
-| [Securing RAG Pipelines](https://weaviate.io/blog/security-rag) | Implementation |
-| [Rate Limiting Guide](https://cloud.google.com/architecture/rate-limiting) | API protection |
+| [RAG Security Best Practices](https://testmy.ai/blog/building-secure-rag-systems-2025) | Security patterns |
+| [RAG Security Checklist](https://adversariallogic.com/rag-security-checklist/) | Implementation |
+| [Rate Limiting Guide](https://zuplo.com/learning-center/10-best-practices-for-api-rate-limiting-in-2025/) | API protection |
 
 ---
 
