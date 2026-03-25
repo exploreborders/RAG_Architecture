@@ -1070,5 +1070,3 @@ Answer:"""
 ---
 
 *Previous: [Research Directions](research-directions.md)*
-
-*Next: [Evaluation Metrics](../3-technical/evaluation-metrics.md)*

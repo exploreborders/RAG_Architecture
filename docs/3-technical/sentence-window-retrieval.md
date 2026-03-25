@@ -413,4 +413,4 @@ Answer:""")
 
 *Previous: [Reranking](reranking.md)*
 
-*Next: [Embeddings Strategies](embeddings-strategies.md)*
+*Next: [Chunking Strategies](../4-best-practices/chunking-strategies.md)*

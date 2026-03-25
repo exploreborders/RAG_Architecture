@@ -438,6 +438,6 @@ See [Providers](../3-technical/providers.md) for setup instructions.
 
 ---
 
-*Previous: [Query Optimization](query-optimization.md)*
+*Previous: [Caching](caching.md)*
 
 *Next: [Scaling Patterns](scaling-patterns.md)*

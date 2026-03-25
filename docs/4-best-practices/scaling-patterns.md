@@ -1498,16 +1498,16 @@ What's your bottleneck?
 |----------|-------------|
 | [Kubernetes](https://kubernetes.io/docs/) | K8s documentation |
 | [Docker](https://docs.docker.com/) | Docker docs |
-| [Pinecone Scaling](https://docs.pinecone.io/guides/manage-and-scale/scaling) | Pinecone scaling |
-| [Qdrant Clustering](https://qdrant.tech/documentation/concepts/collections/) | Qdrant scaling |
+| [Pinecone Scaling](https://docs.pinecone.io/guides/indexes/pods/scale-pod-based-indexes) | Pinecone scaling |
+| [Qdrant Clustering](https://qdrant.tech/documentation/manage-data/collections/) | Qdrant scaling |
 
 ### Blog Posts & Tutorials
 
 | Blog | Description |
 |------|-------------|
-| [RAG at Scale](https://www.pinecone.io/learn/rag-at-scale) | Enterprise patterns |
-| [Horizontal Scaling RAG](https://weaviate.io/blog/scaling-rag) | Multi-node RAG |
-| [Vector DB Scaling](https://blog.milvus.io/scaling-vector-databases) | Milvus scaling |
+| [RAG at Scale](https://medium.com/@mbentaher1/scaling-rag-systems-in-production-7023a1c9aba0) | Enterprise patterns |
+| [Horizontal Scaling RAG](https://callsphere.tech/blog/production-rag-architecture-caching-monitoring-scaling-pipelines) | Multi-node RAG |
+| [Vector DB Scaling](https://docs.pinecone.io/guides/get-started/test-at-scale) | Vector scaling |
 
 ### GitHub Repositories
 
@@ -1517,6 +1517,4 @@ What's your bottleneck?
 
 ---
 
-*Previous: [Observability](observability.md)*
-
-*Next: [Cost Optimization](cost-optimization.md)*
+*Previous: [Cost Optimization](cost-optimization.md)*

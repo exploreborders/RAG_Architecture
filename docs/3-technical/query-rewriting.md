@@ -381,6 +381,6 @@ Strategy:"""
 
 ---
 
-*Previous: [Embeddings Strategies](embeddings-strategies.md)*
+*Previous: [Providers](providers.md)*
 
 *Next: [Reranking](reranking.md)*

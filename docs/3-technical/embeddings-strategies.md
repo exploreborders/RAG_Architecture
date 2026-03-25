@@ -469,4 +469,6 @@ def benchmark_embeddings(embeddings, test_pairs: list) -> dict:
 
 ---
 
+*Previous: [Sentence Window Retrieval](sentence-window-retrieval.md)*
+
 *Next: [Retrieval Systems](retrieval-systems.md)*

@@ -637,4 +637,6 @@ print(f"Fragmentation: {metrics['fragmentation']:.1%}")
 
 ---
 
+*Previous: [Evaluation Metrics](../3-technical/evaluation-metrics.md)*
+
 *Next: [Query Optimization](./query-optimization.md)*
