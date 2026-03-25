@@ -531,7 +531,9 @@ class SelfImprovingRAG:
 
 ---
 
-*For security considerations, see [Security Considerations](../4-best-practices/security-considerations.md).*
+*Previous: [Scaling Patterns](../4-best-practices/scaling-patterns.md)*
+
+*Next: [Comparison Matrix](comparison-matrix.md)*
 
 ---
 
